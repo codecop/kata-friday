@@ -30,7 +30,7 @@ describe('Word Count', () => {
             expect(count_words(" dog")).toEqual(1);
         });
 
-        it('counts words ignoring multiple spaces', () => {
+        test('counts words ignoring multiple spaces', () => {
             // expect green, this is a regression test
             expect(count_words(" dog  barks again   ")).toEqual(3);
         });
