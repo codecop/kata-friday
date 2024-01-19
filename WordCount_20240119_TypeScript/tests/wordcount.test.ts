@@ -15,22 +15,22 @@ describe('Word Count', () => {
         expect(count_words("")).toEqual(0);
     });
 
-    describe('Function have to count words and not spaces', () => {
+    describe('counts words and not spaces', () => {
 
         it('counts single word', () => {
             expect(count_words("dog")).toEqual(1);
         });
       
-        it('count two words delimited by space', () => {
+        it('counts two words delimited by space', () => {
             expect(count_words("brown fox")).toEqual(2);
         });
       
         // String with spaces around should be trimmed.
-        it('count single word prefixed by space', () => {
+        it('counts single word prefixed by space', () => {
             expect(count_words(" dog")).toEqual(1);
         });
 
-        it('count words ignoring multiple spaces', () => {
+        it('counts words ignoring multiple spaces', () => {
             // expect green, this is a regression test
             expect(count_words(" dog  barks again   ")).toEqual(3);
         });
