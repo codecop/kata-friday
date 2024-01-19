@@ -19,8 +19,6 @@ function count_words(text: string, config:CountWordsConfig=default_config): numb
 
 describe('Word Count', () => {
 
-    // Doublecheck that words with chars like -, ', ` are counted right.
-
     // Empty string has no words.
     test('counts empty string as no word', () => {
         expect(count_words("")).toEqual(0);
@@ -69,6 +67,7 @@ describe('Word Count', () => {
     });
   
     describe('counts standalone symbols not as words', () => {
+        // TODO parameterise?
         test('of dot', () => {
           expect(count_words('dog .')).toEqual(1);
         });
@@ -80,6 +79,12 @@ describe('Word Count', () => {
         test('of end of citation', () => {
           expect(count_words('dog ."')).toEqual(1);
         });
+      
+        // Doublecheck that words with chars like -, ', ` are counted right.
+        test('of dot at end', () => {
+          expect(count_words('dog.')).toEqual(1);
+        });
+      
     });
 });
 
