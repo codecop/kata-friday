@@ -36,8 +36,12 @@ describe('Word Count', () => {
         });
       
     });
-
+  
+    describe('counts words and not other whitespace', () => {
+        test('of two words delimited by new line', () => {
+            expect(count_words("brown\nfox")).toEqual(2);
+        });
+    });
 });
-
 
 // cyber-dojo hotkeys: Alt-O Outout Alt-T Run Test
