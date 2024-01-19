@@ -61,6 +61,9 @@ describe('Word Count', () => {
         test('of dot', () => {
           expect(count_words('dog .')).toEqual(1);
         });
+        test('of quote', () => {
+          expect(count_words('" dog "')).toEqual(1);
+        });
     });
 });
 
