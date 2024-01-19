@@ -39,34 +39,21 @@ describe('Word Count', () => {
   
     describe('counts words and not other whitespace', () => {
         test.each([
-          ['space', ' '],
+          ['space',    ' '],
+          ['new line', '\n'],
+          ['tab',      '\t'],
+          ['no-break-space (U+00A0)', '\u00A0'],
+          ['em-space (U+2003)',       '\u2003'],
         ])
         ('of two words delimited by %s', (a,b) => {
             expect(count_words(`brown${b}fox`)).toEqual(2);
         });
       
-        test('of two words delimited by space', () => {
-            expect(count_words("brown fox")).toEqual(2);
-        });
-
-        test('of two words delimited by new line', () => {
-            expect(count_words("brown\nfox")).toEqual(2);
-
+        test('of two words delimited by new line (in multiline string)', () => {
             expect(count_words(`brown
                                 fox`)).toEqual(2);
         });
 
-        test('of two words delimited by tab', () => {
-            expect(count_words("brown\tfox")).toEqual(2);
-        });
-
-        test('of two words delimited by no-break-space (U+00A0)', () => {
-            expect(count_words("brown\u00A0fox")).toEqual(2);
-        });
-
-        test('of two words delimited by em-space (U+2003)', () => {
-            expect(count_words("brown\u2003fox")).toEqual(2);
-        });
     });
 });
 
