@@ -44,6 +44,10 @@ describe('Word Count', () => {
             expect(count_words(`brown
                                 fox`)).toEqual(2);
         });
+
+        test('of two words delimited by tab', () => {
+            expect(count_words("brown\tfox")).toEqual(2);
+        });
     });
 });
 
