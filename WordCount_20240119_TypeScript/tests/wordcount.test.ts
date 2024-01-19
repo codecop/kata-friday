@@ -82,10 +82,13 @@ describe('Word Count', () => {
       
         // Doublecheck that words with chars like -, ', ` are counted right.
         test('of dot at end', () => {
+          // regression test
           expect(count_words('dog.')).toEqual(1);
         });
       
     });
+  
+    // TODO full test with all possible characters, separators etc.
 });
 
 // cyber-dojo hotkeys: Alt-O Outout Alt-T Run Test
