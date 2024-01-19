@@ -8,7 +8,6 @@ function count_words(text: string): number {
 describe('Word Count', () => {
 
     // Doublecheck that words with chars like -, ', ` are counted right.
-    // Non-whitespace (ex. breakspace, unicode chars) should be treated as a delimiter
 
     // Empty string has no words.
     test('counts empty string as no word', () => {
@@ -37,7 +36,9 @@ describe('Word Count', () => {
       
     });
   
+    // Non-whitespace (ex. breakspace, unicode chars) should be treated as a delimiter
     describe('counts words and not other whitespace', () => {
+        // https://jestjs.io/docs/api#1-testeachtablename-fn-timeout
         test.each([
           ['space',    ' '],
           ['new line', '\n'],
@@ -53,7 +54,12 @@ describe('Word Count', () => {
             expect(count_words(`brown
                                 fox`)).toEqual(2);
         });
-
+    });
+  
+    describe('counts standalone symbols not as words', () => {
+        test('of dot', () => {
+          expect(count_words('dog .')).toEqual(1);
+        });
     });
 });
 
