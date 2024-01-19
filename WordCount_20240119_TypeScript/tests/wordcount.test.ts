@@ -38,6 +38,14 @@ describe('Word Count', () => {
     });
   
     describe('counts words and not other whitespace', () => {
+        each([['space', ' ']], 'of two words delimited by space %1', (a, d) => {
+            expect(count_words(`brown$dfox`)).toEqual(2);
+        });
+      
+        test('of two words delimited by space', () => {
+            expect(count_words("brown fox")).toEqual(2);
+        });
+
         test('of two words delimited by new line', () => {
             expect(count_words("brown\nfox")).toEqual(2);
 
