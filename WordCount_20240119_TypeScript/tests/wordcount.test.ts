@@ -1,16 +1,19 @@
 type CountWordsConfig = {
   delimiter: RegExp,
-  ignore: RegExp,
+  ignore_words: RegExp,
 };
 const default_config: CountWordsConfig = {
   delimiter: /\s/,
-  ignore: /^[\."]+$/,
+  ignore_words: /^[\."]+$/,
 };
 
 function count_words(text: string, config:CountWordsConfig=default_config): number {
     const text_parts = text.split(config.delimiter);
-    const is_word = (word: string) => word.length > 0 && !word.match(config.ignore);
+
+    const is_word = (word: string) => word.length > 0 && 
+                                      !word.match(config.ignore_words);
     const words = text_parts.filter(is_word);
+    
     return words.length;
 }
 
