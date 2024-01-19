@@ -3,15 +3,13 @@ function count_words(text: string): number {
         return 0;
     }
     return text.split(" ").length
-    
-    // return text.trim().split(/\s+/).length;
 }
 
 describe('Word Count', () => {
 
     // String with spaces around should be trimmed.
-    // Non-whitespace (ex. breakspace, unicode chars) should be treated as a delimiter
     // Doublecheck that words with chars like -, ', ` are counted right.
+    // Non-whitespace (ex. breakspace, unicode chars) should be treated as a delimiter
 
     // Empty string has no words.
     it('counts empty string as no word', () => {
@@ -26,6 +24,10 @@ describe('Word Count', () => {
       
         it('count two words delimited by space', () => {
             expect(count_words("brown fox")).toEqual(2);
+        });
+      
+        it('count single word prefixed by space', () => {
+            expect(count_words(" dog")).toEqual(1);
         });
 
     });
