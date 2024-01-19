@@ -53,6 +53,10 @@ describe('Word Count', () => {
         test('of two words delimited by no-break-space (U+00A0)', () => {
             expect(count_words("brown\u00A0fox")).toEqual(2);
         });
+
+        test('of two words delimited by em-space (U+2003)', () => {
+            expect(count_words("brown\u2003fox")).toEqual(2);
+        });
     });
 });
 
