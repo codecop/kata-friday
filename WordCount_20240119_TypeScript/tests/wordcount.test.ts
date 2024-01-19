@@ -42,7 +42,7 @@ describe('Word Count', () => {
             expect(count_words("brown\nfox")).toEqual(2);
 
             expect(count_words(`brown
-fox`)).toEqual(2);
+                                fox`)).toEqual(2);
         });
     });
 });
