@@ -1,9 +1,13 @@
-const default_config = {
+type CountWordsConfig = {
+  delimiter: RegExp,
+  ignore: RegExp,
+};
+const default_config: CountWordsConfig = {
   delimiter: /\s/,
   ignore: /^[\."]+$/,
 };
 
-function count_words(text: string, config:{}=default_config): number {
+function count_words(text: string, config:CountWordsConfig=default_config): number {
     const delimiter = /\s/
     const text_parts = text.split(delimiter);
     const is_word = (word: string) => word.length > 0 && !word.match(/^[\."]+$/);
