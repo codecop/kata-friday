@@ -41,7 +41,7 @@ describe('Word Count', () => {
         test.each([
           ['space', ' '],
         ])
-        ('of two words delimited by %0', (a,b) => {
+        ('of two words delimited by %s', (a,b) => {
             expect(count_words(`brown${b}fox`)).toEqual(2);
         });
       
