@@ -1,5 +1,4 @@
 function count_words(text: string): number {
-//    const delimiter = /[\s\p{Z}]/;
     const delimiter = /\s/
     const text_parts = text.split(delimiter);
     const words = text_parts.filter((word) => word.length > 0);
