@@ -22,7 +22,14 @@ describe('Word Count', () => {
         it('counts single word', () => {
             expect(count_words("dog")).toEqual(1);
         });
+      
+        it('count two words delimited by space', () => {
+            expect(count_words("brown fox")).toEqual(2);
+        });
 
     });
 
 });
+
+
+// cyber-dojo hotkeys: Alt-O Outout Alt-T Run Test
