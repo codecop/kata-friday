@@ -8,9 +8,8 @@ const default_config: CountWordsConfig = {
 };
 
 function count_words(text: string, config:CountWordsConfig=default_config): number {
-    const delimiter = /\s/
-    const text_parts = text.split(delimiter);
-    const is_word = (word: string) => word.length > 0 && !word.match(/^[\."]+$/);
+    const text_parts = text.split(config.delimiter);
+    const is_word = (word: string) => word.length > 0 && !word.match(config.ignore);
     const words = text_parts.filter(is_word);
     return words.length;
 }
