@@ -38,7 +38,7 @@ describe('Word Count', () => {
     });
   
     describe('counts words and not other whitespace', () => {
-        each([['space', ' ']], 'of two words delimited by space %1', (a, d) => {
+        test.each([['space', ' ']], 'of two words delimited by space %1', (a, d) => {
             expect(count_words(`brown$dfox`)).toEqual(2);
         });
       
