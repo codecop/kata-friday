@@ -61,10 +61,14 @@ describe('Word Count', () => {
         test('of dot', () => {
           expect(count_words('dog .')).toEqual(1);
         });
+      
         test('of quote', () => {
           expect(count_words('" dog "')).toEqual(1);
         });
-      // dot + quote => end of citation
+      
+        test('of end of citation', () => {
+          expect(count_words('dog ."')).toEqual(1);
+        });
     });
 });
 
