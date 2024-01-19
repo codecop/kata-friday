@@ -40,6 +40,9 @@ describe('Word Count', () => {
     describe('counts words and not other whitespace', () => {
         test('of two words delimited by new line', () => {
             expect(count_words("brown\nfox")).toEqual(2);
+
+            expect(count_words(`brown
+fox`)).toEqual(2);
         });
     });
 });
