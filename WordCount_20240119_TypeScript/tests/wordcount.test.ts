@@ -7,7 +7,6 @@ function count_words(text: string): number {
 
 describe('Word Count', () => {
 
-    // String with spaces around should be trimmed.
     // Doublecheck that words with chars like -, ', ` are counted right.
     // Non-whitespace (ex. breakspace, unicode chars) should be treated as a delimiter
 
@@ -26,10 +25,16 @@ describe('Word Count', () => {
             expect(count_words("brown fox")).toEqual(2);
         });
       
+        // String with spaces around should be trimmed.
         it('count single word prefixed by space', () => {
             expect(count_words(" dog")).toEqual(1);
         });
 
+        it('count words ignoring multiple spaces', () => {
+            // expect green, this is a regression test
+            expect(count_words(" dog  barks again   ")).toEqual(3);
+        });
+      
     });
 
 });
