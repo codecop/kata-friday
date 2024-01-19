@@ -51,7 +51,7 @@ describe('Word Count', () => {
         });
 
         test('of two words delimited by no-break-space (U+00A0)', () => {
-            expect(count_words("brown\x00a0fox")).toEqual(2);
+            expect(count_words("brown\u00a0fox")).toEqual(2);
         });
     });
 });
