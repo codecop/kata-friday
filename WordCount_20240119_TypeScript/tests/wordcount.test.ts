@@ -1,7 +1,7 @@
 function count_words(text: string): number {
     const delimiter = /\s/
     const text_parts = text.split(delimiter);
-    const is_word = (word: string) => word.length > 0 && word !== ".";
+    const is_word = (word: string) => word.length > 0 && !['.', '"'].include(word);
     const words = text_parts.filter(is_word);
     return words.length;
 }
@@ -64,6 +64,7 @@ describe('Word Count', () => {
         test('of quote', () => {
           expect(count_words('" dog "')).toEqual(1);
         });
+      // dot + quote => end of citation
     });
 });
 
