@@ -11,26 +11,26 @@ describe('Word Count', () => {
     // Non-whitespace (ex. breakspace, unicode chars) should be treated as a delimiter
 
     // Empty string has no words.
-    it('counts empty string as no word', () => {
+    test('counts empty string as no word', () => {
         expect(count_words("")).toEqual(0);
     });
 
     describe('counts words and not spaces', () => {
 
-        it('counts single word', () => {
+        test('of single word', () => {
             expect(count_words("dog")).toEqual(1);
         });
       
-        it('counts two words delimited by space', () => {
+        test('of two words delimited by space', () => {
             expect(count_words("brown fox")).toEqual(2);
         });
       
         // String with spaces around should be trimmed.
-        it('counts single word prefixed by space', () => {
+        test('of single word prefixed by space', () => {
             expect(count_words(" dog")).toEqual(1);
         });
 
-        test('counts words ignoring multiple spaces', () => {
+        test('of words ignoring multiple spaces', () => {
             // expect green, this is a regression test
             expect(count_words(" dog  barks again   ")).toEqual(3);
         });
