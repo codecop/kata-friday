@@ -1,0 +1,28 @@
+Check-in
+* G hat Spass am Flow.
+* Muss eintauchen und größere Sache sein, damit es Spass macht.
+* In der Kernkompetenz gefordert werden.
+
+---
+
+Ziel mit der Freude am Coden wieder verbinden?
+* Die spassigste Code kata? Word Count
+* Welche Sprache macht am meisten Spass? Kotlin. TS
+
+---
+
+Retrospective
+
+* Beispiel klein, genau richtig. Sehr angenehm es abzuschliessen.
+* Bisschen Zeit durch Setup verloren -> Cyberdojo gut.
+
+G ist prinzipieller "Baby Stepper"
+* Lieber Konstanten als Regexp ;-)
+* G rutscht into Coaching Rolle. Macht es deutlich.
+
+Wie spassig war das?
+* G hat es Freude bereitet
+* abgeschlossen
+* 1 Extra umgesetzt
+* bei CR hätten wir mehr Energie, on-site hat natürlich mehr Energie
+* der Flow und der Austausch macht die Energie und den Spass.
