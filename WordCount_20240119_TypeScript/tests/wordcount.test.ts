@@ -2,7 +2,8 @@ function count_words(text: string): number {
     if (text === "") {
         return 0;
     }
-    return 1;
+    return text.split(" ").length
+    
     // return text.trim().split(/\s+/).length;
 }
 
