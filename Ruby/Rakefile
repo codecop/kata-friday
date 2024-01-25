@@ -1,0 +1,16 @@
+require 'rake/testtask'
+
+Rake::TestTask.new do |t|
+  t.test_files = [
+    '**/tc_*.rb',
+    '**/test_*.rb',
+    '**/*_test.rb'
+  ]
+  t.warning = true
+end
+
+
+desc 'Run all tests'
+task :all_tests => [:test]
+
+task :default => :all_tests
