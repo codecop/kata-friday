@@ -27,6 +27,11 @@ function histogram(s: string): Histogram {
 }
 
 function histogram_equals(a: Histogram, b: Histogram): boolean {
+    for (const letter of letters) {
+        if (a[letter] !== b[letter]) {
+            return false;
+        }
+    }
     return true;
 }
 
@@ -64,10 +69,15 @@ describe('Anagram', () => {
                 toEqual({ d: 1, o: 1, c: 1, u: 1, m: 1, e: 1, n: 2, t: 1, i: 1, g: 1 })
         });
 
-        it('comparing', () => {
+        it('equals', () => {
             // This condition will always return 'false' since JavaScript compares objects by reference, not value.ts(2839)
             // expect({ d: 1, o: 2 } === { o: 2, d: 1 }).toEqual(true);
             expect(histogram_equals({ d: 1, o: 2 }, { o: 2, d: 1 })).toEqual(true);
+        });
+
+        it('not equals different values same key', () => {
+            expect(histogram_equals({ a: 1 }, { a: 2 })).toEqual(false);
+            expect(histogram_equals({ a: 1 }, { })).toEqual(false);
         });
 
     });
