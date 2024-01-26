@@ -38,6 +38,10 @@ describe('Anagram', () => {
         it('of two distinct letters', () => {
             expect(histogram('ab')).toEqual({ a: 1, b: 1 });
         });
+
+        it('of two distinct letters with various counts', () => {
+            expect(histogram('ababb')).toEqual({ a: 2, b: 3 });
+        });
     });
 
 });
