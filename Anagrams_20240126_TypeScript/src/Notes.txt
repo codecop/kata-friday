@@ -1,0 +1,28 @@
+Checkin
+* G: Stress
+* Peter: nichts gemacht
+
+Checkout
+* G: Essen hat behindert
+* Peter: schnellerer Wechsel und einfaches Beispiel geht in Richtung alter Sessions. gut.
+
+Rotation war sehr viel schneller/angenehmer und flüssig.
+Das tragt bei.
+Durch VS.Code Live Share ging das.
+VS.Code im Browser nett, geringe Einstiegshürde.
+Trotzdem ohne screen sharing geht es nicht, zB. Fehler werden nicht angezeigt.
+Note 3.
+
+Anagrams
+Nicht so einfach wie gedacht. (oder denken wir kompliziert)
+es fehlt noch 1 Stunde?
+Und optimierte Lösung haben wir noch gar nicht gedacht.
+
+Spass
+JS ist nicht Ruby (2x SO Frage)
+Key equality meh.
+Type war interessant, spannend.
+
+Process
+Peter automatisch inside out?
+...

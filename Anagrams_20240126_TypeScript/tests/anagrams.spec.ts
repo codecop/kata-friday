@@ -3,7 +3,8 @@
 import * as fs from 'fs';
 
 // see https://stackoverflow.com/a/61129812
-const letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
+const letters = [
+    'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
     'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'] as const;
 type Letters = typeof letters[number];
 
