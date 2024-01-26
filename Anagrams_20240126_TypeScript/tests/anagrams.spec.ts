@@ -11,6 +11,9 @@ function histogram(s: string): { [K in keys]?: number } {
         if (c === 'a') {
             result.a = (result.a || 0) + 1;
         }
+        if (c === 'b') {
+            result.b = (result.b || 0) + 1;
+        }
     }
     return result;
 }
@@ -27,6 +30,9 @@ describe('Anagram', () => {
             expect(histogram('aa')).toEqual({ a: 2 });
         });
 
+        it('of two distinct letters', () => {
+            expect(histogram('ab')).toEqual({ a: 1, b: 1 });
+        });
     });
 
 });
