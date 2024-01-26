@@ -108,6 +108,20 @@ describe('Anagram', () => {
             expect(load_words()[7]).toEqual('gin')
         })
 
+        xit('find histograms of all words', () => {
+            const actual = histograms(['abc'])
+            expect(actual.size).toEqual(1)
+            // TODO JS is pointer based
+            expect(actual.get(actual.keys().next().value)).toEqual(['abc'])
+            expect(actual.get({ a: 1, b: 1, c: 1 })).toEqual(['abc'])
+        });
+
+        xit('find histograms of all words', () => {
+            const actual = histograms(['abc', 'cba'])
+            expect(actual.size).toEqual(1)
+            expect(actual.get({ a: 1, b: 1, c: 1 })).toEqual(['abc', 'cba'])
+        });
+
     });
 
 });
@@ -117,5 +131,16 @@ function load_words(): string[] {
     return fs.readFileSync('./tests/wordlist.txt', 'utf8').
         trim().
         split(/\s+/g);
+}
+
+function histograms(words: string[]): Map<Histogram, string[]> {
+    const result: Map<Histogram, string[]> = new Map();
+
+    for (const word of words) {
+        const h = histogram(word);
+        result.set(h, words);
+    }
+
+    return result;
 }
 
