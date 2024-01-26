@@ -1,5 +1,6 @@
 // 1. generates all two-word anagrams of the string "documenting".
 // 2. try to improve the performance of your solution
+import * as fs from 'fs';
 
 // see https://stackoverflow.com/a/61129812
 const letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
@@ -100,6 +101,21 @@ describe('Anagram', () => {
 
     });
 
+    describe('Word list', () => {
+
+        it('lists all words', () => {
+            expect(load_words()[0]).toEqual('acrobat')
+            expect(load_words()[7]).toEqual('gin')
+        })
+
+    });
+
 });
 
+
+function load_words(): string[] {
+    return fs.readFileSync('./tests/wordlist.txt', 'utf8').
+        trim().
+        split(/\s+/g);
+}
 
