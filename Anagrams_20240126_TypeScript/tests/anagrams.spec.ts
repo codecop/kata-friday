@@ -7,13 +7,8 @@ function histogram(s: string): { [K in keys]?: number } {
     let result: { [K in keys]?: number } = {};
 
     for (let i = 0; i < s.length; i++) {
-        let c = s[i];
-        if (c === 'a') {
-            result.a = (result.a || 0) + 1;
-        }
-        if (c === 'b') {
-            result.b = (result.b || 0) + 1;
-        }
+        let c = s[i] as keys;
+        result[c]= (result[c] || 0) + 1;
     }
     return result;
 }
