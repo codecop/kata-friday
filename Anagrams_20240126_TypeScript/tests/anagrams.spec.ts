@@ -35,6 +35,19 @@ function histogram_equals(a: Histogram, b: Histogram): boolean {
     return true;
 }
 
+function histogram_add(a: Histogram, b: Histogram): Histogram {
+    let result: Histogram = {};
+
+    for (const letter of letters) {
+        const v = (a[letter] || 0) + (b[letter] || 0)
+        if (v > 0) {
+            result[letter] = v
+        }
+    }
+
+    return result;
+}
+
 describe('Anagram', () => {
 
     describe('Histogram', () => {
@@ -77,8 +90,14 @@ describe('Anagram', () => {
 
         it('not equals different values same key', () => {
             expect(histogram_equals({ a: 1 }, { a: 2 })).toEqual(false);
-            expect(histogram_equals({ a: 1 }, { })).toEqual(false);
+            expect(histogram_equals({ a: 1 }, {})).toEqual(false);
         });
+
+        it('add two histograms', () => {
+            expect(histogram_add({ a: 1 }, { a: 1 })).toEqual({ a: 2 })
+            // expect(histogram_add({ a: 1}, {b: 1})).toEqual({a: 1, b: 1});
+
+        })
 
     });
 
