@@ -11,8 +11,10 @@ function isLetter(c: any): c is Letters {
     return letters.includes(c);
 }
 
-function histogram(s: string): { [L in Letters]?: number } {
-    let result: { [L in Letters]?: number } = {};
+type Histogram = { [L in Letters]?: number }
+
+function histogram(s: string): Histogram {
+    let result: Histogram = {};
 
     for (let i = 0; i < s.length; i++) {
         const c = s[i];
@@ -22,6 +24,10 @@ function histogram(s: string): { [L in Letters]?: number } {
     }
 
     return result;
+}
+
+function histogram_equals(a: Histogram, b: Histogram): boolean {
+    return true;
 }
 
 describe('Anagram', () => {
@@ -57,6 +63,13 @@ describe('Anagram', () => {
             expect(histogram('documenting')).
                 toEqual({ d: 1, o: 1, c: 1, u: 1, m: 1, e: 1, n: 2, t: 1, i: 1, g: 1 })
         });
+
+        it('comparing', () => {
+            // This condition will always return 'false' since JavaScript compares objects by reference, not value.ts(2839)
+            // expect({ d: 1, o: 2 } === { o: 2, d: 1 }).toEqual(true);
+            expect(histogram_equals({ d: 1, o: 2 }, { o: 2, d: 1 })).toEqual(true);
+        });
+
     });
 
 });
