@@ -39,9 +39,9 @@ function histogram_add(a: Histogram, b: Histogram): Histogram {
     let result: Histogram = {};
 
     for (const letter of letters) {
-        const v = (a[letter] || 0) + (b[letter] || 0)
-        if (v > 0) {
-            result[letter] = v
+        const sum = (a[letter] || 0) + (b[letter] || 0)
+        if (sum > 0) {
+            result[letter] = sum
         }
     }
 
@@ -95,8 +95,7 @@ describe('Anagram', () => {
 
         it('add two histograms', () => {
             expect(histogram_add({ a: 1 }, { a: 1 })).toEqual({ a: 2 })
-            // expect(histogram_add({ a: 1}, {b: 1})).toEqual({a: 1, b: 1});
-
+            expect(histogram_add({ a: 1 }, { b: 1 })).toEqual({ a: 1, b: 1 });
         })
 
     });
