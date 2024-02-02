@@ -32,7 +32,7 @@ public class StatementPrinter {
                     thisAmount += 300 * perf.audience;
                     break;
                 default:
-                    throw new Error("unknown type: ${play.type2}");
+                    throw new Error("unknown type: " + play.type);
             }
 
             // add volume credits
