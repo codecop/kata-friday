@@ -6,8 +6,8 @@ public class Play {
         TRAGEDY("tragedy"), 
         COMEDY("comedy") {
             @Override
-            protected double extracted(Performance perf) {
-                return Math.floor(perf.audience / 5);
+            protected double extraCredits(int audience) {
+                return Math.floor(audience / 5);
             }
         },
         HISTORY("history"),
@@ -19,7 +19,7 @@ public class Play {
             this.name = name;
         }
 
-        protected double extracted(Performance perf) {
+        protected double extraCredits(int audience) {
             return 0;
         }
 
