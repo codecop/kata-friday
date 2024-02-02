@@ -4,7 +4,9 @@ public class Play {
 
     enum Type {
         TRAGEDY("tragedy"), 
-        COMEDY("comedy");
+        COMEDY("comedy"),
+        HISTORY("history"),
+        PASTORAL("pastoral");
 
         private String name;
 
@@ -24,8 +26,8 @@ public class Play {
 
     public Play(String name, String type) {
         this.name = name;
-        this.type2 = Type.valueOf(name.toUpperCase());
         this.type = type;
+        this.type2 = null;
     }
 
     public Play(String name, Type nameEnum) {
