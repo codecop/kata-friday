@@ -1,0 +1,45 @@
+Checkin
+* G: Pferdeschwanz?
+     1.5 Mio Refactoring (Script)
+     Developer Experience -> Testing
+     lernt mit Chat-GPT
+
+* Peter: Arbeit passt gut
+         sonst tut sich nicht viel
+
+-
+
+G: Was macht Spass?
+* etwas Neues lernen
+
+G: Welche Sprache macht am meisten Spass?
+* Kein Setup, e.g. Script
+* Java
+
+G: Die lustigste Kata?
+* Theathrical Players
+
+G: Constraint?
+* No-If passt gut für Theathrical Players
+* VS.Code
+
+-
+
+TODO 
+* auf gradle-7.5-all umstellen
+* add POM
+* constraint/with ins base package verschieben
+
+https://codecop-katafriday-hvibv7aat4h.ws-eu107.gitpod.io
+
+Friday Kata
+* Pomodoro: Setup
+* Pomodoro: Create enum for switch and IF
+
+-
+
+Retro
+* GitPod schnell, gut funktioniert
+* Peter GitPod zum ersten Mal verwendet
+* Theatrical Players als spassigste Kata? hat was.
+* alle Facts für Samman erledigt
