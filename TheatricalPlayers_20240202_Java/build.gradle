@@ -5,7 +5,7 @@ plugins {
 
 group 'kata'
 version '1.0-SNAPSHOT'
-sourceCompatibility = '17'
+sourceCompatibility = '11'
 
 repositories {
     mavenCentral()

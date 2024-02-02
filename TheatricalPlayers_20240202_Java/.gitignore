@@ -21,3 +21,6 @@ build
 .classpath
 .checkstyle
 .pmd
+
+# gitpod
+bin
