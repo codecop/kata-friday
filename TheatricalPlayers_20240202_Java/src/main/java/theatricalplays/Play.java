@@ -3,14 +3,14 @@ package theatricalplays;
 public class Play {
 
     enum Type {
-        TRAGEDY("tragedy"), 
+        TRAGEDY("tragedy"),
         COMEDY("comedy") {
             @Override
             protected double extraCredits(int audience) {
                 return Math.floor(audience / 5);
             }
         },
-        HISTORY("history"),
+        HISTORY("history"), 
         PASTORAL("pastoral");
 
         private String name;
@@ -19,6 +19,7 @@ public class Play {
             this.name = name;
         }
 
+        @SuppressWarnings("unused")
         protected double extraCredits(int audience) {
             return 0;
         }

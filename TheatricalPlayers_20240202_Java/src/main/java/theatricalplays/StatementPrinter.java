@@ -50,8 +50,4 @@ public class StatementPrinter {
         return result;
     }
 
-    protected double extracted(Performance perf) {
-        return Math.floor(perf.audience / 5);
-    }
-
 }
