@@ -21,10 +21,28 @@ test {
 dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter:5.7.2'
     testImplementation 'com.approvaltests:approvaltests:15.6.0'
-    testImplementation 'org.assertj:assertj-core:3.19.0'
 }
 
 pitest {
     targetClasses = ['theatricalplays.*']
     junit5PluginVersion = '1.0.0'
+}
+
+// see https://www.baeldung.com/gradle-build-to-maven-pom
+
+apply plugin: 'maven-publish'
+
+publishing {
+    publications {
+        customLibrary(MavenPublication) {
+            from components.java
+        }
+    }
+
+    repositories {
+        maven {
+            name = 'sampleRepo'
+            url = layout.buildDirectory.dir("repo")
+        }
+    }
 }
