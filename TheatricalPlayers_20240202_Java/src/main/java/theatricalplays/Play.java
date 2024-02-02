@@ -29,11 +29,11 @@ public class Play {
         }
     }
 
-    public String name;
-    public final Type type2;
+    public final String name;
+    public final Type type;
 
-    public Play(String name, Type nameEnum) {
+    public Play(String name, Type type) {
         this.name = name;
-        this.type2 = nameEnum;
+        this.type = type;
     }
 }

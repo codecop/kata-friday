@@ -17,7 +17,7 @@ public class StatementPrinter {
             var play = plays.get(perf.playID);
             var thisAmount = 0;
 
-            switch (play.type2) {
+            switch (play.type) {
                 case TRAGEDY:
                     thisAmount = 40000;
                     if (perf.audience > 30) {
@@ -39,7 +39,7 @@ public class StatementPrinter {
             volumeCredits += Math.max(perf.audience - 30, 0);
 
             // add extra credit for every ten comedy attendees
-            volumeCredits += play.type2.extraCredits(perf.audience);
+            volumeCredits += play.type.extraCredits(perf.audience);
 
             // print line for this order
             result += String.format("  %s: %s (%s seats)\n", play.name, frmt.format(thisAmount / 100), perf.audience);
