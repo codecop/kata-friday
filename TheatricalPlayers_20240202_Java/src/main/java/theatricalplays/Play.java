@@ -4,7 +4,12 @@ public class Play {
 
     enum Type {
         TRAGEDY("tragedy"), 
-        COMEDY("comedy"),
+        COMEDY("comedy") {
+            @Override
+            protected double extracted(Performance perf) {
+                return Math.floor(perf.audience / 5);
+            }
+        },
         HISTORY("history"),
         PASTORAL("pastoral");
 
@@ -12,6 +17,10 @@ public class Play {
 
         Type(String name) {
             this.name = name;
+        }
+
+        protected double extracted(Performance perf) {
+            return 0;
         }
 
         @Override

@@ -38,7 +38,9 @@ public class StatementPrinter {
             // add volume credits
             volumeCredits += Math.max(perf.audience - 30, 0);
             // add extra credit for every ten comedy attendees
-            if (Play.Type.COMEDY == play.type2) volumeCredits += Math.floor(perf.audience / 5);
+            if (Play.Type.COMEDY == play.type2) {
+                volumeCredits += extracted(perf);
+            } 
 
             // print line for this order
             result += String.format("  %s: %s (%s seats)\n", play.name, frmt.format(thisAmount / 100), perf.audience);
@@ -47,6 +49,10 @@ public class StatementPrinter {
         result += String.format("Amount owed is %s\n", frmt.format(totalAmount / 100));
         result += String.format("You earned %s credits\n", volumeCredits);
         return result;
+    }
+
+    protected double extracted(Performance perf) {
+        return Math.floor(perf.audience / 5);
     }
 
 }
