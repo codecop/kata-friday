@@ -17,14 +17,14 @@ public class StatementPrinter {
             var play = plays.get(perf.playID);
             var thisAmount = 0;
 
-            switch (play.type) {
-                case "tragedy":
+            switch (play.type2) {
+                case TRAGEDY:
                     thisAmount = 40000;
                     if (perf.audience > 30) {
                         thisAmount += 1000 * (perf.audience - 30);
                     }
                     break;
-                case "comedy":
+                case COMEDY:
                     thisAmount = 30000;
                     if (perf.audience > 20) {
                         thisAmount += 10000 + 500 * (perf.audience - 20);
@@ -32,7 +32,7 @@ public class StatementPrinter {
                     thisAmount += 300 * perf.audience;
                     break;
                 default:
-                    throw new Error("unknown type: ${play.type}");
+                    throw new Error("unknown type: ${play.type2}");
             }
 
             // add volume credits
