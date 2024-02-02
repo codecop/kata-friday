@@ -21,18 +21,10 @@ public class Play {
     }
 
     public String name;
-    public String type;
     public final Type type2;
-
-    public Play(String name, String type) {
-        this.name = name;
-        this.type = type;
-        this.type2 = null;
-    }
 
     public Play(String name, Type nameEnum) {
         this.name = name;
         this.type2 = nameEnum;
-        this.type = nameEnum.toString();
     }
 }
