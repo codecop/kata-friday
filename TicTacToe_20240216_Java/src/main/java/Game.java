@@ -1,6 +1,7 @@
 import java.util.EnumMap;
 import java.util.Map;
 import java.util.Optional;
+
 public class Game {
 
     private final Map<Field, Player> field = new EnumMap<>(Field.class);
@@ -17,6 +18,7 @@ public class Game {
         //            field.get(a.get(1)) == field.get(a.get(2))) {
         //            return Optional.of(field.get(a.get(0)));
         //        }
+
         // approach 2: chain call of triples
         return Optional.<Player>empty()
                 .or(() -> winnerIn(Field.ROW_A_COLUMN_1, Field.ROW_A_COLUMN_2, Field.ROW_A_COLUMN_3))
@@ -26,7 +28,7 @@ public class Game {
 
     private Optional<Player> winnerIn(Field a, Field b, Field c) {
         if (field.get(a) == field.get(b) && //
-                field.get(b) == field.get(c)) {
+            field.get(b) == field.get(c)) {
             return Optional.of(field.get(a));
         }
         return Optional.empty();
