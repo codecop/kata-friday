@@ -9,7 +9,7 @@ public class Game {
         field.put(move, player);
     }
 
-    public Optional<Object> winner() {
+    public Optional<Player> winner() {
         if (
                 field.get(Move.A1) ==
                         field.get(Move.A2) &&
