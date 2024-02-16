@@ -2,8 +2,10 @@ import java.util.Optional;
 
 public class Game {
 
-    public void move(Player player, Move move) {
+    private boolean wasO;
 
+    public void move(Player player, Move move) {
+        wasO = wasO || (player == Player.O);
     }
 
     public Player winner() {
@@ -11,6 +13,9 @@ public class Game {
     }
 
     public Optional<Player> owinner() {
+        if (wasO) {
+            return Optional.empty();
+        }
         return Optional.ofNullable(winner());
     }
 }

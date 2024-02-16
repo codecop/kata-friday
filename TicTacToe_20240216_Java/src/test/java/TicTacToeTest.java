@@ -1,9 +1,9 @@
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.jupiter.api.Test;
 
 class TicTacToeTest {
 
@@ -17,7 +17,6 @@ class TicTacToeTest {
         assertEquals(Player.X, winner);
     }
 
-
     @Test
     void shouldDetectNoWinner() {
         Game game = new Game();
@@ -25,8 +24,7 @@ class TicTacToeTest {
         game.move(Player.O, Move.A2);
         game.move(Player.X, Move.A3);
         Optional<Player> winner = game.owinner();
-        assertTrue(winner.isEmpty());
+        assertFalse(winner.isPresent());
     }
-
 
 }
