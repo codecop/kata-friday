@@ -37,6 +37,17 @@ class GameTest {
         assertWinner(Player.O, winner);
     }
 
+
+    @Test
+    void shouldDetectWinnerInFirstColumn() {
+        Game game = new Game();
+        game.move(Player.O, Move.A1);
+        game.move(Player.O, Move.B1);
+        game.move(Player.O, Move.C1);
+        Optional<Player> winner = game.winner();
+        assertWinner(Player.O, winner);
+    }
+
     private void assertWinner(Player expected, Optional<Player> actual) {
         assertEquals(expected.toString(), extractWinner(actual));
     }
