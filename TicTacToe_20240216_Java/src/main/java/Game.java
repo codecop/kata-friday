@@ -3,9 +3,9 @@ import java.util.Map;
 import java.util.Optional;
 public class Game {
 
-    private final Map<Move, Player> field = new EnumMap<>(Move.class);
+    private final Map<Field, Player> field = new EnumMap<>(Field.class);
 
-    public void move(Player player, Move move) {
+    public void move(Player player, Field move) {
         field.put(move, player);
     }
 
@@ -19,12 +19,12 @@ public class Game {
         //        }
         // approach 2: chain call of triples
         return Optional.<Player>empty()
-                .or(() -> extracted(Move.ROW_A_COLUMN_1, Move.ROW_A_COLUMN_2, Move.ROW_A_COLUMN_3))
-                .or(() -> extracted(Move.ROW_A_COLUMN_1, Move.ROW_B_COLUMN_1, Move.ROW_C_COLUMN_1))
-                .or(() -> extracted(Move.ROW_A_COLUMN_1, Move.ROW_B_COLUMN_2, Move.ROW_C_COLUMN_3));
+                .or(() -> winnerIn(Field.ROW_A_COLUMN_1, Field.ROW_A_COLUMN_2, Field.ROW_A_COLUMN_3))
+                .or(() -> winnerIn(Field.ROW_A_COLUMN_1, Field.ROW_B_COLUMN_1, Field.ROW_C_COLUMN_1))
+                .or(() -> winnerIn(Field.ROW_A_COLUMN_1, Field.ROW_B_COLUMN_2, Field.ROW_C_COLUMN_3));
     }
 
-    private Optional<Player> extracted(Move a, Move b, Move c) {
+    private Optional<Player> winnerIn(Field a, Field b, Field c) {
         if (field.get(a) == field.get(b) && //
                 field.get(b) == field.get(c)) {
             return Optional.of(field.get(a));

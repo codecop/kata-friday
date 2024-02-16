@@ -10,19 +10,19 @@ class  GameTest {
     @Test
     void shouldDetectWinnerXInRowA() {
         Game game = new Game();
-        game.move(Player.X, Move.ROW_A_COLUMN_1);
-        game.move(Player.X, Move.ROW_A_COLUMN_2);
-        game.move(Player.X, Move.ROW_A_COLUMN_3);
+        game.move(Player.X, Field.ROW_A_COLUMN_1);
+        game.move(Player.X, Field.ROW_A_COLUMN_2);
+        game.move(Player.X, Field.ROW_A_COLUMN_3);
         Optional<Player> winner = game.winner();
-        assertWinner(Player.X, winner);
+        assertWinner(Player.X, game);
     }
 
     @Test
     void shouldDetectNoWinner() {
         Game game = new Game();
-        game.move(Player.X, Move.ROW_A_COLUMN_1);
-        game.move(Player.O, Move.ROW_A_COLUMN_2);
-        game.move(Player.X, Move.ROW_A_COLUMN_3);
+        game.move(Player.X, Field.ROW_A_COLUMN_1);
+        game.move(Player.O, Field.ROW_A_COLUMN_2);
+        game.move(Player.X, Field.ROW_A_COLUMN_3);
         Optional<Player> winner = game.winner();
         assertFalse(winner.isPresent());
     }
@@ -30,42 +30,36 @@ class  GameTest {
     @Test
     void shouldDetectWinnerOInRowA() {
         Game game = new Game();
-        game.move(Player.O, Move.ROW_A_COLUMN_1);
-        game.move(Player.O, Move.ROW_A_COLUMN_2);
-        game.move(Player.O, Move.ROW_A_COLUMN_3);
-        Optional<Player> winner = game.winner();
-        assertWinner(Player.O, winner);
+        game.move(Player.O, Field.ROW_A_COLUMN_1);
+        game.move(Player.O, Field.ROW_A_COLUMN_2);
+        game.move(Player.O, Field.ROW_A_COLUMN_3);
+        assertWinner(Player.O, game);
     }
 
 
     @Test
     void shouldDetectWinnerInColumn1() {
         Game game = new Game();
-        game.move(Player.O, Move.ROW_A_COLUMN_1);
-        game.move(Player.O, Move.ROW_B_COLUMN_1);
-        game.move(Player.O, Move.ROW_C_COLUMN_1);
-        Optional<Player> winner = game.winner();
-        assertWinner(Player.O, winner);
+        game.move(Player.O, Field.ROW_A_COLUMN_1);
+        game.move(Player.O, Field.ROW_B_COLUMN_1);
+        game.move(Player.O, Field.ROW_C_COLUMN_1);
+        assertWinner(Player.O, game);
     }
 
     @Test
     void shouldDetectWinnerXInDiagonal() {
         Game game = new Game();
-        game.move(Player.X, Move.ROW_A_COLUMN_1);
-        game.move(Player.X, Move.ROW_B_COLUMN_2);
-        game.move(Player.X, Move.ROW_C_COLUMN_3);
-        Optional<Player> winner = game.winner();
-        assertWinner(Player.X, winner);
+        game.move(Player.X, Field.ROW_A_COLUMN_1);
+        game.move(Player.X, Field.ROW_B_COLUMN_2);
+        game.move(Player.X, Field.ROW_C_COLUMN_3);
+        assertWinner(Player.X, game);
     }
 
-    private void assertWinner(Player expected, Optional<Player> actual) {
-        assertEquals(expected.toString(), extractWinner(actual));
-    }
-
-    private String extractWinner(Optional<Player> winner) {
-        return winner. //
+    private void assertWinner(Player player, Game game) {
+        Optional<Player> actual = game.winner();
+        assertEquals(player.toString(), actual. //
                 map(Player::toString). //
-                orElseGet(() -> "No Winner");
+                orElseGet(() -> "No Winner"));
     }
 
 }
