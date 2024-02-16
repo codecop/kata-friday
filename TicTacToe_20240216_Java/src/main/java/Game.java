@@ -9,9 +9,9 @@ public class Game {
     }
 
     public Optional<Player> winner() {
-        if (wasO) {
-            return Optional.empty();
+        if (!wasO) {
+            return Optional.ofNullable(Player.X);
         }
-        return Optional.ofNullable(Player.X);
+        return Optional.empty();
     }
 }
