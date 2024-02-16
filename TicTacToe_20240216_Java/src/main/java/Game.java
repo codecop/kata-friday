@@ -1,7 +1,6 @@
 import java.util.EnumMap;
 import java.util.Map;
 import java.util.Optional;
-
 public class Game {
 
     private final Map<Move, Player> field = new EnumMap<>(Move.class);
@@ -19,10 +18,10 @@ public class Game {
         //            return Optional.of(field.get(a.get(0)));
         //        }
         // approach 2: chain call of triples
-        return extracted(Move.ROW_A_COLUMN_1, Move.ROW_A_COLUMN_2, Move.ROW_A_COLUMN_3)
+        return Optional.<Player>empty()
+                .or(() -> extracted(Move.ROW_A_COLUMN_1, Move.ROW_A_COLUMN_2, Move.ROW_A_COLUMN_3))
                 .or(() -> extracted(Move.ROW_A_COLUMN_1, Move.ROW_B_COLUMN_1, Move.ROW_C_COLUMN_1))
-                .or(() -> extracted(Move.ROW_A_COLUMN_1, Move.ROW_B_COLUMN_2, Move.ROW_C_COLUMN_3)
-                );
+                .or(() -> extracted(Move.ROW_A_COLUMN_1, Move.ROW_B_COLUMN_2, Move.ROW_C_COLUMN_3));
     }
 
     private Optional<Player> extracted(Move a, Move b, Move c) {
