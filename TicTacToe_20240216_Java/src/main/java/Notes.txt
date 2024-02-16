@@ -1,0 +1,14 @@
+Checkin
+* M: Judo, Kind 9y, 30 Leute Firma (Breslau)
+* Peter: Bua macht mich fertig
+
+Was haben wir gelernt?
+* dass man einrosten wenn man es nicht macht
+* guter Flow, trotz Push/Pull
+* interessant der deklarativer Ansatz. Ist es die einfachste?
+* war spassig
+* kleine Kata ist nett. 1h und fertig.
+
+Checkout
+* M: guter Stimmung
+* Peter: gut dich zu sehen, man muesste mehr Low Level machen
