@@ -1,4 +1,5 @@
 .DS_Store
+.idea/
 
 # Peter's local markers
 with_*.txt
