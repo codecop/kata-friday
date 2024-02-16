@@ -8,14 +8,10 @@ public class Game {
         wasO = wasO || (player == Player.O);
     }
 
-    public Player winner() {
-        return Player.X;
-    }
-
-    public Optional<Player> owinner() {
+    public Optional<Player> winner() {
         if (wasO) {
             return Optional.empty();
         }
-        return Optional.ofNullable(winner());
+        return Optional.ofNullable(Player.X);
     }
 }
