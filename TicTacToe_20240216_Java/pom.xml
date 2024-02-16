@@ -4,7 +4,7 @@
 
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.codecop</groupId>
-    <artifactId>x-y-kata</artifactId>
+    <artifactId>tictactoe-kata</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <dependencies>
