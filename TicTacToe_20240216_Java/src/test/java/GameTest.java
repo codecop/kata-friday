@@ -8,11 +8,11 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 class GameTest {
 
     @Test
-    void shouldDetectWinnerThreeInARowX() {
+    void shouldDetectWinnerXInRowA() {
         Game game = new Game();
-        game.move(Player.X, Move.A1);
-        game.move(Player.X, Move.A2);
-        game.move(Player.X, Move.A3);
+        game.move(Player.X, Move.ROW_A_COLUMN_1);
+        game.move(Player.X, Move.ROW_A_COLUMN_2);
+        game.move(Player.X, Move.ROW_A_COLUMN_3);
         Optional<Player> winner = game.winner();
         assertWinner(Player.X, winner);
     }
@@ -20,30 +20,30 @@ class GameTest {
     @Test
     void shouldDetectNoWinner() {
         Game game = new Game();
-        game.move(Player.X, Move.A1);
-        game.move(Player.O, Move.A2);
-        game.move(Player.X, Move.A3);
+        game.move(Player.X, Move.ROW_A_COLUMN_1);
+        game.move(Player.O, Move.ROW_A_COLUMN_2);
+        game.move(Player.X, Move.ROW_A_COLUMN_3);
         Optional<Player> winner = game.winner();
         assertFalse(winner.isPresent());
     }
 
     @Test
-    void shouldDetectWinnerThreeInARowO() {
+    void shouldDetectWinnerOInRowA() {
         Game game = new Game();
-        game.move(Player.O, Move.A1);
-        game.move(Player.O, Move.A2);
-        game.move(Player.O, Move.A3);
+        game.move(Player.O, Move.ROW_A_COLUMN_1);
+        game.move(Player.O, Move.ROW_A_COLUMN_2);
+        game.move(Player.O, Move.ROW_A_COLUMN_3);
         Optional<Player> winner = game.winner();
         assertWinner(Player.O, winner);
     }
 
 
     @Test
-    void shouldDetectWinnerInFirstColumn() {
+    void shouldDetectWinnerInColumn1() {
         Game game = new Game();
-        game.move(Player.O, Move.A1);
-        game.move(Player.O, Move.B1);
-        game.move(Player.O, Move.C1);
+        game.move(Player.O, Move.ROW_A_COLUMN_1);
+        game.move(Player.O, Move.ROW_B_COLUMN_1);
+        game.move(Player.O, Move.ROW_C_COLUMN_1);
         Optional<Player> winner = game.winner();
         assertWinner(Player.O, winner);
     }

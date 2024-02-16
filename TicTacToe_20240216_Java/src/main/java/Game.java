@@ -11,12 +11,12 @@ public class Game {
 
     public Optional<Player> winner() {
         if (
-                field.get(Move.A1) ==
-                        field.get(Move.A2) &&
-                        field.get(Move.A2) ==
-                                field.get(Move.A3)
+                field.get(Move.ROW_A_COLUMN_1) ==
+                        field.get(Move.ROW_A_COLUMN_2) &&
+                        field.get(Move.ROW_A_COLUMN_2) ==
+                                field.get(Move.ROW_A_COLUMN_3)
         ) {
-            return Optional.of(field.get(Move.A1));
+            return Optional.of(field.get(Move.ROW_A_COLUMN_1));
         }
         return Optional.empty();
     }

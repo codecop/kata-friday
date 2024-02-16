@@ -1,4 +1,4 @@
 
 public enum Move {
-    A1, A2, B1, C1, A3
+    ROW_A_COLUMN_1, ROW_A_COLUMN_2, ROW_B_COLUMN_1, ROW_C_COLUMN_1, ROW_A_COLUMN_3
 }
