@@ -20,9 +20,13 @@ public class Game {
             field.get(a.get(1)) == field.get(a.get(2))) {
             return Optional.of(field.get(a.get(0)));
         }
-        if (field.get(Move.ROW_A_COLUMN_1) == field.get(Move.ROW_B_COLUMN_1) && //
-                field.get(Move.ROW_B_COLUMN_1) == field.get(Move.ROW_C_COLUMN_1)) {
-            return Optional.of(field.get(Move.ROW_A_COLUMN_1));
+        return extracted(Move.ROW_A_COLUMN_1, Move.ROW_B_COLUMN_1, Move.ROW_C_COLUMN_1);
+    }
+
+    private Optional<Player> extracted(Move a, Move b, Move c) {
+        if (field.get(a) == field.get(b) && //
+            field.get(b) == field.get(c)) {
+            return Optional.of(field.get(a));
         }
         return Optional.empty();
     }
