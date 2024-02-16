@@ -1,6 +1,9 @@
 import java.util.EnumMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+
+import static java.util.Arrays.asList;
 
 public class Game {
 
@@ -27,10 +30,12 @@ public class Game {
     }
 
     private Optional<Player> winnerIn(Field a, Field b, Field c) {
-        if (gameField.get(a) == gameField.get(b) && //
-                gameField.get(b) == gameField.get(c)) {
+        if (playerIsTheSameForAll(asList(a, b, c))) {
             return Optional.of(gameField.get(a));
         }
         return Optional.empty();
+    }
+    private boolean playerIsTheSameForAll(List<Field> fields) {
+        return fields.stream().map(gameField::get).distinct().count() == 1;
     }
 }
