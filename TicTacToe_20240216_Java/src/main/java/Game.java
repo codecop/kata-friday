@@ -13,9 +13,6 @@ public class Game {
     }
 
     public Optional<Player> winner() {
-        if (!wasO) {
-            return Optional.ofNullable(Player.X);
-        }
 
         if (
                 field.get(Move.A1) ==
