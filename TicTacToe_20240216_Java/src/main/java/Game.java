@@ -4,10 +4,10 @@ import java.util.Optional;
 
 public class Game {
 
-    private final Map<Field, Player> field = new EnumMap<>(Field.class);
+    private final Map<Field, Player> gameField = new EnumMap<>(Field.class);
 
     public void move(Player player, Field move) {
-        field.put(move, player);
+        gameField.put(move, player);
     }
 
     public Optional<Player> winner() {
@@ -27,9 +27,9 @@ public class Game {
     }
 
     private Optional<Player> winnerIn(Field a, Field b, Field c) {
-        if (field.get(a) == field.get(b) && //
-            field.get(b) == field.get(c)) {
-            return Optional.of(field.get(a));
+        if (gameField.get(a) == gameField.get(b) && //
+                gameField.get(b) == gameField.get(c)) {
+            return Optional.of(gameField.get(a));
         }
         return Optional.empty();
     }
