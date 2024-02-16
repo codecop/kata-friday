@@ -48,6 +48,16 @@ class GameTest {
         assertWinner(Player.O, winner);
     }
 
+    @Test
+    void shouldDetectWinnerXInDiagonal() {
+        Game game = new Game();
+        game.move(Player.X, Move.ROW_A_COLUMN_1);
+        game.move(Player.X, Move.ROW_B_COLUMN_2);
+        game.move(Player.X, Move.ROW_C_COLUMN_3);
+        Optional<Player> winner = game.winner();
+        assertWinner(Player.X, winner);
+    }
+    
     private void assertWinner(Player expected, Optional<Player> actual) {
         assertEquals(expected.toString(), extractWinner(actual));
     }
