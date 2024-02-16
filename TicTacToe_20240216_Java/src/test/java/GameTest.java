@@ -5,7 +5,7 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
-class GameTest {
+class  GameTest {
 
     @Test
     void shouldDetectWinnerXInRowA() {
@@ -57,7 +57,7 @@ class GameTest {
         Optional<Player> winner = game.winner();
         assertWinner(Player.X, winner);
     }
-    
+
     private void assertWinner(Player expected, Optional<Player> actual) {
         assertEquals(expected.toString(), extractWinner(actual));
     }

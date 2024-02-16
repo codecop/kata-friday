@@ -1,6 +1,4 @@
-import java.util.Arrays;
 import java.util.EnumMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -22,7 +20,9 @@ public class Game {
         //        }
         // approach 2: chain call of triples
         return extracted(Move.ROW_A_COLUMN_1, Move.ROW_A_COLUMN_2, Move.ROW_A_COLUMN_3)
-                .or(() -> extracted(Move.ROW_A_COLUMN_1, Move.ROW_B_COLUMN_1, Move.ROW_C_COLUMN_1));
+                .or(() -> extracted(Move.ROW_A_COLUMN_1, Move.ROW_B_COLUMN_1, Move.ROW_C_COLUMN_1))
+                .or(() -> extracted(Move.ROW_A_COLUMN_1, Move.ROW_B_COLUMN_2, Move.ROW_C_COLUMN_3)
+                );
     }
 
     private Optional<Player> extracted(Move a, Move b, Move c) {
