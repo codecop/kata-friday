@@ -1,3 +1,4 @@
+import java.util.Optional;
 
 public class Game {
 
@@ -9,4 +10,7 @@ public class Game {
         return Player.X;
     }
 
+    public Optional<Player> owinner() {
+        return Optional.ofNullable(winner());
+    }
 }
