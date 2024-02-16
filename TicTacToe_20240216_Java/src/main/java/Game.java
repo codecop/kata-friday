@@ -6,7 +6,7 @@ public class Game {
     }
 
     public Player winner() {
-        return null;
+        return Player.X;
     }
 
 }
