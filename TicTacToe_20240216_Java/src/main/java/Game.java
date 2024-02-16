@@ -1,4 +1,6 @@
+import java.util.Arrays;
 import java.util.EnumMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -11,9 +13,12 @@ public class Game {
     }
 
     public Optional<Player> winner() {
-        if (field.get(Move.ROW_A_COLUMN_1) == field.get(Move.ROW_A_COLUMN_2) && //
-            field.get(Move.ROW_A_COLUMN_2) == field.get(Move.ROW_A_COLUMN_3)) {
-            return Optional.of(field.get(Move.ROW_A_COLUMN_1));
+
+        List<Move> a = Arrays.asList(Move.ROW_A_COLUMN_1, Move.ROW_A_COLUMN_2, Move.ROW_A_COLUMN_3);
+
+        if (field.get(a.get(0)) == field.get(a.get(1)) && //
+            field.get(a.get(1)) == field.get(a.get(2))) {
+            return Optional.of(field.get(a.get(0)));
         }
         if (field.get(Move.ROW_A_COLUMN_1) == field.get(Move.ROW_B_COLUMN_1) && //
                 field.get(Move.ROW_B_COLUMN_1) == field.get(Move.ROW_C_COLUMN_1)) {
