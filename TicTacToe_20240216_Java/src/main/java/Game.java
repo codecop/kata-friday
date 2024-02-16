@@ -1,25 +1,23 @@
-import java.util.HashMap;
-import java.util.Map;
+import java.util.EnumMap;
 import java.util.Optional;
 
 public class Game {
 
-    private boolean wasO;
-    Map<Move, Player> field = new HashMap<>();
+    EnumMap<Move, Player> field = new EnumMap<>(Move.class);
 
     public void move(Player player, Move move) {
-        wasO = wasO || (player == Player.O);
         field.put(move, player);
     }
 
-    public Optional<Player> winner() {
-
+    public Optional<Object> winner() {
         if (
                 field.get(Move.A1) ==
-                field.get(Move.A2) &&
-                field.get(Move.A2) ==
-                field.get(Move.A3)
-        ) return Optional.of(field.get(Move.A1));
+                        field.get(Move.A2) &&
+                        field.get(Move.A2) ==
+                                field.get(Move.A3)
+        ) {
+            return Optional.of(field.get(Move.A1));
+        }
         return Optional.empty();
     }
 }

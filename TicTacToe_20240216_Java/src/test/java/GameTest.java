@@ -13,7 +13,7 @@ class GameTest {
         game.move(Player.X, Move.A1);
         game.move(Player.X, Move.A2);
         game.move(Player.X, Move.A3);
-        Optional<Player> winner = game.winner();
+        Optional<Object> winner = game.winner();
         assertWinner(Player.X, winner);
     }
 
@@ -23,7 +23,7 @@ class GameTest {
         game.move(Player.X, Move.A1);
         game.move(Player.O, Move.A2);
         game.move(Player.X, Move.A3);
-        Optional<Player> winner = game.winner();
+        Optional<Object> winner = game.winner();
         assertFalse(winner.isPresent());
     }
 
@@ -33,15 +33,15 @@ class GameTest {
         game.move(Player.O, Move.A1);
         game.move(Player.O, Move.A2);
         game.move(Player.O, Move.A3);
-        Optional<Player> winner = game.winner();
+        Optional<Object> winner = game.winner();
         assertWinner(Player.O, winner);
     }
 
-    private void assertWinner(Player expected, Optional<Player> actual) {
+    private void assertWinner(Player expected, Optional<Object> actual) {
         assertEquals(expected.toString(), extractWinner(actual));
     }
 
-    private String extractWinner(Optional<Player> winner) {
+    private String extractWinner(Optional<Object> winner) {
         return winner. //
                 map(Player::toString). //
                 orElseGet(() -> "No Winner");
