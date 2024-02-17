@@ -20,7 +20,7 @@ G: Die lustigste Kata?
 * Theathrical Players
 
 G: Constraint?
-* No-If passt gut fÃ¼r Theathrical Players
+* No-If passt gut für Theathrical Players
 * VS.Code
 
 -
@@ -42,4 +42,4 @@ Retro
 * GitPod schnell, gut funktioniert
 * Peter GitPod zum ersten Mal verwendet
 * Theatrical Players als spassigste Kata? hat was.
-* alle Facts fÃ¼r Samman erledigt
+* alle Facts für Samman erledigt
