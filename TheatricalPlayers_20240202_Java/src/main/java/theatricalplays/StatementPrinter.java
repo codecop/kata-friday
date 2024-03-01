@@ -1,6 +1,7 @@
 package theatricalplays;
 
 import java.text.NumberFormat;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -8,7 +9,7 @@ import java.util.Map;
 public class StatementPrinter {
 
     NumberFormat frmt = NumberFormat.getCurrencyInstance(Locale.US);
-    
+
     public String print(Invoice invoice, Map<String, Play> plays) {
         List<Performance> performances = invoice.performances;
 
@@ -17,13 +18,18 @@ public class StatementPrinter {
         var totalAmount = totalAmountFor(performances, plays);
 
         var result = String.format("Statement for %s\n", invoice.customer);
+        List<StatementLine> lines = new ArrayList<>();
         for (var perf : performances) {
             var play = plays.get(perf.playID);
             var thisAmount = perf.amount(play.type);
             String name = play.name;
             int audience = perf.audience;
-
-            result += format(new StatementLine(name, audience, thisAmount));
+            StatementLine line = new StatementLine(name, audience, thisAmount);
+            lines.add(line);
+        }
+        
+        for (var line : lines) {
+            result += format(line);
         }
         result += String.format("Amount owed is %s\n", frmt.format(totalAmount / 100));
         result += String.format("You earned %s credits\n", volumeCredits);
