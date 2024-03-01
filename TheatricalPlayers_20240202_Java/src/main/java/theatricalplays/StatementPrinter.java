@@ -7,8 +7,8 @@ import java.util.Map;
 public class StatementPrinter {
 
     public String print(Invoice invoice, Map<String, Play> plays) {
-        var totalAmount = 0;
-        var volumeCredits = 0;
+        var totalAmount = 0; // Peter 3rd: multiple accumulator variables in single loop (SRP) -> split loop
+        var volumeCredits = 0; // Peter 4th: totalAmount+volumeCredits is data clump -> extract class?
         var result = String.format("Statement for %s\n", invoice.customer);
 
         NumberFormat frmt = NumberFormat.getCurrencyInstance(Locale.US);
@@ -17,7 +17,8 @@ public class StatementPrinter {
             var play = plays.get(perf.playID);
             var thisAmount = 0;
 
-            switch (play.type) {
+            // Peter 1st: bumpy road -> extract method
+            switch (play.type) { // Peter 2nd: switch on type -> polymorphy 
                 case TRAGEDY:
                     thisAmount = 40000;
                     if (perf.audience > 30) {
