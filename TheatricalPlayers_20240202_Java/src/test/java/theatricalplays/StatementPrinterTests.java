@@ -29,6 +29,60 @@ public class StatementPrinterTests {
     }
 
     @Test
+    void exampleStatementWithWayTooSmallAudience() {
+        Map<String, Play> plays = Map.of( //
+                "hamlet", new Play("Hamlet", Play.Type.TRAGEDY), //
+                "as-like", new Play("As You Like It", Play.Type.COMEDY), //
+                "othello", new Play("Othello", Play.Type.TRAGEDY));
+
+        Invoice invoice = new Invoice("BigCo", List.of( //
+                new Performance("hamlet", 20), //
+                new Performance("as-like", 10), //
+                new Performance("othello", 20)));
+
+        StatementPrinter statementPrinter = new StatementPrinter();
+        var result = statementPrinter.print(invoice, plays);
+
+        verify(result);
+    }
+
+    @Test
+    void exampleStatementWithJustTooSmallAudience() {
+        Map<String, Play> plays = Map.of( //
+                "hamlet", new Play("Hamlet", Play.Type.TRAGEDY), //
+                "as-like", new Play("As You Like It", Play.Type.COMEDY), //
+                "othello", new Play("Othello", Play.Type.TRAGEDY));
+        
+        Invoice invoice = new Invoice("BigCo", List.of( //
+                new Performance("hamlet", 30), //
+                new Performance("as-like", 20), //
+                new Performance("othello", 30)));
+        
+        StatementPrinter statementPrinter = new StatementPrinter();
+        var result = statementPrinter.print(invoice, plays);
+        
+        verify(result);
+    }
+
+    @Test
+    void exampleStatementWithJustEnoughAudience() {
+        Map<String, Play> plays = Map.of( //
+                "hamlet", new Play("Hamlet", Play.Type.TRAGEDY), //
+                "as-like", new Play("As You Like It", Play.Type.COMEDY), //
+                "othello", new Play("Othello", Play.Type.TRAGEDY));
+
+        Invoice invoice = new Invoice("BigCo", List.of( //
+                new Performance("hamlet", 30 + 1), //
+                new Performance("as-like", 20 + 1), //
+                new Performance("othello", 30 + 1)));
+
+        StatementPrinter statementPrinter = new StatementPrinter();
+        var result = statementPrinter.print(invoice, plays);
+
+        verify(result);
+    }
+
+    @Test
     void statementWithNewPlayTypes() {
         Map<String, Play> plays = Map.of( //
                 "henry-v", new Play("Henry V", Play.Type.HISTORY), //
