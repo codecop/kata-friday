@@ -22,6 +22,14 @@ public class StatementPrinter {
         }
         
         var totalAmount = 0; // Peter 3rd: multiple accumulator variables in single loop (SRP) -> split loop
+        for (var perf : performances) {
+            var play = plays.get(perf.playID);
+
+            // print line for this order
+            var thisAmount = play.type.amount(perf.audience);
+            totalAmount += thisAmount;
+        }
+        
         NumberFormat frmt = NumberFormat.getCurrencyInstance(Locale.US);
         var result = String.format("Statement for %s\n", invoice.customer);
         for (var perf : performances) {
@@ -30,7 +38,6 @@ public class StatementPrinter {
             // print line for this order
             var thisAmount = play.type.amount(perf.audience);
             result += String.format("  %s: %s (%s seats)\n", play.name, frmt.format(thisAmount / 100), perf.audience);
-            totalAmount += thisAmount;
         }
         result += String.format("Amount owed is %s\n", frmt.format(totalAmount / 100));
         result += String.format("You earned %s credits\n", volumeCredits);
