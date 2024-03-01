@@ -41,13 +41,7 @@ public class StatementPrinter {
                 return Play.Type.TRAGEDY.amount(audience);
             }
             case COMEDY: {
-                var thisAmount = 0;
-                thisAmount = 30000;
-                if (audience > 20) {
-                    thisAmount += 10000 + 500 * (audience - 20);
-                }
-                thisAmount += 300 * audience;
-                return thisAmount;
+                return Play.Type.COMEDY.amount(audience);
             }
             default:
                 throw new Error("unknown type: " + play.type);

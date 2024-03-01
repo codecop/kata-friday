@@ -19,6 +19,17 @@ public class Play {
             protected double extraCredits(int audience) {
                 return Math.floor(audience / 5);
             }
+            @Override
+            public int amount(int audience) {
+                var thisAmount = 0;
+                thisAmount = 30000;
+                if (audience > 20) {
+                    thisAmount += 10000 + 500 * (audience - 20);
+                }
+                thisAmount += 300 * audience;
+                return thisAmount;
+            }
+
         },
         HISTORY("history"), 
         PASTORAL("pastoral");
