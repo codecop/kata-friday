@@ -10,16 +10,7 @@ public class StatementPrinter {
     public String print(Invoice invoice, Map<String, Play> plays) {
         List<Performance> performances = invoice.performances;
 
-        var volumeCredits = 0; // Peter 4th: totalAmount+volumeCredits is data clump -> extract class?
-        for (var perf : performances) {
-            var play = plays.get(perf.playID);
-
-            // add volume credits
-            volumeCredits += Math.max(perf.audience - 30, 0);
-
-            // add extra credit for every ten comedy attendees
-            volumeCredits += play.type.extraCredits(perf.audience);
-        }
+        var volumeCredits = volumeCreditsFor(performances, plays);
         
         var totalAmount = 0; // Peter 3rd: multiple accumulator variables in single loop (SRP) -> split loop
         for (var perf : performances) {
@@ -42,6 +33,19 @@ public class StatementPrinter {
         result += String.format("Amount owed is %s\n", frmt.format(totalAmount / 100));
         result += String.format("You earned %s credits\n", volumeCredits);
         return result;
+    }
+
+    private int volumeCreditsFor(List<Performance> performances, Map<String, Play> plays) {
+        var volumeCredits = 0; 
+        for (var perf : performances) {
+            volumeCredits += volumeCreditisFor(perf, plays);
+        }
+        return volumeCredits;
+    }
+
+    private double volumeCreditisFor(Performance perf, Map<String, Play> plays) {
+        var play = plays.get(perf.playID);
+        return perf.volumeCredits(play.type);
     }
 
 }
