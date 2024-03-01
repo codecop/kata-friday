@@ -12,6 +12,11 @@ public class Performance {
         this.audience = audience;
     }
 
+    public StatementLine line(Play play) {
+        var amount = amount(play.type);
+        return new StatementLine(play.name, audience, amount);
+    }
+
     public int amount(Type playType) {
         return playType.amount(audience);
     }

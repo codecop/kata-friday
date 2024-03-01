@@ -13,27 +13,32 @@ public class StatementPrinter {
     public String print(Invoice invoice, Map<String, Play> plays) {
         List<Performance> performances = invoice.performances;
 
-        var volumeCredits = volumeCreditsFor(performances, plays);
-
+        String customer = invoice.customer;
+        List<StatementLine> lines = statementLinesFor(performances, plays);
         var totalAmount = totalAmountFor(performances, plays);
-
-        var result = String.format("Statement for %s\n", invoice.customer);
-        List<StatementLine> lines = new ArrayList<>();
-        for (var perf : performances) {
-            var play = plays.get(perf.playID);
-            var thisAmount = perf.amount(play.type);
-            String name = play.name;
-            int audience = perf.audience;
-            StatementLine line = new StatementLine(name, audience, thisAmount);
-            lines.add(line);
-        }
+        var volumeCredits = volumeCreditsFor(performances, plays);
         
+        var result = String.format("Statement for %s\n", customer);
         for (var line : lines) {
             result += format(line);
         }
         result += String.format("Amount owed is %s\n", frmt.format(totalAmount / 100));
         result += String.format("You earned %s credits\n", volumeCredits);
         return result;
+    }
+
+    private List<StatementLine> statementLinesFor(List<Performance> performances, Map<String, Play> plays) {
+        List<StatementLine> lines = new ArrayList<>();
+        for (var perf : performances) {
+            StatementLine line = statementLineFor(perf, plays);
+            lines.add(line);
+        }
+        return lines;
+    }
+
+    private StatementLine statementLineFor(Performance perf, Map<String, Play> plays) {
+        var play = plays.get(perf.playID);
+        return perf.line(play);
     }
 
     private String format(StatementLine line) {
