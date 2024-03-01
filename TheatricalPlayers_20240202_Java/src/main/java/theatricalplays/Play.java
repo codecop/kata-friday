@@ -19,6 +19,7 @@ public class Play {
             protected double extraCredits(int audience) {
                 return Math.floor(audience / 5);
             }
+            
             @Override
             public int amount(int audience) {
                 var thisAmount = 0;

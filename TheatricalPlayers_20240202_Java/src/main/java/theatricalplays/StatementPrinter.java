@@ -15,7 +15,6 @@ public class StatementPrinter {
 
         for (var perf : invoice.performances) {
             var play = plays.get(perf.playID);
-            var thisAmount = extracted(perf, play);
 
             // add volume credits
             volumeCredits += Math.max(perf.audience - 30, 0);
@@ -24,28 +23,13 @@ public class StatementPrinter {
             volumeCredits += play.type.extraCredits(perf.audience);
 
             // print line for this order
+            var thisAmount = play.type.amount(perf.audience);
             result += String.format("  %s: %s (%s seats)\n", play.name, frmt.format(thisAmount / 100), perf.audience);
             totalAmount += thisAmount;
         }
         result += String.format("Amount owed is %s\n", frmt.format(totalAmount / 100));
         result += String.format("You earned %s credits\n", volumeCredits);
         return result;
-    }
-
-    private int extracted(Performance perf, Play play) throws Error {
-
-        int audience = perf.audience;
-        // Peter 1st: bumpy road -> extract method
-        switch (play.type) { // Peter 2nd: switch on type -> polymorphy 
-            case TRAGEDY: {
-                return Play.Type.TRAGEDY.amount(audience);
-            }
-            case COMEDY: {
-                return Play.Type.COMEDY.amount(audience);
-            }
-            default:
-                return play.type.amount(audience);
-        }
     }
 
 }
