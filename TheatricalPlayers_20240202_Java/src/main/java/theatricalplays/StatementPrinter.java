@@ -44,7 +44,7 @@ public class StatementPrinter {
                 return Play.Type.COMEDY.amount(audience);
             }
             default:
-                throw new Error("unknown type: " + play.type);
+                return play.type.amount(audience);
         }
     }
 

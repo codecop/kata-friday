@@ -50,13 +50,8 @@ public class Play {
             return name;
         }
 
-        public int amount(int audience) {
-            var thisAmount = 0;
-            thisAmount = 40000;
-            if (audience > 30) {
-                thisAmount += 1000 * (audience - 30);
-            }
-            return thisAmount;
+        public int amount(@SuppressWarnings("unused") int audience) {
+            throw new Error("unknown type: " + this);
         }
     }
 
