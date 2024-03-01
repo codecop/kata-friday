@@ -38,12 +38,7 @@ public class StatementPrinter {
         // Peter 1st: bumpy road -> extract method
         switch (play.type) { // Peter 2nd: switch on type -> polymorphy 
             case TRAGEDY: {
-                var thisAmount = 0;
-                thisAmount = 40000;
-                if (audience > 30) {
-                    thisAmount += 1000 * (audience - 30);
-                }
-                return thisAmount;
+                return Play.Type.TRAGEDY.amount(audience);
             }
             case COMEDY: {
                 var thisAmount = 0;

@@ -3,7 +3,17 @@ package theatricalplays;
 public class Play {
 
     enum Type {
-        TRAGEDY("tragedy"),
+        TRAGEDY("tragedy") {
+            @Override
+            public int amount(int audience) {
+                var thisAmount = 0;
+                thisAmount = 40000;
+                if (audience > 30) {
+                    thisAmount += 1000 * (audience - 30);
+                }
+                return thisAmount;
+            }
+        },
         COMEDY("comedy") {
             @Override
             protected double extraCredits(int audience) {
@@ -27,6 +37,15 @@ public class Play {
         @Override
         public String toString() {
             return name;
+        }
+
+        public int amount(int audience) {
+            var thisAmount = 0;
+            thisAmount = 40000;
+            if (audience > 30) {
+                thisAmount += 1000 * (audience - 30);
+            }
+            return thisAmount;
         }
     }
 
