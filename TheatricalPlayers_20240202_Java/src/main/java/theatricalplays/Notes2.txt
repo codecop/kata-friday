@@ -3,3 +3,26 @@ Checkin
 * G: im Legacy Code, Leute leiwand, ist OK
 
 -
+
+Kata hat sogar 
+  * falschen Kommentar. Genial.
+  * Arithmetik
+  * Polymorphismus
+  * Foreigh Key Lookup Problem
+  * Primitive Obsession hat es auch
+  * Grosse Loop mit 4 Concerns
+* nicht zu gross. eigentlich klein
+* hat alles was man so braucht ;-)
+
+War es spassig?
+* Arithmetik zuerst verwirrend, mit Namen klar. Nett weil überraschend.
+
+Constraint
+* No If hier gar kein Problem.
+* Ein IF statt signum wäre besser in echt.
+
+Retrospektive
+* durchgerauscht ;-)
+* Peter ist flink. Danke.
+* neue Kata kennen gelernt ist nett.
+*  
