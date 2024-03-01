@@ -1,14 +1,12 @@
 package theatricalplays;
 
 import java.text.NumberFormat;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class StatementPrinter {
-
-    NumberFormat frmt = NumberFormat.getCurrencyInstance(Locale.US);
 
     public String print(Invoice invoice, Map<String, Play> plays) {
         List<Performance> performances = invoice.performances;
@@ -28,24 +26,14 @@ public class StatementPrinter {
     }
 
     private List<StatementLine> statementLinesFor(List<Performance> performances, Map<String, Play> plays) {
-        List<StatementLine> lines = new ArrayList<>();
-        for (var perf : performances) {
-            StatementLine line = statementLineFor(perf, plays);
-            lines.add(line);
-        }
-        return lines;
+        return performances.stream(). //
+                map(perf -> statementLineFor(perf, plays)). //
+                collect(Collectors.toList());
     }
 
     private StatementLine statementLineFor(Performance perf, Map<String, Play> plays) {
         var play = plays.get(perf.playID);
         return perf.line(play);
-    }
-
-    private String format(StatementLine line) {
-        return String.format("  %s: %s (%s seats)\n", //
-                line.name, //
-                frmt.format(line.amount / 100), //
-                line.audience);
     }
 
     private int totalAmountFor(List<Performance> performances, Map<String, Play> plays) {
@@ -68,6 +56,15 @@ public class StatementPrinter {
     private double volumeCreditsFor(Performance perf, Map<String, Play> plays) {
         var play = plays.get(perf.playID);
         return perf.volumeCredits(play.type);
+    }
+
+    NumberFormat frmt = NumberFormat.getCurrencyInstance(Locale.US);
+
+    private String format(StatementLine line) {
+        return String.format("  %s: %s (%s seats)\n", //
+                line.name, //
+                frmt.format(line.amount / 100), //
+                line.audience);
     }
 
 }
