@@ -15,26 +15,7 @@ public class StatementPrinter {
 
         for (var perf : invoice.performances) {
             var play = plays.get(perf.playID);
-            var thisAmount = 0;
-
-            // Peter 1st: bumpy road -> extract method
-            switch (play.type) { // Peter 2nd: switch on type -> polymorphy 
-                case TRAGEDY:
-                    thisAmount = 40000;
-                    if (perf.audience > 30) {
-                        thisAmount += 1000 * (perf.audience - 30);
-                    }
-                    break;
-                case COMEDY:
-                    thisAmount = 30000;
-                    if (perf.audience > 20) {
-                        thisAmount += 10000 + 500 * (perf.audience - 20);
-                    }
-                    thisAmount += 300 * perf.audience;
-                    break;
-                default:
-                    throw new Error("unknown type: " + play.type);
-            }
+            var thisAmount = extracted(perf, play);
 
             // add volume credits
             volumeCredits += Math.max(perf.audience - 30, 0);
@@ -49,6 +30,29 @@ public class StatementPrinter {
         result += String.format("Amount owed is %s\n", frmt.format(totalAmount / 100));
         result += String.format("You earned %s credits\n", volumeCredits);
         return result;
+    }
+
+    private int extracted(Performance perf, Play play) throws Error {
+        var thisAmount = 0;
+
+        // Peter 1st: bumpy road -> extract method
+        switch (play.type) { // Peter 2nd: switch on type -> polymorphy 
+            case TRAGEDY:
+                thisAmount = 40000;
+                if (perf.audience > 30) {
+                    thisAmount += 1000 * (perf.audience - 30);
+                }
+                return thisAmount;
+            case COMEDY:
+                thisAmount = 30000;
+                if (perf.audience > 20) {
+                    thisAmount += 10000 + 500 * (perf.audience - 20);
+                }
+                thisAmount += 300 * perf.audience;
+                return thisAmount;
+            default:
+                throw new Error("unknown type: " + play.type);
+        }
     }
 
 }
