@@ -15,14 +15,8 @@ public class StatementPrinter {
         List<StatementLine> lines = statementLinesFor(performances, plays);
         var totalAmount = totalAmountFor(performances, plays);
         var volumeCredits = volumeCreditsFor(performances, plays);
-        
-        var result = String.format("Statement for %s\n", customer);
-        for (var line : lines) {
-            result += format(line);
-        }
-        result += String.format("Amount owed is %s\n", frmt.format(totalAmount / 100));
-        result += String.format("You earned %s credits\n", volumeCredits);
-        return result;
+
+        return print(customer, lines, totalAmount, volumeCredits);
     }
 
     private List<StatementLine> statementLinesFor(List<Performance> performances, Map<String, Play> plays) {
@@ -59,6 +53,16 @@ public class StatementPrinter {
     }
 
     NumberFormat frmt = NumberFormat.getCurrencyInstance(Locale.US);
+
+    private String print(String customer, List<StatementLine> lines, int totalAmount, int volumeCredits) {
+        var result = String.format("Statement for %s\n", customer);
+        result += lines.stream(). //
+                map(this::format). //
+                collect(Collectors.joining());
+        result += String.format("Amount owed is %s\n", frmt.format(totalAmount / 100));
+        result += String.format("You earned %s credits\n", volumeCredits);
+        return result;
+    }
 
     private String format(StatementLine line) {
         return String.format("  %s: %s (%s seats)\n", //
