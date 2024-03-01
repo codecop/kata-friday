@@ -11,7 +11,7 @@ public class StatementPrinter {
         List<Performance> performances = invoice.performances;
 
         var volumeCredits = volumeCreditsFor(performances, plays);
-        
+
         var totalAmount = 0; // Peter 3rd: multiple accumulator variables in single loop (SRP) -> split loop
         for (var perf : performances) {
             var play = plays.get(perf.playID);
@@ -20,7 +20,7 @@ public class StatementPrinter {
             var thisAmount = play.type.amount(perf.audience);
             totalAmount += thisAmount;
         }
-        
+
         NumberFormat frmt = NumberFormat.getCurrencyInstance(Locale.US);
         var result = String.format("Statement for %s\n", invoice.customer);
         for (var perf : performances) {
@@ -36,14 +36,12 @@ public class StatementPrinter {
     }
 
     private int volumeCreditsFor(List<Performance> performances, Map<String, Play> plays) {
-        var volumeCredits = 0; 
-        for (var perf : performances) {
-            volumeCredits += volumeCreditisFor(perf, plays);
-        }
-        return volumeCredits;
+        return (int) performances.stream(). //
+                mapToDouble(perf -> volumeCreditsFor(perf, plays)). //
+                sum();
     }
 
-    private double volumeCreditisFor(Performance perf, Map<String, Play> plays) {
+    private double volumeCreditsFor(Performance perf, Map<String, Play> plays) {
         var play = plays.get(perf.playID);
         return perf.volumeCredits(play.type);
     }
