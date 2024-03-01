@@ -15,6 +15,7 @@ public class Play {
         COMEDY("comedy") {
             @Override
             protected double extraCredits(int audience) {
+                // add extra credit for every ten comedy attendees
                 return Math.floor(audience / 5);
             }
 
