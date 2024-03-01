@@ -1,15 +1,17 @@
 package theatricalplays;
 
 import java.text.NumberFormat;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
 public class StatementPrinter {
 
     public String print(Invoice invoice, Map<String, Play> plays) {
+        List<Performance> performances = invoice.performances;
 
         var volumeCredits = 0; // Peter 4th: totalAmount+volumeCredits is data clump -> extract class?
-        for (var perf : invoice.performances) {
+        for (var perf : performances) {
             var play = plays.get(perf.playID);
 
             // add volume credits
@@ -22,7 +24,7 @@ public class StatementPrinter {
         var totalAmount = 0; // Peter 3rd: multiple accumulator variables in single loop (SRP) -> split loop
         NumberFormat frmt = NumberFormat.getCurrencyInstance(Locale.US);
         var result = String.format("Statement for %s\n", invoice.customer);
-        for (var perf : invoice.performances) {
+        for (var perf : performances) {
             var play = plays.get(perf.playID);
 
             // print line for this order
