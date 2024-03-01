@@ -33,23 +33,27 @@ public class StatementPrinter {
     }
 
     private int extracted(Performance perf, Play play) throws Error {
-        var thisAmount = 0;
 
+        int audience = perf.audience;
         // Peter 1st: bumpy road -> extract method
         switch (play.type) { // Peter 2nd: switch on type -> polymorphy 
-            case TRAGEDY:
+            case TRAGEDY: {
+                var thisAmount = 0;
                 thisAmount = 40000;
-                if (perf.audience > 30) {
-                    thisAmount += 1000 * (perf.audience - 30);
+                if (audience > 30) {
+                    thisAmount += 1000 * (audience - 30);
                 }
                 return thisAmount;
-            case COMEDY:
+            }
+            case COMEDY: {
+                var thisAmount = 0;
                 thisAmount = 30000;
-                if (perf.audience > 20) {
-                    thisAmount += 10000 + 500 * (perf.audience - 20);
+                if (audience > 20) {
+                    thisAmount += 10000 + 500 * (audience - 20);
                 }
-                thisAmount += 300 * perf.audience;
+                thisAmount += 300 * audience;
                 return thisAmount;
+            }
             default:
                 throw new Error("unknown type: " + play.type);
         }
