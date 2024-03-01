@@ -6,12 +6,7 @@ public class Play {
         TRAGEDY("tragedy") {
             @Override
             public int amount(int audience) {
-                var thisAmount = 0;
-                thisAmount = 40000;
-                if (audience > 30) {
-                    thisAmount += 1000 * (audience - 30);
-                }
-                return thisAmount;
+                return 40000 + 1000 * Math.max(0, audience - 30);
             }
         },
         COMEDY("comedy") {
@@ -19,13 +14,12 @@ public class Play {
             protected double extraCredits(int audience) {
                 return Math.floor(audience / 5);
             }
-            
+
             @Override
             public int amount(int audience) {
-                var thisAmount = 0;
-                thisAmount = 30000;
+                var thisAmount = 30000;
                 if (audience > 20) {
-                    thisAmount += 10000 + 500 * (audience - 20);
+                    thisAmount += 10000 + 500 * Math.max(0, audience - 20);
                 }
                 thisAmount += 300 * audience;
                 return thisAmount;
