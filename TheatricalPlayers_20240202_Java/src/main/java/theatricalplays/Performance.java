@@ -12,7 +12,12 @@ public class Performance {
         this.audience = audience;
     }
 
+    public int amount(Type playType) {
+        return playType.amount(audience);
+    }
+
     public double volumeCredits(Type playType) {
         return Math.max(audience - 30, 0) + playType.extraCredits(audience);
     }
+
 }
