@@ -136,19 +136,22 @@ describe('Anagram', () => {
 
         it('find histograms of all words with same histogram', () => {
             const actual = all_anagrams(['abc', 'cba'])
-            expect(actual.length).toEqual(1)
-            expect(actual[0].words).toEqual(['abc', 'cba'])
+            expect(actual.length).toEqual(2)
+            expect(actual[0].words).toEqual(['abc'])
             expect(actual[0].histogram).toEqual({ a: 1, b: 1, c: 1 })
+            expect(actual[1].words).toEqual(['cba'])
+            expect(actual[1].histogram).toEqual({ a: 1, b: 1, c: 1 })
         });
 
     });
 
     describe('Solution', () => {
-        xit('all anagrams of documenting', () => {
-            // this does not compute, 7 trillion runs
+        it('all anagrams of documenting', () => {
             const actual = two_word_anagrams_of('documenting');
             console.log(actual);
-            expect(actual.length).toEqual(5)
+            expect(actual.length).toEqual(2)
+            expect(actual[0]).toEqual('document gin')
+            expect(actual[1]).toEqual('gin document')
         });
     });
 
@@ -171,13 +174,8 @@ function all_anagrams(words: string[]): Anagrams[] {
     for (const word of words) {
         const histogram = histogram_for(word);
 
-        const existingAnagram = find_anagram_for(result, histogram);
-        if (existingAnagram) {
-            existingAnagram.words.push(word);
-        } else {
-            const newAnagram = { histogram, words: [word] };
-            result.push(newAnagram);
-        }
+        const newAnagram = { histogram, words: [word] };
+        result.push(newAnagram);
     }
 
     return result;
@@ -205,10 +203,9 @@ function two_word_anagrams_of(word: string): string[] {
     const reduced = allTwoWords
         .filter(w => w.length === word.length + 1); // reduces from 2500K -> 600K
     console.log(new Date());
-    // const allAnagrams = all_anagrams(reduced);
-    // console.log(new Date());
+    const allAnagrams = all_anagrams(reduced);
+    console.log(new Date());
 
-    // const matches = allAnagrams.filter(anagram => histogram_equals(anagram.histogram, histogram));
-    // return matches[0].words; // there can only be one
-    return [];
+    const matches = allAnagrams.filter(anagram => histogram_equals(anagram.histogram, histogram));
+    return matches.map((match) => match.words[0]);
 }
