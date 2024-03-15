@@ -110,11 +110,17 @@ describe('Anagram', () => {
         });
 
         it('lists all two word sequences', () => {
-            const actual = all_sequences(['a', 'b', 'c']);
-            expect(actual.length).toEqual(3)
-            expect(actual[0]).toEqual(['a b'])
-            expect(actual[1]).toEqual(['a c'])
-            expect(actual[2]).toEqual(['b c'])
+            const actual = all_two_words_from(['a', 'b', 'c']);
+            expect(actual.length).toEqual(9);
+            expect(actual[0]).toEqual('a a');
+            expect(actual[1]).toEqual('a b');
+            expect(actual[2]).toEqual('a c');
+            expect(actual[3]).toEqual('b a');
+            expect(actual[4]).toEqual('b b');
+            expect(actual[5]).toEqual('b c');
+            expect(actual[6]).toEqual('c a');
+            expect(actual[7]).toEqual('c b');
+            expect(actual[8]).toEqual('c c');
         });
 
     });
@@ -170,5 +176,17 @@ function all_anagrams(words: string[]): Anagrams[] {
 
 function find_anagram_for(allAnagrams: Anagrams[], histogram: Histogram) {
     return allAnagrams.find(anagram => histogram_equals(anagram.histogram, histogram));
+}
+
+function all_two_words_from(words: string[]): string[] {
+    const result: string[] = [];
+    for (let outer = 0; outer < words.length; outer++) {
+        const word = words[outer];
+        for (let inner = 0; inner < words.length; inner++) {
+            const second = words[inner];
+            result.push(`${word} ${second}`)
+        }
+    }
+    return result;
 }
 
