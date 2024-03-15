@@ -111,7 +111,7 @@ describe('Anagram', () => {
             expect(load_words()[7]).toEqual('gin')
         })
 
-        it('find histograms of all words', () => {
+        it('find histograms of all words with different histograms', () => {
             const actual = histograms(['abc'])
             expect(actual.length).toEqual(1)
             expect(actual[0].words).toEqual(['abc'])
@@ -140,14 +140,13 @@ type SameHistogram = {
 };
 
 function histograms(words: string[]): SameHistogram[] {
-    // const result = [];
+    const result = [];
 
-    // for (const word of words) {
-    //     const h = histogram(word);
-    //     result.set(h, words);
-    // }
+    for (const word of words) {
+         const h = histogram(word);
+         result.push({histogram: h, words: [word]});
+    }
 
-    // return result;
-    return [];
+    return result;
 }
 
