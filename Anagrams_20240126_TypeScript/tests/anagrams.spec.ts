@@ -100,6 +100,8 @@ describe('Anagram', () => {
             expect(histogram_add({ a: 1 }, { b: 1 })).toEqual({ a: 1, b: 1 });
         })
 
+        // Algorithm?
+        // create Histogram of all words, create all pairs (add), compare to documenting
     });
 
     describe('Word list', () => {
@@ -109,24 +111,22 @@ describe('Anagram', () => {
             expect(load_words()[7]).toEqual('gin')
         })
 
-        xit('find histograms of all words', () => {
+        it('find histograms of all words', () => {
             const actual = histograms(['abc'])
-            expect(actual.size).toEqual(1)
-            // TODO JS is pointer based
-            expect(actual.get(actual.keys().next().value)).toEqual(['abc'])
-            expect(actual.get({ a: 1, b: 1, c: 1 })).toEqual(['abc'])
+            expect(actual.length).toEqual(1)
+            expect(actual[0].words).toEqual(['abc'])
+            expect(actual[0].histogram).toEqual({ a: 1, b: 1, c: 1 })
         });
 
         xit('find histograms of all words', () => {
             const actual = histograms(['abc', 'cba'])
-            expect(actual.size).toEqual(1)
-            expect(actual.get({ a: 1, b: 1, c: 1 })).toEqual(['abc', 'cba'])
+            // expect(actual.size).toEqual(1)
+            // expect(actual.get({ a: 1, b: 1, c: 1 })).toEqual(['abc', 'cba'])
         });
 
     });
 
 });
-
 
 function load_words(): string[] {
     return fs.readFileSync('./tests/wordlist.txt', 'utf8').
@@ -134,14 +134,20 @@ function load_words(): string[] {
         split(/\s+/g);
 }
 
-function histograms(words: string[]): Map<Histogram, string[]> {
-    const result: Map<Histogram, string[]> = new Map();
+type SameHistogram = { 
+    histogram: Histogram, 
+    words: string[] 
+};
 
-    for (const word of words) {
-        const h = histogram(word);
-        result.set(h, words);
-    }
+function histograms(words: string[]): SameHistogram[] {
+    // const result = [];
 
-    return result;
+    // for (const word of words) {
+    //     const h = histogram(word);
+    //     result.set(h, words);
+    // }
+
+    // return result;
+    return [];
 }
 
