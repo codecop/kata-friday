@@ -143,6 +143,14 @@ describe('Anagram', () => {
 
     });
 
+    describe('Solution', () => {
+        it('all anagrams of documenting', () => {
+            const actual = two_word_anagrams_of('documenting');
+            console.log(actual);
+            expect(actual.length).toEqual(5)
+        });
+    });
+
 });
 
 function load_words(): string[] {
@@ -190,3 +198,10 @@ function all_two_words_from(words: string[]): string[] {
     return result;
 }
 
+function two_word_anagrams_of(word: string): string[] {
+    const histogram = histogram_for(word);
+    const allAnagrams = all_anagrams(all_two_words_from(load_words()));
+
+    const matches = allAnagrams.filter(anagram => histogram_equals(anagram.histogram, histogram));
+    return matches[0].words; // there can only be one
+}
