@@ -15,7 +15,7 @@ function isLetter(c: any): c is Letters {
 
 type Histogram = { [L in Letters]?: number }
 
-function histogram(s: string): Histogram {
+function histogram_for(s: string): Histogram {
     let result: Histogram = {};
 
     for (let i = 0; i < s.length; i++) {
@@ -55,23 +55,23 @@ describe('Anagram', () => {
     describe('Histogram', () => {
 
         it('of single letter', () => {
-            expect(histogram('a')).toEqual({ a: 1 });
+            expect(histogram_for('a')).toEqual({ a: 1 });
         });
 
         it('of double letter', () => {
-            expect(histogram('aa')).toEqual({ a: 2 });
+            expect(histogram_for('aa')).toEqual({ a: 2 });
         });
 
         it('of two distinct letters', () => {
-            expect(histogram('ab')).toEqual({ a: 1, b: 1 });
+            expect(histogram_for('ab')).toEqual({ a: 1, b: 1 });
         });
 
         it('of two distinct letters with various counts', () => {
-            expect(histogram('ababb')).toEqual({ a: 2, b: 3 });
+            expect(histogram_for('ababb')).toEqual({ a: 2, b: 3 });
         });
 
         it('of all letters', () => {
-            expect(histogram('abcdefghijklmnopqrstuvwxyz')).
+            expect(histogram_for('abcdefghijklmnopqrstuvwxyz')).
                 toEqual({
                     a: 1, b: 1, c: 1, d: 1, e: 1, f: 1, g: 1, h: 1, i: 1,
                     j: 1, k: 1, l: 1, m: 1, n: 1, o: 1, p: 1, q: 1, r: 1,
@@ -80,7 +80,7 @@ describe('Anagram', () => {
         });
 
         it('of "documenting"', () => {
-            expect(histogram('documenting')).
+            expect(histogram_for('documenting')).
                 toEqual({ d: 1, o: 1, c: 1, u: 1, m: 1, e: 1, n: 2, t: 1, i: 1, g: 1 })
         });
 
@@ -112,14 +112,14 @@ describe('Anagram', () => {
         })
 
         it('find histograms of all words with different histograms', () => {
-            const actual = histograms(['abc'])
+            const actual = all_anagrams(['abc'])
             expect(actual.length).toEqual(1)
             expect(actual[0].words).toEqual(['abc'])
             expect(actual[0].histogram).toEqual({ a: 1, b: 1, c: 1 })
         });
 
         it('find histograms of all words with same histogram', () => {
-            const actual = histograms(['abc', 'cba'])
+            const actual = all_anagrams(['abc', 'cba'])
             expect(actual.length).toEqual(1)
             expect(actual[0].words).toEqual(['abc', 'cba'])
             expect(actual[0].histogram).toEqual({ a: 1, b: 1, c: 1 })
@@ -135,24 +135,30 @@ function load_words(): string[] {
         split(/\s+/g);
 }
 
-type SameHistogram = {
+type Anagrams = {
     histogram: Histogram,
     words: string[]
 };
 
-function histograms(words: string[]): SameHistogram[] {
-    const result: SameHistogram[] = [];
+function all_anagrams(words: string[]): Anagrams[] {
+    const result: Anagrams[] = [];
 
     for (const word of words) {
-        const h = histogram(word);
-        const bar = result.find(x => histogram_equals(x.histogram, h));
-        if (bar) {
-            bar.words.push(word);
+        const histogram = histogram_for(word);
+        
+        const existingAnagram = find_anagram_for(result, histogram);
+        if (existingAnagram) {
+            existingAnagram.words.push(word);
         } else {
-            result.push({ histogram: h, words: [word] });
+            const newAnagram = { histogram, words: [word] };
+            result.push(newAnagram);
         }
     }
 
     return result;
+}
+
+function find_anagram_for(allAnagrams: Anagrams[], histogram: Histogram) {
+    return allAnagrams.find(anagram => histogram_equals(anagram.histogram, histogram));
 }
 
