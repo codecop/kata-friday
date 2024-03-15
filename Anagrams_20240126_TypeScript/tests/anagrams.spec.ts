@@ -98,10 +98,8 @@ describe('Anagram', () => {
         it('add two histograms', () => {
             expect(histogram_add({ a: 1 }, { a: 1 })).toEqual({ a: 2 })
             expect(histogram_add({ a: 1 }, { b: 1 })).toEqual({ a: 1, b: 1 });
-        })
+        });
 
-        // Algorithm?
-        // create Histogram of all words, create all pairs (add), compare to documenting
     });
 
     describe('Word list', () => {
@@ -109,7 +107,19 @@ describe('Anagram', () => {
         it('lists all words', () => {
             expect(load_words()[0]).toEqual('acrobat')
             expect(load_words()[7]).toEqual('gin')
-        })
+        });
+
+        it('lists all two word sequences', () => {
+            const actual = all_sequences(['a', 'b', 'c']);
+            expect(actual.length).toEqual(3)
+            expect(actual[0]).toEqual(['a b'])
+            expect(actual[1]).toEqual(['a c'])
+            expect(actual[2]).toEqual(['b c'])
+        });
+
+    });
+
+    describe('Anagrams of all individual words', () => {
 
         it('find histograms of all words with different histograms', () => {
             const actual = all_anagrams(['abc'])
@@ -145,7 +155,7 @@ function all_anagrams(words: string[]): Anagrams[] {
 
     for (const word of words) {
         const histogram = histogram_for(word);
-        
+
         const existingAnagram = find_anagram_for(result, histogram);
         if (existingAnagram) {
             existingAnagram.words.push(word);
