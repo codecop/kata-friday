@@ -130,16 +130,16 @@ describe('Anagram', () => {
         it('find histograms of all words with different histograms', () => {
             const actual = all_anagrams(['abc'])
             expect(actual.length).toEqual(1)
-            expect(actual[0].words).toEqual(['abc'])
+            expect(actual[0].word).toEqual('abc')
             expect(actual[0].histogram).toEqual({ a: 1, b: 1, c: 1 })
         });
 
         it('find histograms of all words with same histogram', () => {
             const actual = all_anagrams(['abc', 'cba'])
             expect(actual.length).toEqual(2)
-            expect(actual[0].words).toEqual(['abc'])
+            expect(actual[0].word).toEqual('abc')
             expect(actual[0].histogram).toEqual({ a: 1, b: 1, c: 1 })
-            expect(actual[1].words).toEqual(['cba'])
+            expect(actual[1].word).toEqual('cba')
             expect(actual[1].histogram).toEqual({ a: 1, b: 1, c: 1 })
         });
 
@@ -148,7 +148,6 @@ describe('Anagram', () => {
     describe('Solution', () => {
         it('all anagrams of documenting', () => {
             const actual = two_word_anagrams_of('documenting');
-            console.log(actual);
             expect(actual.length).toEqual(2)
             expect(actual[0]).toEqual('document gin')
             expect(actual[1]).toEqual('gin document')
@@ -163,26 +162,22 @@ function load_words(): string[] {
         split(/\s+/g);
 }
 
-type Anagrams = {
+type Word = {
     histogram: Histogram,
-    words: string[]
+    word: string
 };
 
-function all_anagrams(words: string[]): Anagrams[] {
-    const result: Anagrams[] = [];
+function all_anagrams(words: string[]): Word[] {
+    const result: Word[] = [];
 
     for (const word of words) {
         const histogram = histogram_for(word);
 
-        const newAnagram = { histogram, words: [word] };
+        const newAnagram = { histogram, word };
         result.push(newAnagram);
     }
 
     return result;
-}
-
-function find_anagram_for(allAnagrams: Anagrams[], histogram: Histogram) {
-    return allAnagrams.find(anagram => histogram_equals(anagram.histogram, histogram));
 }
 
 function all_two_words_from(words: string[]): string[] {
@@ -200,12 +195,8 @@ function all_two_words_from(words: string[]): string[] {
 function two_word_anagrams_of(word: string): string[] {
     const histogram = histogram_for(word);
     const allTwoWords = all_two_words_from(load_words()); // half second
-    const reduced = allTwoWords
-        .filter(w => w.length === word.length + 1); // reduces from 2500K -> 600K
-    console.log(new Date());
+    const reduced = allTwoWords.filter(w => w.length === word.length + 1); // reduces from 2500K -> 600K
     const allAnagrams = all_anagrams(reduced);
-    console.log(new Date());
-
     const matches = allAnagrams.filter(anagram => histogram_equals(anagram.histogram, histogram));
-    return matches.map((match) => match.words[0]);
+    return matches.map((match) => match.word);
 }
