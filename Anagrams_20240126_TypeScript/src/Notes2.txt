@@ -1,3 +1,20 @@
 Checkin
 Peter: Backen weh
 G: Leute im Büro schreien
+
+War das spassig?
+* interessant mit n^2 und es eskaliert ;-)
+* Zuerst Laufzeitproblem, nach Optimierung ein Memory Problem
+* War mehr Algorithmik drinnen als erwartet.
+* Hat Spass gemacht.
+* Ping pong klappt super.
+* Remote tools funktioniert gut aber ohne Screen Sharing geht es nicht.
+
+Kleines Beispiel reicht voll für Coding.
+Namen der Domäne? Gibt es welche?
+"Ein langer Name ist ein Satz der etwas beschreibt, kein Name."
+"Wenn man etwas länger nicht macht, verliert man den Gusto dran."
+
+Checkout
+* Peter: Danke, ungeduldig/einlassen?
+* G: überraschend kurzweilig, erfrischend, gut, nicht ausgelaugt
