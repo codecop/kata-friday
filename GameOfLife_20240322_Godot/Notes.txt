@@ -1,4 +1,4 @@
-Checkin
+Check-in
 * A: well, online platform, life sessions mixed in
 * Peter: staying away from architecture ;-)
 
@@ -26,7 +26,7 @@ Idea: use dynamic 2D AND sound to investigate a running system
 Retro
 * Peter: thank you for patience, 
      lot of searching, nice, cumbersome and refreshing
-     leaving: thoughful, refreshed
+     leaving: thoughtful, refreshed
 * A: new approach using collision detection
      enjoyed it
      leaving: refreshed, ready to work on it again

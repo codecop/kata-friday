@@ -6,7 +6,6 @@ class_name Cell
 # var a = 2
 # var b = "text"
 
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	print("ready")
@@ -16,7 +15,7 @@ func _process(delta):
 	var neighboursCount = areas.size()
 	print(neighboursCount)
 	
-	if(neighboursCount < 3):
+	if (neighboursCount < 3):
 		print("removing")
 		get_parent().remove_child(self)
 
