@@ -1,0 +1,32 @@
+Checkin
+* A: well, online platform, life sessions mixed in
+* Peter: staying away from architecture ;-)
+
+What is fun?
+* Parts of C++ are fun
+* Look different at coding (learning different approaches)
+* Game development is fun
+
+
+Godot - 2D
+* style of interaction with events and functions
+* objects are in scene
+* gradually typed, only what you need
+* can integrate with other IDEs, could use VS Code for code.
+* learn the 50 nodes and that is it, only need which node for what to use
+* physics engine also in
+* can buy graphics
+
+
+Idea: use dynamic 2D AND sound to investigate a running system
+=> not using that for analysis
+=> sound is used for teaching, or tone up or down to...
+
+
+Retro
+* Peter: thank you for patience, 
+     lot of searching, nice, cumbersome and refreshing
+     leaving: thoughful, refreshed
+* A: new approach using collision detection
+     enjoyed it
+     leaving: refreshed, ready to work on it again
