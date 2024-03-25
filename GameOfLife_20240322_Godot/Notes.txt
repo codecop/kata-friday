@@ -30,3 +30,8 @@ Retro
 * A: new approach using collision detection
      enjoyed it
      leaving: refreshed, ready to work on it again
+
+
+Code
+Please see attached the Godot version of Game of Life that we worked on. You need Godot 3.5.3 to edit it.
+It was fun doing this exercise, maybe we can do another session in a couple of months.
