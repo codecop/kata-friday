@@ -1,0 +1,11 @@
+Checkin
+* D: intensive Woche
+* Peter: kostenintensive Woche
+
+Fun
+Monkey C
+Spezifikation
+- runterzählen/pause/reset
+- 2 scores
+    punkte
+    touchdown = 6 + versuch
