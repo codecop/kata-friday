@@ -1,10 +1,8 @@
-import Toybox.Application;
 import Toybox.Lang;
-import Toybox.WatchUi;
 
 class Scores {
 
-    private var pointsA = 0;
+    private var pointsA as Integer = 0;
 
     function initialize() {
     }
