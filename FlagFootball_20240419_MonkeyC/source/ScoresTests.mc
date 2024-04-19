@@ -21,8 +21,18 @@ class ScoresTests {
       var scores = new Scores();
       scores.touchDownA();
 
-      scores.touchDownA();
+      scores.teamAGoesForPointAfterTouchDown(1);
       
       return scores.getPointsA() == 7;
+   }
+
+   (:test)
+   function teamScoresTwoExtraPointAfterTouchdown(logger as Test.Logger) as Boolean {
+      var scores = new Scores();
+      scores.touchDownA();
+
+      scores.teamAGoesForPointAfterTouchDown(2);
+      
+      return scores.getPointsA() == 8;
    }
 }
