@@ -10,8 +10,19 @@ class ScoresTests {
    (:test)
    function teamScoresTouchDown(logger as Test.Logger) as Boolean {
       var scores = new Scores();
+      
       scores.touchDownA();
+      
       return scores.getPointsA() == 6;
    }
 
+   (:test)
+   function teamScoresOneExtraPointAfterTouchdown(logger as Test.Logger) as Boolean {
+      var scores = new Scores();
+      scores.touchDownA();
+
+      scores.touchDownA();
+      
+      return scores.getPointsA() == 7;
+   }
 }
