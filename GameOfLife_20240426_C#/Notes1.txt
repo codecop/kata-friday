@@ -1,0 +1,29 @@
+Check-in
+* G: gut, nach Essen, entspannt
+* Peter: Monitor kaputt :-(
+
+-
+
+Constraint: No Primitives, streng, auch keine Boolean returns oder getValue()
+
+GoL Regeln sind funktional.
+
+-
+
+Retro
+-----
+
+Modus:
+* Cyber Dojo funktioniert
+* Syntax mit ChatGPT
+* Ping Pong
+* gut geklappt
+
+Thema
+* Thema sehr interessant.
+* Finde es toll wenn wir uns so in Basics hineinlassen.
+* Es scheint immer Trade-offs zu geben. Wir kommen an Grenzen.
+* Und vielleicht finde ich durch Constraints und Extreme neue Lösungen.
+* Muss mir das auch immer wieder auffrischen.
+
+Boolean returns/Query/Policy sind ein Sonderfall. Ohne die ist es ganz schwer.
