@@ -23,6 +23,10 @@ public class GolTest
 }
 
 public class Grid {
+    int x = -1;
+    public void bringAlive(int x, int y) {
+        this.x = x;
+    }
     public GridSpace getCell(int x, int y) {
         if (x == 0) {
             return new AliveCell();
