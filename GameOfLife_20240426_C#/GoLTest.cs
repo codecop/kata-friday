@@ -3,16 +3,17 @@ using NUnit.Framework;
 [TestFixture]
 public class GolTest
 {
+    var grid = new Grid();
+    
     [Test]
-    public void new_grid_has_no_cells()
+    public void new_grid_has_only_empty_space()
     {
-        var grid = new Grid();
         var cell = grid.getCell(0,0);
         Assert.That(cell, Is.InstanceOf<EmptySpace>());
     }
     
     [Test]
-    public void new_grid_with_seed_has_one_cell()
+    public void new_grid_with_seed_has_one_alive_cell()
     {
         var grid = new Grid();
         grid.bringAlive(0,0);
