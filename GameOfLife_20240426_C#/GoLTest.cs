@@ -8,16 +8,16 @@ public class GolTest
     [Test]
     public void new_grid_has_only_empty_space()
     {
-        var cell = grid.getCell(0,0);
+        var cell = grid.GetCell(0,0);
         Assert.That(cell, Is.InstanceOf<EmptySpace>());
     }
     
     [Test]
     public void new_grid_with_seed_has_one_alive_cell()
     {
-        grid.bringAlive(0,0);
+        grid.BringAlive(0,0);
 
-        var cell = grid.getCell(0,0);
+        var cell = grid.GetCell(0,0);
         Assert.That(cell, Is.InstanceOf<AliveCell>());
     }
       
@@ -25,10 +25,10 @@ public class GolTest
 
 public class Grid {
     int x = -1;
-    public void bringAlive(int x, int y) {
+    public void BringAlive(int x, int y) {
         this.x = x;
     }
-    public GridSpace getCell(int x, int y) {
+    public GridSpace GetCell(int x, int y) {
         if (this.x == x) {
             return new AliveCell();
         }
