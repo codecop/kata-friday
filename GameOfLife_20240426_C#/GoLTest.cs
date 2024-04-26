@@ -39,6 +39,9 @@ public class Grid {
     public void BringAlive(int x, int y) {
         this.x = x;
     }
+    public Grid Evolve() {
+        return new Grid();
+    }
     public GridSpace GetCell(int x, int y) {
         if (this.x == x) {
             return new AliveCell();
