@@ -1,6 +1,8 @@
 .DS_Store
 .idea/
 
+cyber-dojo/
+
 # Peter's local markers
 with_*.txt
 TODO *
