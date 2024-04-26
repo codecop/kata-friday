@@ -3,7 +3,12 @@ using NUnit.Framework;
 [TestFixture]
 public class GolTest
 {
-    private Grid grid = new Grid();
+    private Grid grid;
+    
+    [SetUp]
+    public void InitializeGrid() {
+        grid = new Grid();
+    }
     
     [Test]
     public void new_grid_has_only_empty_space()
