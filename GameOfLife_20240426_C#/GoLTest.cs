@@ -68,9 +68,8 @@ public class Rules {
     public Grid Evolve(Grid grid) {
         var newGrid = new Grid();
         NeighbourCount count = grid.CountNeighboursOf(new Position(0,0));
-        if (count.count == 3) {
-            newGrid.BringAlive(new Position(0,0));
-        }
+        // if (count == NeighbourCount.Three()) { could do
+        count.applyRules(newGrid, new Position(0,0));
         return newGrid;
     }
     
@@ -116,6 +115,12 @@ public class NeighbourCount {
     
     public NeighbourCount(int count) {
         this.count = count;
+    }
+    
+    public void ApplyRules(Grid grid, Position position) {
+        if(this.count == 3) {
+            grid.BringAlive(position);   
+        }
     }
 }
 
