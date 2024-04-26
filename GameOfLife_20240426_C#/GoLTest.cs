@@ -65,7 +65,21 @@ public class Grid {
         this.cells.Add(position);
     }
     public Grid Evolve() {
-        return new Grid();
+        var newGrid = new Grid()
+        int countNeighbours = 0;
+        if (this.cells.Contains(new Position(0,1)) {
+            countNeighbours++;
+        }
+        if (this.cells.Contains(new Position(1,0)) {
+            countNeighbours++;
+        }
+        if (this.cells.Contains(new Position(1,1)) {
+            countNeighbours++;
+        }
+        if (countNeighbours == 3) {
+            newGrid.BringAlive(new Position(0,0));
+        }
+        return newGrid;
     }
     public GridSpace GetCell(Position position) {
         if (this.cells.Contains(position)) {
