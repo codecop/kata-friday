@@ -15,8 +15,8 @@ public class GolTest
     [Test]
     public void new_grid_with_seed_has_one_alive_cell()
     {
-        var grid = new Grid();
         grid.bringAlive(0,0);
+
         var cell = grid.getCell(0,0);
         Assert.That(cell, Is.InstanceOf<AliveCell>());
     }
