@@ -20,11 +20,22 @@ public class GolTest
         var cell = grid.GetCell(0,0);
         Assert.That(cell, Is.InstanceOf<AliveCell>());
     }
-      
+
+    [Test]
+    public void living_cell_with_no_neighbours_dies()
+    {
+        grid.BringAlive(0,0);
+
+        var newGrid = grid.Evolve();
+        var cell = newGrid.GetCell(0,0);
+        Assert.That(cell, Is.InstanceOf<EmptySpace>());
+    }
+    
 }
 
 public class Grid {
     int x = -1;
+    // TODO refactor to position
     public void BringAlive(int x, int y) {
         this.x = x;
     }
