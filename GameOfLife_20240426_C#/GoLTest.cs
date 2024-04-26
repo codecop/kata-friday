@@ -39,7 +39,7 @@ public class GolTest
 }
 
 public class Grid {
-    Position position;
+    private Position position;
 
     public void BringAlive(Position position) {
         this.position = position;
