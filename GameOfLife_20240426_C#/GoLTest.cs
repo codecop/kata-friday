@@ -39,16 +39,16 @@ public class GolTest
 }
 
 public class Grid {
-    private Position position;
+    private Position cell;
 
     public void BringAlive(Position position) {
-        this.position = position;
+        this.cell = position;
     }
     public Grid Evolve() {
         return new Grid();
     }
     public GridSpace GetCell(Position position) {
-        if (this.position != null) {
+        if (this.cell != null) {
             return new AliveCell();
         }
         return new EmptySpace();
