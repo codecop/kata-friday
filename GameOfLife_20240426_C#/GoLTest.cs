@@ -34,6 +34,19 @@ public class GolTest
         AssertCell<EmptySpace>(newGrid);
     }
     
+    [Test]
+    public void living_cell_with_three_neighbours_stays_alive()
+    {
+        grid.BringAlive(new Position());
+        grid.BringAlive(new Position(1,0));
+        grid.BringAlive(new Position(1,1));
+        grid.BringAlive(new Position(0,1));
+
+        var newGrid = grid.Evolve();
+        
+        AssertCell<AliveCell>(newGrid);
+    }
+    
     public void AssertCell<T>(Grid grid) 
     {
         var cell = grid.GetCell(new Position());
