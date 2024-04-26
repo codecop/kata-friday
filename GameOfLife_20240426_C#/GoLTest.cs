@@ -67,13 +67,13 @@ public class Grid {
     public Grid Evolve() {
         var newGrid = new Grid();
         int countNeighbours = 0;
-        if (this.cells.Contains(new Position(0,1)) {
+        if (this.cells.Contains(new Position(0,1))) {
             countNeighbours++;
         }
-        if (this.cells.Contains(new Position(1,0)) {
+        if (this.cells.Contains(new Position(1,0))) {
             countNeighbours++;
         }
-        if (this.cells.Contains(new Position(1,1)) {
+        if (this.cells.Contains(new Position(1,1))) {
             countNeighbours++;
         }
         if (countNeighbours == 3) {
