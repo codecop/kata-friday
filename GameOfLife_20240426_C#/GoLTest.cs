@@ -13,16 +13,13 @@ public class GolTest
       
 }
 
-public class Grid() {
-    
-    public Grid() {}
-    
+public class Grid {
+
     public EmptyClass getCell(int x, int y) {
         return new EmptyClass();
     }
     
 }
 
-public class EmptyClass() {
-    public EmptyClass() {}
+public class EmptyClass {
 }
