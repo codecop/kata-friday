@@ -28,7 +28,7 @@ public class Grid {
         this.x = x;
     }
     public GridSpace getCell(int x, int y) {
-        if (x == 0) {
+        if (this.x == x) {
             return new AliveCell();
         }
         return new EmptyClass();
