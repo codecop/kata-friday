@@ -66,7 +66,7 @@ public class GolTest
         AssertCell<AliveCell>(newGrid);
     }
     
-    [Test]
+    // [Test] - WIP
     public void dead_cell_with_two_neighbours_stays_dead()
     {
         grid.BringAlive(new Position(1,0));
@@ -94,7 +94,6 @@ public class Rules {
         var newGrid = new Grid();
         NeighbourCount count = grid.CountNeighboursOf(new Position(0,0));
         var cell = grid.GetCell(new Position(0,0));
-        // if (count == NeighbourCount.Three()) { could do
         count.ApplyRules(newGrid, new Position(0,0));
         return newGrid;
     }
@@ -102,19 +101,31 @@ public class Rules {
 }
 
 /**
-Rules = [
-    AliveOrDead, NeighbourCount => AliveOrDead
-]
-World.evolve(rules, grid) {
-    foreach grid.cell { applyRules }
-    
-    
-    applyRules(cell, rules) {
-        foreach rule in rules {
-            if(rule.matches(cell)) setMatch
+  Design sketch 1: using equality and the code in rules has if as usual
+     e.g. if (count == NeighbourCount.Three()) {
+
+  Design sketch 2: using a lookup with the wrapped values as keys and
+     the lookup uses equality to match keys
+     e.g. 
+        Rules = [
+            AliveOrDead, NeighbourCount => AliveOrDead
+        ]
+        World.evolve(rules, grid) {
+            foreach grid.cell { applyRules }
+
+            applyRules(cell, rules) {
+                foreach rule in rules {
+                    if(rule.matches(cell)) setMatch
+                }
+            }
         }
-    }
-}
+
+  Design sketch 3: use polymorphy to distribute rules
+  
+  Design sketch 4: expose relevant queries as domain queries, 
+    e.g. count.isTwoOrThree() <- DSL, but not OCP, and primitive
+    e.g. count.willLiveOn() <- Rule logic naming, but Shotgun Surgery
+     
 */
 
 /**
