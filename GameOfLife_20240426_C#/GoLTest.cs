@@ -55,8 +55,10 @@ public class GolTest
     
 }
 
+using System.Collections.Generic;
+
 public class Grid {
-    private List<Position> cells = new List();
+    private List<Position> cells = new List<Position>();
 
     public void BringAlive(Position position) {
         this.cell = position;
