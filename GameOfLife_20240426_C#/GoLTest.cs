@@ -111,6 +111,13 @@ public class Grid {
 public interface GridSpace {}
 public class EmptySpace : GridSpace {}
 public class AliveCell : GridSpace {}
+public class NeighbourCount {
+    public readonly int count;
+    
+    public NeighbourCount(int count) {
+        this.count = count;
+    }
+}
 
 
 
