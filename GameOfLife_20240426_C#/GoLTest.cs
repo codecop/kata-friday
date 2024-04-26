@@ -32,5 +32,5 @@ public class Grid {
 }
 
 interface GridSpace {}
-public class EmptyClass implements GridSpace {}
-public class AliveCell implements GridSpace {}
+public class EmptyClass : GridSpace {}
+public class AliveCell : GridSpace {}
