@@ -23,12 +23,14 @@ public class GolTest
 }
 
 public class Grid {
-
-    public EmptyClass getCell(int x, int y) {
+    public GridSpace getCell(int x, int y) {
+        if (x == 0) {
+            return new AliveCell();
+        }
         return new EmptyClass();
     }
-    
 }
 
-public class EmptyClass {
-}
+interface GridSpace {}
+public class EmptyClass implements GridSpace {}
+public class AliveCell implements GridSpace {}
