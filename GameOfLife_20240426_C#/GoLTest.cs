@@ -19,6 +19,7 @@ public class Grid() {
         return new EmptyClass();
     }
     
-    public class EmptyClass() {
-    }
+}
+
+public class EmptyClass() {
 }
