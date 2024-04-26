@@ -5,10 +5,12 @@ using System.Collections.Generic;
 public class GolTest
 {
     private Grid grid;
+    private Rules rules;
     
     [SetUp]
     public void InitializeGrid() {
         grid = new Grid();
+        rules = new Rules();
     }
     
     [Test]
@@ -32,7 +34,7 @@ public class GolTest
     {
         grid.BringAlive(new Position());
 
-        var newGrid = grid.Evolve();
+        var newGrid = rules.Evolve(grid);
         
         AssertCell<EmptySpace>(newGrid);
     }
@@ -45,7 +47,7 @@ public class GolTest
         grid.BringAlive(new Position(1,1));
         grid.BringAlive(new Position(0,1));
 
-        var newGrid = grid.Evolve();
+        var newGrid = rules.Evolve(grid);
         
         AssertCell<AliveCell>(newGrid);
     }
@@ -54,6 +56,14 @@ public class GolTest
     {
         var cell = grid.GetCell(new Position());
         Assert.That(cell, Is.InstanceOf<T>());
+    }
+    
+}
+
+public class Rules {
+ 
+    public Grid Evolve(Grid grid) {
+        return grid;
     }
     
 }
