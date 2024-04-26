@@ -31,6 +31,6 @@ public class Grid {
     }
 }
 
-interface GridSpace {}
+public interface GridSpace {}
 public class EmptyClass : GridSpace {}
 public class AliveCell : GridSpace {}
