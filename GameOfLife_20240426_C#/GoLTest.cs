@@ -13,7 +13,6 @@ public class GolTest
     [Test]
     public void new_grid_has_only_empty_space()
     {
-        var cell = grid.GetCell(new Position());
         AssertCell<EmptySpace>(grid);
     }
     
