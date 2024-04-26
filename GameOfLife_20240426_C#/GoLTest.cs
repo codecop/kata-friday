@@ -60,13 +60,13 @@ public class Grid {
     private List<Position> cells = new List<Position>();
 
     public void BringAlive(Position position) {
-        this.cell = position;
+        this.cells.Add(position);
     }
     public Grid Evolve() {
         return new Grid();
     }
     public GridSpace GetCell(Position position) {
-        if (this.cell != null) {
+        if (this.cells.Contains(position)) {
             return new AliveCell();
         }
         return new EmptySpace();
