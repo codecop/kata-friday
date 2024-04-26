@@ -1,5 +1,6 @@
 using NUnit.Framework;
- 
+using System.Collections.Generic;
+
 [TestFixture]
 public class GolTest
 {
@@ -54,8 +55,6 @@ public class GolTest
     }
     
 }
-
-using System.Collections.Generic;
 
 public class Grid {
     private List<Position> cells = new List<Position>();
