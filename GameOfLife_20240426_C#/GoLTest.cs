@@ -93,12 +93,29 @@ public class Rules {
     public Grid Evolve(Grid grid) {
         var newGrid = new Grid();
         NeighbourCount count = grid.CountNeighboursOf(new Position(0,0));
+        var cell = grid.GetCell(new Position(0,0));
         // if (count == NeighbourCount.Three()) { could do
         count.ApplyRules(newGrid, new Position(0,0));
         return newGrid;
     }
     
 }
+
+/**
+Rules = [
+    AliveOrDead, NeighbourCount => AliveOrDead
+]
+World.evolve(rules, grid) {
+    foreach grid.cell { applyRules }
+    
+    
+    applyRules(cell, rules) {
+        foreach rule in rules {
+            if(rule.matches(cell)) setMatch
+        }
+    }
+}
+*/
 
 /**
  * Manages Cells. Does not know Rules.
