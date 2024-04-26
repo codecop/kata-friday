@@ -10,6 +10,15 @@ public class GolTest
         var cell = grid.getCell(0,0);
         Assert.That(cell, Is.InstanceOf<EmptyClass>());
     }
+    
+    [Test]
+    public void new_grid_with_seed_has_one_cell()
+    {
+        var grid = new Grid();
+        grid.bringAlive(0,0);
+        var cell = grid.getCell(0,0);
+        Assert.That(cell, Is.InstanceOf<AliveCell>());
+    }
       
 }
 
