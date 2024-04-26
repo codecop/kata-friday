@@ -63,7 +63,12 @@ public class GolTest
 public class Rules {
  
     public Grid Evolve(Grid grid) {
-        return grid;
+        var newGrid = new Grid();
+        int countNeighbours = grid.CountNeighboursOf(new Position(0,0));
+        if (countNeighbours == 3) {
+            newGrid.BringAlive(new Position(0,0));
+        }
+        return newGrid;
     }
     
 }
@@ -74,8 +79,15 @@ public class Grid {
     public void BringAlive(Position position) {
         this.cells.Add(position);
     }
-    public Grid Evolve() {
-        var newGrid = new Grid();
+    
+    public GridSpace GetCell(Position position) {
+        if (this.cells.Contains(position)) {
+            return new AliveCell();
+        }
+        return new EmptySpace();
+    }
+    
+    public int CountNeighboursOf(Position position) {
         int countNeighbours = 0;
         if (this.cells.Contains(new Position(0,1))) {
             countNeighbours++;
@@ -86,16 +98,7 @@ public class Grid {
         if (this.cells.Contains(new Position(1,1))) {
             countNeighbours++;
         }
-        if (countNeighbours == 3) {
-            newGrid.BringAlive(new Position(0,0));
-        }
-        return newGrid;
-    }
-    public GridSpace GetCell(Position position) {
-        if (this.cells.Contains(position)) {
-            return new AliveCell();
-        }
-        return new EmptySpace();
+        return countNeighbours;
     }
 }
 
