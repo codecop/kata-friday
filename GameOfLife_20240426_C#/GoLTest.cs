@@ -69,7 +69,7 @@ public class Rules {
         var newGrid = new Grid();
         NeighbourCount count = grid.CountNeighboursOf(new Position(0,0));
         // if (count == NeighbourCount.Three()) { could do
-        count.applyRules(newGrid, new Position(0,0));
+        count.ApplyRules(newGrid, new Position(0,0));
         return newGrid;
     }
     
