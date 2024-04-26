@@ -8,7 +8,7 @@ public class GolTest
     {
         var grid = new Grid();
         var cell = grid.getCell(0,0);
-        Assert.That(cell, Is.InstanceOf<EmptyClass>());
+        Assert.That(cell, Is.InstanceOf<EmptySpace>());
     }
     
     [Test]
@@ -31,10 +31,10 @@ public class Grid {
         if (this.x == x) {
             return new AliveCell();
         }
-        return new EmptyClass();
+        return new EmptySpace();
     }
 }
 
 public interface GridSpace {}
-public class EmptyClass : GridSpace {}
+public class EmptySpace : GridSpace {}
 public class AliveCell : GridSpace {}
