@@ -13,26 +13,26 @@ public class GolTest
     [Test]
     public void new_grid_has_only_empty_space()
     {
-        var cell = grid.GetCell(0,0);
+        var cell = grid.GetCell(new Position());
         Assert.That(cell, Is.InstanceOf<EmptySpace>());
     }
     
     [Test]
     public void new_grid_with_seed_has_one_alive_cell()
     {
-        grid.BringAlive(0,0);
+        grid.BringAlive(new Position());
 
-        var cell = grid.GetCell(0,0);
+        var cell = grid.GetCell(new Position());
         Assert.That(cell, Is.InstanceOf<AliveCell>());
     }
 
     [Test]
     public void living_cell_with_no_neighbours_dies()
     {
-        grid.BringAlive(0,0);
+        grid.BringAlive(new Position());
 
         var newGrid = grid.Evolve();
-        var cell = newGrid.GetCell(0,0);
+        var cell = newGrid.GetCell(new Position());
         Assert.That(cell, Is.InstanceOf<EmptySpace>());
     }
     
@@ -40,15 +40,16 @@ public class GolTest
 
 public class Grid {
     int x = -1;
+    Position position;
     // TODO refactor to position
-    public void BringAlive(int x, int y) {
-        this.x = x;
+    public void BringAlive(Position position) {
+        this.position = position;
     }
     public Grid Evolve() {
         return new Grid();
     }
-    public GridSpace GetCell(int x, int y) {
-        if (this.x == x) {
+    public GridSpace GetCell(Position position) {
+        if (this.position != null) {
             return new AliveCell();
         }
         return new EmptySpace();
