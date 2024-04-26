@@ -8,6 +8,6 @@ public class GolTest
     {
         var grid = new Grid();
         var cell = grid.getCell(0,0);
-        Assert.IsInstanceOf(EmptyPlace.class, cell);
+        Assert.That(cell, Is.InstanceOf<EmptyClass>());
     }
 }
