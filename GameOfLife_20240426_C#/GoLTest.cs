@@ -39,9 +39,8 @@ public class GolTest
 }
 
 public class Grid {
-    int x = -1;
     Position position;
-    // TODO refactor to position
+
     public void BringAlive(Position position) {
         this.position = position;
     }
