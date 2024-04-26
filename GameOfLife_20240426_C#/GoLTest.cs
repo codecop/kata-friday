@@ -32,6 +32,7 @@ public class GolTest
         grid.BringAlive(new Position());
 
         var newGrid = grid.Evolve();
+        
         var cell = newGrid.GetCell(new Position());
         Assert.That(cell, Is.InstanceOf<EmptySpace>());
     }
