@@ -60,6 +60,9 @@ public class GolTest
     
 }
 
+/**
+ * Contain rules but does not know anything about Grid.
+ */
 public class Rules {
  
     public Grid Evolve(Grid grid) {
@@ -73,6 +76,9 @@ public class Rules {
     
 }
 
+/**
+ * Manages Cells. Does not know Rules.
+ */
 public class Grid {
     private List<Position> cells = new List<Position>();
 
