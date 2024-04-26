@@ -37,6 +37,12 @@ public class GolTest
         Assert.That(cell, Is.InstanceOf<EmptySpace>());
     }
     
+    public void AssertCell(Grid grid, Type type) 
+    {
+        var cell = grid.GetCell(new Position());
+        Assert.That(cell, Is.InstanceOf<typeof(type)>());
+    }
+    
 }
 
 public class Grid {
