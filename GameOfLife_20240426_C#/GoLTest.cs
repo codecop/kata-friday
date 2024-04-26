@@ -65,7 +65,7 @@ public class Grid {
         this.cells.Add(position);
     }
     public Grid Evolve() {
-        var newGrid = new Grid()
+        var newGrid = new Grid();
         int countNeighbours = 0;
         if (this.cells.Contains(new Position(0,1)) {
             countNeighbours++;
