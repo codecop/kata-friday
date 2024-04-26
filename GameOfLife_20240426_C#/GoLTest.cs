@@ -14,7 +14,7 @@ public class GolTest
     public void new_grid_has_only_empty_space()
     {
         var cell = grid.GetCell(new Position());
-        Assert.That(cell, Is.InstanceOf<EmptySpace>());
+        AssertCell<EmptySpace>(grid);
     }
     
     [Test]
@@ -22,8 +22,7 @@ public class GolTest
     {
         grid.BringAlive(new Position());
 
-        var cell = grid.GetCell(new Position());
-        Assert.That(cell, Is.InstanceOf<AliveCell>());
+        AssertCell<AliveCell>(grid);
     }
 
     [Test]
@@ -34,8 +33,6 @@ public class GolTest
         var newGrid = grid.Evolve();
         
         AssertCell<EmptySpace>(newGrid);
-        var cell = newGrid.GetCell(new Position());
-        Assert.That(cell, Is.InstanceOf<EmptySpace>());
     }
     
     public void AssertCell<T>(Grid grid) 
