@@ -40,7 +40,7 @@ public class GolTest
     public void AssertCell(Grid grid, Type type) 
     {
         var cell = grid.GetCell(new Position());
-        Assert.That(cell, Is.InstanceOf<typeof(type)>());
+        Assert.That(cell, Is.InstanceOf(type));
     }
     
 }
