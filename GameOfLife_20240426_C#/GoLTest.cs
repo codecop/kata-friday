@@ -15,6 +15,8 @@ public class GolTest
 
 public class Grid() {
     
+    public Grid() {}
+    
     public EmptyClass getCell(int x, int y) {
         return new EmptyClass();
     }
@@ -22,4 +24,5 @@ public class Grid() {
 }
 
 public class EmptyClass() {
+    public EmptyClass() {}
 }
