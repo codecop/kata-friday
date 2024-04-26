@@ -27,7 +27,7 @@ public class GolTest
         AssertCell<AliveCell>(grid);
     }
     
-    // TODO would add a test for another position now...
+    // would add a test for another position now...
 
     [Test]
     public void living_cell_with_no_neighbours_dies()
@@ -94,6 +94,8 @@ public class Rules {
         var newGrid = new Grid();
         NeighbourCount count = grid.CountNeighboursOf(new Position(0,0));
         var cell = grid.GetCell(new Position(0,0));
+        // TODO NEXT pass cell state to Rules?
+        // or pass newGrid to cell state polymorphic?
         count.ApplyRules(newGrid, new Position(0,0));
         return newGrid;
     }
