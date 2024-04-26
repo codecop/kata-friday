@@ -52,6 +52,8 @@ public class GolTest
         AssertCell<AliveCell>(newGrid);
     }
     
+    // only rule that uses current cell state is living/2 -> alive
+    
     [Test]
     public void living_cell_with_two_neighbours_stays_alive()
     {
@@ -62,6 +64,17 @@ public class GolTest
         var newGrid = rules.Evolve(grid);
         
         AssertCell<AliveCell>(newGrid);
+    }
+    
+    [Test]
+    public void dead_cell_with_two_neighbours_stays_dead()
+    {
+        grid.BringAlive(new Position(1,0));
+        grid.BringAlive(new Position(1,1));
+
+        var newGrid = rules.Evolve(grid);
+        
+        AssertCell<EmptySpace>(newGrid);
     }
     
     public void AssertCell<T>(Grid grid) 
@@ -106,6 +119,7 @@ public class Grid {
     
     public NeighbourCount CountNeighboursOf(Position position) {
         int countNeighbours = 0;
+        // TODO refactor to use list of relative positions etc.
         if (this.cells.Contains(new Position(0,1))) {
             countNeighbours++;
         }
