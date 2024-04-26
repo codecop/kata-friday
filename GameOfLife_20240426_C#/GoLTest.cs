@@ -119,9 +119,6 @@ public class Grid {
     }
 }
 
-public interface GridSpace {}
-public class EmptySpace : GridSpace {}
-public class AliveCell : GridSpace {}
 public class NeighbourCount {
     public readonly int count;
     
@@ -130,11 +127,12 @@ public class NeighbourCount {
     }
     
     public void ApplyRules(Grid grid, Position position) {
-        if(this.count == 3) {
+        if (this.count == 2 || this.count == 3) {
             grid.BringAlive(position);   
         }
     }
 }
 
-
-
+public interface GridSpace {}
+public class EmptySpace : GridSpace {}
+public class AliveCell : GridSpace {}
