@@ -24,6 +24,8 @@ public class GolTest
 
         AssertCell<AliveCell>(grid);
     }
+    
+    // TODO would add a test for another position now...
 
     [Test]
     public void living_cell_with_no_neighbours_dies()
@@ -35,7 +37,7 @@ public class GolTest
         AssertCell<EmptySpace>(newGrid);
     }
     
-    // [Test]
+    [Test]
     public void living_cell_with_three_neighbours_stays_alive()
     {
         grid.BringAlive(new Position());
