@@ -46,9 +46,16 @@ class TeamTests {
 
 /* 
 
-   TODO:
+   Testlist:
+   - Game: hält Scores der Teams
+   - Games zukünftig: ev. Timeouts?
+   
+   
+   Todo:
+   - Beschreibe: Timeout Logik ;)
 
-   Testlist
-   - 2 Punkte ohne TD auch möglich (Safety, Return PAT)
-   - ist ein Punkt möglich ohne TD?
+
+
+   
+
 */
