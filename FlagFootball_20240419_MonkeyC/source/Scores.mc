@@ -8,15 +8,19 @@ class Scores {
     }
 
     function touchDownA() as Void {
-        self.pointsA += 6;
+        self.teamAScores(6);
     }
 
     function teamAScoresOnePoint() as Void {
-        self.pointsA +=1;
+        self.teamAScores(1);
     }
 
     function teamAScoresTwoPoints() as Void {
-        self.pointsA +=2;
+        self.teamAScores(2);
+    }
+
+    private function teamAScores(by as Integer) as Void {
+        self.pointsA += by;
     }
 
     function getPointsA() as Integer {
