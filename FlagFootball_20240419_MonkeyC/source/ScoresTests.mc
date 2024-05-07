@@ -38,9 +38,9 @@ class ScoresTests {
    function refereeChangesScoreOfTeamA(logger as Test.Logger) as Boolean {
       var scores = new Scores();
 
-      scores.teamASetScore(0,1,7);
+      scores.teamASetScore(2,1,7);
 
-      return scores.getPointsA() == 17;
+      return scores.getPointsA() == 217;
    }
 }
 
