@@ -17,22 +17,26 @@ class ScoresTests {
    }
 
    (:test)
-   function teamScoresOneExtraPointAfterTouchdown(logger as Test.Logger) as Boolean {
+   function teamScoresOnePoint(logger as Test.Logger) as Boolean {
       var scores = new Scores();
-      scores.touchDownA();
 
-      scores.teamAGoesForPointAfterTouchDown(1);
+      scores.teamAScoresOnePoint();
       
-      return scores.getPointsA() == 7;
+      return scores.getPointsA() == 1;
    }
 
    (:test)
-   function teamScoresTwoExtraPointAfterTouchdown(logger as Test.Logger) as Boolean {
+   function teamScoresTwoPoints(logger as Test.Logger) as Boolean {
       var scores = new Scores();
-      scores.touchDownA();
 
-      scores.teamAGoesForPointAfterTouchDown(2);
+      scores.teamAScoresTwoPoints();
       
-      return scores.getPointsA() == 8;
+      return scores.getPointsA() == 2;
    }
 }
+
+/* 
+   Testlist
+   - 2 Punkte ohne TD auch möglich (Safety, Return PAT)
+   - ist ein Punkt möglich ohne TD?
+*/

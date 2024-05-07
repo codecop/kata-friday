@@ -11,8 +11,12 @@ class Scores {
         self.pointsA += 6;
     }
 
-    function teamAGoesForPointAfterTouchDown(targetPoints as Integer) as Void {
-        self.pointsA += targetPoints;
+    function teamAScoresOnePoint() as Void {
+        self.pointsA +=1;
+    }
+
+    function teamAScoresTwoPoints() as Void {
+        self.pointsA +=2;
     }
 
     function getPointsA() as Integer {
