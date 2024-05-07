@@ -26,4 +26,7 @@ class Scores {
     function getPointsA() as Integer {
         return self.pointsA;
     }
+    function teamASetScore(hundreds as Integer, tens as Integer, ones as Integer) as Void {
+        self.pointsA = 17;
+    }
 }

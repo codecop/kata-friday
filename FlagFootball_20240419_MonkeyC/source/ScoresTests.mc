@@ -33,9 +33,22 @@ class ScoresTests {
       
       return scores.getPointsA() == 2;
    }
+
+   (:test)
+   function refereeChangesScoreOfTeamA(logger as Test.Logger) as Boolean {
+      var scores = new Scores();
+
+      scores.teamASetScore(0,1,7);
+
+      return scores.getPointsA() == 17;
+   }
 }
 
 /* 
+
+   TODO:
+   TeamA nicht in allen TEstnamen entahlten
+
    Testlist
    - 2 Punkte ohne TD auch möglich (Safety, Return PAT)
    - ist ein Punkt möglich ohne TD?
