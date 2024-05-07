@@ -4,7 +4,7 @@ import Toybox.WatchUi;
 
 class Team {
 
-    private var points = 0;
+    private var points as Integer = 0;
 
     function initialize() {
     }
@@ -25,11 +25,12 @@ class Team {
         self.points += by;
     }
 
+    function setScore(hundreds as Integer, tens as Integer, ones as Integer) as Void {
+        self.points = hundreds * 100 + tens * 10 + ones;
+    }
+
     function getPoints() as Integer {
         return self.points;
     }
-    function setScore(hundreds as Integer, tens as Integer, ones as Integer) as Void {
-        
-        self.points = hundreds * 100 + tens * 10 + ones;
-    }
+
 }

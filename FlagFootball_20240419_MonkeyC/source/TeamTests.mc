@@ -45,17 +45,10 @@ class TeamTests {
 }
 
 /* 
-
    Testlist:
    - Game: hält Scores der Teams
    - Games zukünftig: ev. Timeouts?
    
-   
    Todo:
    - Beschreibe: Timeout Logik ;)
-
-
-
-   
-
 */
