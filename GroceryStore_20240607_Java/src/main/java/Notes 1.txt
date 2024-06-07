@@ -1,4 +1,24 @@
 Checkin
-* Görge: Urlaub, gut
+* G: Urlaub, gut
 * Peter: zach, Milizübung
 
+zu Kata
+* ca. 90' für erste Iteration
+* brauche mind. 4-5 Stunden? Wollen 1-2 Iterationen sehen.
+
+zu Java Learnings
+* Files.list ist praktisch
+* Multiline Strings neue Zeile erfordern
+* UncheckedIOException
+
+zu Tools
+* Floobits ist tot
+* Push/Pull mit Gather 2 Screen share geht sehr gut
+
+zu Emergence
+* wir sind fast minimal
+* trotzdem ist Code sehr clean, gut strukturiert
+
+Checkout
+* G: gespannt, wie es weiter geht, begeistert
+* Peter: gut abgelenkt, voll angenehm
