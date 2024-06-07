@@ -10,6 +10,7 @@ release.properties
 .idea/
 *.iml
 *.iwr
+local.properties
 
 # Eclipse
 .settings/
@@ -17,3 +18,7 @@ release.properties
 .classpath
 .checkstyle
 .pmd
+
+# Gradle
+.gradle
+build
