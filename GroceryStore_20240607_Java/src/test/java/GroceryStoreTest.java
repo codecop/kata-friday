@@ -10,6 +10,7 @@ import java.nio.file.Path;
 class GroceryStoreTest {
 
     // req 1)
+
     GroceryStore store = new GroceryStore();
 
     // missing test: reportOfSingleFile
@@ -30,9 +31,8 @@ class GroceryStoreTest {
         );
     }
 
-    private Path createTempRosFile(Path tmpDir, String fileName, String fileBody) throws IOException {
+    private void createTempRosFile(Path tmpDir, String fileName, String fileBody) throws IOException {
         Path rosFile = tmpDir.resolve(fileName);
         Files.write(rosFile, fileBody.getBytes());
-        return rosFile;
     }
 }
