@@ -4,33 +4,33 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import java.io.IOException;
-import java.io.UncheckedIOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 class GroceryStoreTest {
 
     // req 1)
+    GroceryStore store = new GroceryStore();
 
     @Test
     void grandTotalOfEmptyFile() {
-        int grandTotal = calculateGrandTotal("\n");
+        int grandTotal = store.calculateGrandTotal("\n");
         assertEquals(0, grandTotal);
     }
 
     @Test
     void grandTotalOfOneLine() {
-        int grandTotal = calculateGrandTotal("bread, 1, 2\n");
+        int grandTotal = store.calculateGrandTotal("bread, 1, 2\n");
         assertEquals(2, grandTotal);
     }
 
     // temporary test: grandTotalOfOneLineDifferentEntries
 
+    // TODO missing test for "apples (red, 1Kg bag), 1, 2"
+
     @Test
     void grandTotalOfMultipleLines() {
-        int grandTotal = calculateGrandTotal("bread, 1, 2\n12-pack of eggs, 1, 3\n");
+        int grandTotal = store.calculateGrandTotal("bread, 1, 2\n12-pack of eggs, 1, 3\n");
         assertEquals(5, grandTotal);
     }
 
@@ -38,7 +38,7 @@ class GroceryStoreTest {
     void grandTotalOfSingleFile(@TempDir Path tmpDir) throws IOException {
         Path rosFile = createTempRosFile(tmpDir, "grandTotalOfSingleFile.txt", "bread, 1, 2\n12-pack of eggs, 1, 3\n");
 
-        int grandTotal = calculateGrandTotal(rosFile);
+        int grandTotal = store.calculateGrandTotal(rosFile);
 
         assertEquals(5, grandTotal, "grandTotal");
     }
@@ -58,7 +58,7 @@ class GroceryStoreTest {
         createTempRosFile(tmpDir, "rosFile1.txt", "milk (1L), 4, 8\n");
         createTempRosFile(tmpDir, "rosFile2.txt", "coca cola (33cl), 10, 10\n");
 
-        var report = report(tmpDir);
+        var report = store.report(tmpDir);
 
         assertEquals(
                 """
@@ -69,41 +69,4 @@ class GroceryStoreTest {
         );
     }
 
-    private String report(Path rosFileDir) throws IOException {
-        try (Stream<Path> rosFiles = Files.list(rosFileDir)) {
-            return rosFiles. //
-                    map(this::reportForFile). //
-                    collect(Collectors.joining());
-        }
-    }
-
-    private String reportForFile(Path rosFile) {
-        String reportTemplate = "%s, %d\n";
-        return reportTemplate.formatted(rosFile.getFileName(), calculateGrandTotal(rosFile));
-    }
-
-    private int calculateGrandTotal(Path rosFile) {
-        try {
-            // TODO refactor to until function using functional interface with IOException
-
-            String rosLines = Files.readString(rosFile);
-            return calculateGrandTotal(rosLines);
-
-        } catch (IOException e) {
-            throw new UncheckedIOException(e);
-        }
-    }
-
-    private int calculateGrandTotal(String rosLines) {
-        int grandTotal = 0;
-        String[] lines = rosLines.split("\n");
-        for (String line : lines) {
-            // req 1) 1. we are a bit more generic by removing all white space
-            // req 1) 2. we do not want to add a record now, feels over-engineered.
-            String[] recordOfSale = line.split("\\s*,\\s*");
-            int total = Integer.parseInt(recordOfSale[2]);
-            grandTotal += total;
-        }
-        return grandTotal;
-    }
 }
