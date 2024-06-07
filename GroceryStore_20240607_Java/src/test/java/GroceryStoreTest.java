@@ -17,15 +17,17 @@ class GroceryStoreTest {
     }
 
     @Test
-    void grandTotalOfOneLineOfEggs() {
-        int grandTotal = calculateGrandTotal("12-pack of eggs, 1, 3\n");
-        assertEquals(3, grandTotal);
+    void grandTotalOfMultipleLines() {
+        int grandTotal = calculateGrandTotal("bread, 1, 2\n12-pack of eggs, 1, 3\n");
+        assertEquals(5, grandTotal);
     }
 
     private int calculateGrandTotal(String rosLines) {
         int grandTotal = 0;
-        if (!rosLines.equals("\n")) {
-            int total = Integer.parseInt(rosLines.split(",")[2].trim());
+        String[] lines = rosLines.split("\n");
+        for (String line : lines) {
+            String[] recordOfSale = line.split("\\s*,\\s*");
+            int total = Integer.parseInt(recordOfSale[2]);
             grandTotal += total;
         }
         return grandTotal;
