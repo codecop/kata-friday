@@ -17,6 +17,10 @@ test {
     useJUnitPlatform()
 }
 
-group = 'at.compass'
+group = 'org.codecop'
 version = '1.0-SNAPSHOT'
 java.sourceCompatibility = JavaVersion.VERSION_17
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
