@@ -4,8 +4,10 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import java.io.IOException;
+import java.io.UncheckedIOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.stream.Collectors;
 
 class GroceryStoreTest {
 
@@ -30,17 +32,51 @@ class GroceryStoreTest {
 
     @Test
     void grandTotalOfSingleFile(@TempDir Path tmpDir) throws IOException {
-        Path rosFile = tmpDir.resolve("grandTotalOfSingleFile.txt");
-        Files.write(rosFile, "bread, 1, 2\n12-pack of eggs, 1, 3\n".getBytes());
+        Path rosFile = createTempRosFile(tmpDir, "grandTotalOfSingleFile.txt", "bread, 1, 2\n12-pack of eggs, 1, 3\n");
 
         int grandTotal = calculateGrandTotal(rosFile);
 
         assertEquals(5, grandTotal, "grandTotal");
     }
 
-    private int calculateGrandTotal(Path rosFile) throws IOException {
-        String rosLines = Files.readString(rosFile);
-        return calculateGrandTotal(rosLines);
+    private static Path createTempRosFile(Path tmpDir, String fileName, String fileBody) throws IOException {
+        Path rosFile = tmpDir.resolve(fileName);
+        Files.write(rosFile, fileBody.getBytes());
+        return rosFile;
+    }
+
+    @Test
+    void reportOfMultipleFiles(@TempDir Path tmpDir) throws IOException {
+        createTempRosFile(tmpDir, "rosFile1.txt", "milk (1L), 4, 8\n");
+        createTempRosFile(tmpDir, "rosFile2.txt", "coca cola (33cl), 10, 10\n");
+        var report = report(tmpDir);
+
+        assertEquals(
+                """
+                        rosFile1.txt, 8
+                        rosFile2.txt, 10
+                        """,
+                report
+        );
+    }
+
+    private String report(Path rosFileDir) throws IOException {
+        return Files.list(rosFileDir).map(this::reportForFile).collect(Collectors.joining());
+    }
+
+    private String reportForFile(Path rosFile) {
+        return rosFile.getFileName() + ", " + calculateGrandTotal(rosFile) + "\n";
+    }
+
+    // TODO integration test with whole file from req 1
+
+    private int calculateGrandTotal(Path rosFile) {
+        try {
+            String rosLines = Files.readString(rosFile);
+            return calculateGrandTotal(rosLines);
+        } catch (IOException e) {
+            throw new UncheckedIOException(e);
+        }
     }
 
     private int calculateGrandTotal(String rosLines) {
