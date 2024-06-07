@@ -1,0 +1,5 @@
+1) write a program that reads ROS files and generates the grand
+   total income for each ROS file.
+   e.g.
+   bread, 1, 2
+   12-pack of eggs, 1, 2
