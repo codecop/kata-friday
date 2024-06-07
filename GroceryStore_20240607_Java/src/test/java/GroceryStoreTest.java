@@ -8,10 +8,12 @@ import java.io.UncheckedIOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 class GroceryStoreTest {
 
     // req 1)
+
     @Test
     void grandTotalOfEmptyFile() {
         int grandTotal = calculateGrandTotal("\n");
@@ -23,6 +25,8 @@ class GroceryStoreTest {
         int grandTotal = calculateGrandTotal("bread, 1, 2\n");
         assertEquals(2, grandTotal);
     }
+
+    // temporary test: grandTotalOfOneLineDifferentEntries
 
     @Test
     void grandTotalOfMultipleLines() {
@@ -39,16 +43,21 @@ class GroceryStoreTest {
         assertEquals(5, grandTotal, "grandTotal");
     }
 
-    private static Path createTempRosFile(Path tmpDir, String fileName, String fileBody) throws IOException {
+    private Path createTempRosFile(Path tmpDir, String fileName, String fileBody) throws IOException {
         Path rosFile = tmpDir.resolve(fileName);
         Files.write(rosFile, fileBody.getBytes());
         return rosFile;
     }
 
+    // would add integration test with whole file from req 1
+
+    // missing test: reportOfSingleFile
+
     @Test
     void reportOfMultipleFiles(@TempDir Path tmpDir) throws IOException {
         createTempRosFile(tmpDir, "rosFile1.txt", "milk (1L), 4, 8\n");
         createTempRosFile(tmpDir, "rosFile2.txt", "coca cola (33cl), 10, 10\n");
+
         var report = report(tmpDir);
 
         assertEquals(
@@ -61,19 +70,25 @@ class GroceryStoreTest {
     }
 
     private String report(Path rosFileDir) throws IOException {
-        return Files.list(rosFileDir).map(this::reportForFile).collect(Collectors.joining());
+        try (Stream<Path> rosFiles = Files.list(rosFileDir)) {
+            return rosFiles. //
+                    map(this::reportForFile). //
+                    collect(Collectors.joining());
+        }
     }
 
     private String reportForFile(Path rosFile) {
-        return rosFile.getFileName() + ", " + calculateGrandTotal(rosFile) + "\n";
+        String reportTemplate = "%s, %d\n";
+        return reportTemplate.formatted(rosFile.getFileName(), calculateGrandTotal(rosFile));
     }
-
-    // TODO integration test with whole file from req 1
 
     private int calculateGrandTotal(Path rosFile) {
         try {
+            // TODO refactor to until function using functional interface with IOException
+
             String rosLines = Files.readString(rosFile);
             return calculateGrandTotal(rosLines);
+
         } catch (IOException e) {
             throw new UncheckedIOException(e);
         }
