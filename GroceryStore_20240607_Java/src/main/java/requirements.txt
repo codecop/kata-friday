@@ -2,4 +2,4 @@
    total income for each ROS file.
    e.g.
    bread, 1, 2
-   12-pack of eggs, 1, 2
+   12-pack of eggs, 1, 3
