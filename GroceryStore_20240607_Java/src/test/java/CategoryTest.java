@@ -8,7 +8,7 @@ public class CategoryTest {
 
     @Test
     void extractsCategoryFromRosLine() {
-        var result = category.categoryOf("bread, 1, 2");
+        var result = category.categoryOf("bread");
 
         assertEquals("wheat and pasta", result);
     }
