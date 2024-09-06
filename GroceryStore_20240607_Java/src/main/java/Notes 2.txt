@@ -9,7 +9,24 @@ IDE
 
 Learning:
 * Echtes File einlesen, um OS Spezifika zu erkennen
+* Immer Error Handling hinzufügen, weil man es doch gleich selber braucht
 
-Kata
-* das Parsing ist gemischt mit berechnen, das wissen wir und haben extra nicht einen Record genommen.
+Design Req.1 -> Req.2
+* das Parsing ist gemischt mit berechnen, (das wissen wir und haben extra nicht einen Record genommen)
 * jetzt brauchen wir das aber. Das war uns bewußt.
+* refactor existing code hpts. "Separation of Concerns", spätestens jetzt brauchen wir es.
+* Aber ein Design Fehler war: Parsing und Summing in einer Methode
+  d.h. wir hätten eine List<Integer> geparst und wo anders summiert.
+  Vielleicht wären die Tests dadurch schon getrennt.
+* mehr noch nicht gesehen.
+* Der Grocery Store tut Files iterieren und Report formattieren, schon wieder gemischt
+
+zu Kata
+* Nochmal 90' für Integration Test (mit Windows Fehler) und Error Handling
+* Dann 90' Requirement 2 vorbereitet, noch nichts eingebaut inklusive Mapping.
+
+-
+
+Checkout
+* G: sehr viel Spass gemacht
+* Peter: Puzzle mit Windows Fehler, taugt mir dass es weiter geht

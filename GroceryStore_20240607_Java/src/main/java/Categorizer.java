@@ -3,6 +3,8 @@ import java.util.Map;
 
 public class Categorizer {
 
+    // req 2)
+
     private final Map<String, String> categoryByProduct = new HashMap<>();
 
     public Categorizer() {

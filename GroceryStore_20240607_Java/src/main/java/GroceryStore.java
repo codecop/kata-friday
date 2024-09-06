@@ -14,6 +14,8 @@ class GroceryStore {
 
     // req 1)
 
+    // TODO split formatting from file processing like for parsing and calculating
+
     public String report(Path rosFileDir) throws IOException {
         try (Stream<Path> rosFiles = Files.list(rosFileDir)) {
             return rosFiles. //
