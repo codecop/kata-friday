@@ -51,7 +51,7 @@ class GroceryStoreTest {
 
         assertEquals("badRosFile.txt, " +
                 "java.lang.NumberFormatException: For input string: \"?\", " +
-                "in line 1: \"milk(1L), 4, ?\n ", report);
+                "in line 1: \"milk(1L), 4, ?\n", report);
     }
 
     private void createTempRosFile(Path tmpDir, String fileName, String fileBody) throws IOException {

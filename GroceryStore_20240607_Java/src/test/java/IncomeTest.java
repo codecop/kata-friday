@@ -1,4 +1,5 @@
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.params.provider.Arguments.of;
 
 import org.junit.jupiter.api.Test;
@@ -49,6 +50,14 @@ class IncomeTest {
         int grandTotal = income.calculateGrandTotal(rosFile);
 
         assertEquals(5, grandTotal, "grandTotal");
+    }
+
+    @Test
+    void showOffendingLineOnBadInput() {
+        var exception = assertThrows(BadRosLineException.class, () -> income.calculateGrandTotal("milk (1L), 4, ?\n"));
+        assertEquals("java.lang.NumberFormatException: For input string: \"?\", " +
+                     "in line 1: \"milk (1L), 4, ?\"",
+                exception.getMessage());
     }
 
     private Path createTempRosFile(Path tmpDir, String fileName, String fileBody) throws IOException {
