@@ -54,7 +54,7 @@ class IncomeTest {
 
     @Test
     void showOffendingLineOnBadInput() {
-        var exception = assertThrows(BadRosLineException.class, () -> income.calculateGrandTotal("milk (1L), 4, ?\n"));
+        var exception = assertThrows(BadRecordOfSale.class, () -> income.calculateGrandTotal("milk (1L), 4, ?\n"));
         assertEquals("java.lang.NumberFormatException: For input string: \"?\", " +
                      "in line 1: \"milk (1L), 4, ?\"",
                 exception.getMessage());

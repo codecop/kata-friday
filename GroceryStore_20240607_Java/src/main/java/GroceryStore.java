@@ -29,7 +29,7 @@ class GroceryStore {
             String reportTemplate = "%s, %d\n";
             return reportTemplate.formatted(rosFile.getFileName(), grandTotal);
 
-        } catch (BadRosLineException ex) {
+        } catch (BadRecordOfSale ex) {
             String reportTemplate = "%s, %s\n";
             return reportTemplate.formatted(rosFile.getFileName(), ex.getMessage());
         }

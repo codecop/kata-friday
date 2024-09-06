@@ -14,16 +14,8 @@ public class Income {
     }
 
     private static int calculateTotalOf(int lineNumber, String line) {
-        try {
-
-            // req 1) 1. we are a bit more generic by removing all white space
-            // req 1) 2. we do not want to add a record now, feels over-engineered.
-            String[] recordOfSale = line.split("\\s*,\\s*");
-            return Integer.parseInt(recordOfSale[recordOfSale.length - 1]);
-
-        } catch (Exception ex) {
-            throw new BadRosLineException(lineNumber + 1, line, ex);
-        }
+        RecordOfSale recordOfSale = RecordOfSale.parse(lineNumber, line);
+        return recordOfSale.total();
     }
 
     public int calculateGrandTotal(Path rosFile) {
