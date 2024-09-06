@@ -1,6 +1,5 @@
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
@@ -33,7 +32,6 @@ class GroceryStoreTest {
     }
 
     @Test
-    @Disabled("Does not work on Windows?")
     void integrationTest() throws IOException {
         Path path = Path.of("src/test/resources/step1");
 

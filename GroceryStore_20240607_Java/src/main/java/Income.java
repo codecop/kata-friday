@@ -5,7 +5,7 @@ public class Income {
 
     public int calculateGrandTotal(String rosLines) {
         int grandTotal = 0;
-        String[] lines = rosLines.split("\n");
+        String[] lines = rosLines.split("[\n\r]+");
         for (int lineNumber = 0; lineNumber < lines.length; lineNumber++) {
             String line = lines[lineNumber];
             grandTotal += calculateTotalOf(lineNumber, line);
