@@ -13,16 +13,16 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.stream.Stream;
 
-class IncomeTest {
+class RosParserTest {
 
     // req 1)
 
-    Income income = new Income();
+    RosParser rosParser = new RosParser();
 
     @ParameterizedTest(name = "{0}")
     @MethodSource("grandTotalOfOneLineSource")
     void grandTotalOfOneLine(String name, String rosLines, int expectedGrandTotal) {
-        int grandTotal = income.calculateGrandTotal(rosLines);
+        int grandTotal = rosParser.parseRecords(rosLines).grandTotal();
         assertEquals(expectedGrandTotal, grandTotal);
     }
 
@@ -39,7 +39,7 @@ class IncomeTest {
 
     @Test
     void grandTotalOfMultipleLines() {
-        int grandTotal = income.calculateGrandTotal("bread, 1, 2\n12-pack of eggs, 1, 3\n");
+        int grandTotal = rosParser.parseRecords("bread, 1, 2\n12-pack of eggs, 1, 3\n").grandTotal();
         assertEquals(5, grandTotal);
     }
 
@@ -47,14 +47,14 @@ class IncomeTest {
     void grandTotalOfSingleFile(@TempDir Path tmpDir) throws IOException {
         Path rosFile = createTempRosFile(tmpDir, "grandTotalOfSingleFile.txt", "bread, 1, 2\n12-pack of eggs, 1, 3\n");
 
-        int grandTotal = income.calculateGrandTotal(rosFile);
+        int grandTotal = rosParser.parseRecords(rosFile).grandTotal();
 
         assertEquals(5, grandTotal, "grandTotal");
     }
 
     @Test
     void showOffendingLineOnBadInput() {
-        var exception = assertThrows(BadRecordOfSale.class, () -> income.calculateGrandTotal("milk (1L), 4, ?\n"));
+        var exception = assertThrows(BadRecordOfSale.class, () -> rosParser.parseRecords("milk (1L), 4, ?\n").grandTotal());
         assertEquals("java.lang.NumberFormatException: For input string: \"?\", " +
                      "in line 1: \"milk (1L), 4, ?\"",
                 exception.getMessage());

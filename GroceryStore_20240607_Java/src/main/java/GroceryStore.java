@@ -6,10 +6,10 @@ import java.util.stream.Stream;
 
 class GroceryStore {
 
-    private final Income income;
+    private final RosParser rosParser;
 
     GroceryStore() {
-        income = new Income();
+        rosParser = new RosParser();
     }
 
     // req 1)
@@ -25,7 +25,7 @@ class GroceryStore {
     private String reportForFile(Path rosFile) {
         try {
 
-            int grandTotal = income.calculateGrandTotal(rosFile);
+            int grandTotal = rosParser.parseRecords(rosFile).grandTotal();
             String reportTemplate = "%s, %d\n";
             return reportTemplate.formatted(rosFile.getFileName(), grandTotal);
 
