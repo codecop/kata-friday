@@ -43,7 +43,6 @@ class GroceryStoreTest {
     }
 
     @Test
-    @Disabled("Requires large step, need to update Income first")
     void showOffendingLineOnBadInput(@TempDir Path tmpDir) throws IOException {
         createTempRosFile(tmpDir, "badRosFile.txt", "milk (1L), 4, ?\n");
 
@@ -51,7 +50,7 @@ class GroceryStoreTest {
 
         assertEquals("badRosFile.txt, " +
                 "java.lang.NumberFormatException: For input string: \"?\", " +
-                "in line 1: \"milk(1L), 4, ?\n", report);
+                "in line 1: \"milk (1L), 4, ?\"\n", report);
     }
 
     private void createTempRosFile(Path tmpDir, String fileName, String fileBody) throws IOException {
