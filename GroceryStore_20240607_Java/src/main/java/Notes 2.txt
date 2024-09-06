@@ -4,4 +4,6 @@ Checkin
 
 -
 
+IDE
+* Plugin "Presentation Assistant" zeigt Shortcuts
 
