@@ -31,6 +31,15 @@ class GroceryStoreTest {
         );
     }
 
+    @Test
+    void integrationTest() throws IOException {
+        Path path = Path.of("src/test/resources/step1");
+
+        var report = store.report(path);
+
+        assertEquals("integration-ros.txt, 116\n", report);
+    }
+
     private void createTempRosFile(Path tmpDir, String fileName, String fileBody) throws IOException {
         Path rosFile = tmpDir.resolve(fileName);
         Files.write(rosFile, fileBody.getBytes());
