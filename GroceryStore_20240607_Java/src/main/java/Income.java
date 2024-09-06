@@ -1,5 +1,3 @@
-import java.io.IOException;
-import java.io.UncheckedIOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
@@ -19,14 +17,12 @@ public class Income {
     }
 
     public int calculateGrandTotal(Path rosFile) {
-        try {
-            // TODO refactor to until function using functional interface with IOException
+        return Uncheck.ioException(() -> {
 
             String rosLines = Files.readString(rosFile);
             return calculateGrandTotal(rosLines);
 
-        } catch (IOException e) {
-            throw new UncheckedIOException(e);
-        }
+        });
     }
 }
+
