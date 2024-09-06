@@ -23,7 +23,15 @@ class GroceryStore {
     }
 
     private String reportForFile(Path rosFile) {
-        String reportTemplate = "%s, %d\n";
-        return reportTemplate.formatted(rosFile.getFileName(), income.calculateGrandTotal(rosFile));
+        try {
+
+            int grandTotal = income.calculateGrandTotal(rosFile);
+            String reportTemplate = "%s, %d\n";
+            return reportTemplate.formatted(rosFile.getFileName(), grandTotal);
+
+        } catch (NumberFormatException ex) {
+            String reportTemplate = "%s, %s, %s\n";
+            return reportTemplate.formatted(rosFile.getFileName(), ex.toString(), "foo");
+        }
     }
 }

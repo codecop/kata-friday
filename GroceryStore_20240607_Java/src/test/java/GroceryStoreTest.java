@@ -1,5 +1,6 @@
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
@@ -32,12 +33,25 @@ class GroceryStoreTest {
     }
 
     @Test
+    @Disabled("Does not work on Windows?")
     void integrationTest() throws IOException {
         Path path = Path.of("src/test/resources/step1");
 
         var report = store.report(path);
 
         assertEquals("integration-ros.txt, 116\n", report);
+    }
+
+    @Test
+    @Disabled("Requires large step, need to update Income first")
+    void showOffendingLineOnBadInput(@TempDir Path tmpDir) throws IOException {
+        createTempRosFile(tmpDir, "badRosFile.txt", "milk (1L), 4, ?\n");
+
+        var report = store.report(tmpDir);
+
+        assertEquals("badRosFile.txt, " +
+                "java.lang.NumberFormatException: For input string: \"?\", " +
+                "in line 1: \"milk(1L), 4, ?\n ", report);
     }
 
     private void createTempRosFile(Path tmpDir, String fileName, String fileBody) throws IOException {

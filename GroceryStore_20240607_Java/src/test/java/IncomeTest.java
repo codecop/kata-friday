@@ -57,5 +57,4 @@ class IncomeTest {
         return rosFile;
     }
 
-    // would add integration test with whole file from req 1
 }
