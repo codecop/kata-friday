@@ -7,3 +7,5 @@ Checkin
 IDE
 * Plugin "Presentation Assistant" zeigt Shortcuts
 
+Learning:
+* Echtes File einlesen, um OS Spezifika zu erkennen
