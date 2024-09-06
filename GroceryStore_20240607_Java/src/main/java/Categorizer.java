@@ -1,11 +1,11 @@
 import java.util.HashMap;
 import java.util.Map;
 
-public class Category {
+public class Categorizer {
 
     private final Map<String, String> categoryByProduct = new HashMap<>();
 
-    public Category() {
+    public Categorizer() {
         categoryByProduct.put("bread", "wheat and pasta");
     }
 
