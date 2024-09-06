@@ -1,5 +1,6 @@
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.params.provider.Arguments.of;
 
 import org.junit.jupiter.api.Test;
@@ -21,14 +22,20 @@ class RosParserTest {
 
     @ParameterizedTest(name = "{0}")
     @MethodSource("grandTotalOfOneLineSource")
-    void grandTotalOfOneLine(String name, String rosLines, int expectedGrandTotal) {
-        int grandTotal = rosParser.parseRecords(rosLines).grandTotal();
-        assertEquals(expectedGrandTotal, grandTotal);
+    void parseOneLine(String name, String rosLines, int expectedTotal) {
+        var records = rosParser.parseRecords(rosLines);
+        assertEquals(1, records.entries().size());
+        assertEquals(expectedTotal, records.entries().get(0).total());
+    }
+
+    @Test
+    void parseEmptyLine() {
+        var records = rosParser.parseRecords("\n");
+        assertTrue(records.entries().isEmpty());
     }
 
     public static Stream<Arguments> grandTotalOfOneLineSource() {
         return Stream.of(
-                of("empty file", "\n", 0),
                 of("basic case", "bread, 1, 2\n", 2),
                 of("coma in description", "apples (red, 1Kg bag), 1, 2\n", 2),
                 of("multiple comas", "twixies (1 whole box, 3 rows, 5 per row), 1, 20\n", 20)
@@ -38,23 +45,24 @@ class RosParserTest {
     // temporary test: grandTotalOfOneLineDifferentEntries
 
     @Test
-    void grandTotalOfMultipleLines() {
-        int grandTotal = rosParser.parseRecords("bread, 1, 2\n12-pack of eggs, 1, 3\n").grandTotal();
-        assertEquals(5, grandTotal);
+    void parseMultipleLines() {
+        var records = rosParser.parseRecords("bread, 1, 2\n12-pack of eggs, 1, 3\n");
+        assertEquals(2, records.entries().size());
+        assertEquals(2, records.entries().get(0).total());
     }
 
     @Test
-    void grandTotalOfSingleFile(@TempDir Path tmpDir) throws IOException {
-        Path rosFile = createTempRosFile(tmpDir, "grandTotalOfSingleFile.txt", "bread, 1, 2\n12-pack of eggs, 1, 3\n");
+    void parseSingleFile(@TempDir Path tmpDir) throws IOException {
+        Path rosFile = createTempRosFile(tmpDir, "parseSingleFile.txt", "bread, 1, 2\n12-pack of eggs, 1, 3\n");
 
-        int grandTotal = rosParser.parseRecords(rosFile).grandTotal();
+        var records = rosParser.parseRecords(rosFile);
 
-        assertEquals(5, grandTotal, "grandTotal");
+        assertEquals(2, records.entries().size());
     }
 
     @Test
     void showOffendingLineOnBadInput() {
-        var exception = assertThrows(BadRecordOfSale.class, () -> rosParser.parseRecords("milk (1L), 4, ?\n").grandTotal());
+        var exception = assertThrows(BadRecordOfSale.class, () -> rosParser.parseRecords("milk (1L), 4, ?\n"));
         assertEquals("java.lang.NumberFormatException: For input string: \"?\", " +
                      "in line 1: \"milk (1L), 4, ?\"",
                 exception.getMessage());
