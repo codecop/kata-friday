@@ -2,10 +2,16 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.ArgumentsSource;
+import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.stream.Stream;
 
 class IncomeTest {
 
@@ -19,15 +25,23 @@ class IncomeTest {
         assertEquals(0, grandTotal);
     }
 
-    @Test
-    void grandTotalOfOneLine() {
-        int grandTotal = income.calculateGrandTotal("bread, 1, 2\n");
-        assertEquals(2, grandTotal);
+    @ParameterizedTest
+    @MethodSource("grandTotalOfOneLineSource")
+    void grandTotalOfOneLine(String rosLines, int expectedGrandTotal) {
+        int grandTotal = income.calculateGrandTotal(rosLines);
+        assertEquals(expectedGrandTotal, grandTotal);
+    }
+
+    public static Stream<Arguments> grandTotalOfOneLineSource() {
+        return Stream.of(
+                Arguments.of("bread, 1, 2\n", 2)
+        );
     }
 
     // temporary test: grandTotalOfOneLineDifferentEntries
 
     // TODO missing test for "apples (red, 1Kg bag), 1, 2"
+
 
     @Test
     void grandTotalOfMultipleLines() {
