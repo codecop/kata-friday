@@ -6,4 +6,11 @@ https://github.com/Gianfrancoalongi/incremental_katas/tree/master/Grocery_store
    bread, 1, 2
    12-pack of eggs, 1, 3
 
-2) TODO continue here!
+2) add a category from lookup file to enrich the ROS files and
+   generate total income for each category
+   e.g.
+   wheat and pasta: 10
+   fruit: 20
+   dairy: 40
+   meat: 30
+   total: 100

@@ -1,4 +1,5 @@
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.params.provider.Arguments.of;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
@@ -17,23 +18,19 @@ class IncomeTest {
 
     Income income = new Income();
 
-    @Test
-    void grandTotalOfEmptyFile() {
-        int grandTotal = income.calculateGrandTotal("\n");
-        assertEquals(0, grandTotal);
-    }
-
-    @ParameterizedTest
+    @ParameterizedTest(name = "{0}")
     @MethodSource("grandTotalOfOneLineSource")
-    void grandTotalOfOneLine(String rosLines, int expectedGrandTotal) {
+    void grandTotalOfOneLine(String name, String rosLines, int expectedGrandTotal) {
         int grandTotal = income.calculateGrandTotal(rosLines);
         assertEquals(expectedGrandTotal, grandTotal);
     }
 
     public static Stream<Arguments> grandTotalOfOneLineSource() {
         return Stream.of(
-                Arguments.of("bread, 1, 2\n", 2),
-                Arguments.of("apples (red, 1Kg bag), 1, 2\n", 2)
+                of("empty file", "\n", 0),
+                of("basic case", "bread, 1, 2\n", 2),
+                of("coma in description", "apples (red, 1Kg bag), 1, 2\n", 2),
+                of("multiple comas", "twixies (1 whole box, 3 rows, 5 per row), 1, 20\n", 20)
         );
     }
 
