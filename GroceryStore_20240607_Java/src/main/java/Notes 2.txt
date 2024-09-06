@@ -9,3 +9,7 @@ IDE
 
 Learning:
 * Echtes File einlesen, um OS Spezifika zu erkennen
+
+Kata
+* das Parsing ist gemischt mit berechnen, das wissen wir und haben extra nicht einen Record genommen.
+* jetzt brauchen wir das aber. Das war uns bewuﬂt.

@@ -1,21 +1,32 @@
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Income {
 
     public int calculateGrandTotal(String rosLines) {
-        int grandTotal = 0;
+        List<RecordOfSale> records = parseRecords(rosLines);
+        return sumGrandTotal(records);
+    }
+
+    private List<RecordOfSale> parseRecords(String rosLines) {
+        List<RecordOfSale> records = new ArrayList<>();
+
         String[] lines = rosLines.split("[\n\r]+");
         for (int lineNumber = 0; lineNumber < lines.length; lineNumber++) {
             String line = lines[lineNumber];
-            grandTotal += calculateTotalOf(lineNumber, line);
+            records.add(RecordOfSale.parse(lineNumber, line));
         }
-        return grandTotal;
+        return records;
     }
 
-    private static int calculateTotalOf(int lineNumber, String line) {
-        RecordOfSale recordOfSale = RecordOfSale.parse(lineNumber, line);
-        return recordOfSale.total();
+    private int sumGrandTotal(List<RecordOfSale> records) {
+        int grandTotal = 0;
+        for (RecordOfSale ros : records) {
+            grandTotal += ros.total();
+        }
+        return grandTotal;
     }
 
     public int calculateGrandTotal(Path rosFile) {
