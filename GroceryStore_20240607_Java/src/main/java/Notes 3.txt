@@ -1,0 +1,22 @@
+Checkin
+* G: 
+* Peter: 
+
+-
+
+Modus
+* lokale Entwicklung, Push & Pull, beide Screens shared in Gather
+* Pomodoro 25 & 5 Pause (wichtig, nicht auslassen)
+
+-
+
+...
+
+zu Kata
+* tbd
+
+-
+
+Checkout
+* G: 
+* Peter: 
