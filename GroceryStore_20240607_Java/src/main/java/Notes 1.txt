@@ -2,6 +2,16 @@ Checkin
 * G: Urlaub, gut
 * Peter: zach, Milizübung
 
+-
+
+Pomodoros
+* Checkin
+* erste Iteration
+* erste Iteration
+* erste Iteration
+
+-
+
 zu Kata
 * ca. 90' für erste Iteration
 * brauche mind. 4-5 Stunden? Wollen 1-2 Iterationen sehen.
@@ -18,6 +28,8 @@ zu Tools
 zu Emergence
 * wir sind fast minimal
 * trotzdem ist Code sehr clean, gut strukturiert
+
+-
 
 Checkout
 * G: gespannt, wie es weiter geht, begeistert

@@ -4,6 +4,17 @@ Checkin
 
 -
 
+Pomodoros
+* Checkin
+* Integration Test
+* Integration Test
+* Integration Test
+* Requirement 2 vorbereitet
+* Requirement 2 vorbereitet
+* Requirement 2 vorbereitet
+
+-
+
 IDE
 * Plugin "Presentation Assistant" zeigt Shortcuts
 
