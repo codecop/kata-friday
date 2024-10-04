@@ -48,7 +48,8 @@ public class RosParser {
 
             // req 1) 1. we are a bit more generic by removing all white space
             int index = line.lastIndexOf(',');
-            int index2 = line.lastIndexOf(',', index-1);
+            int index2 = line.lastIndexOf(',', index-1); // TODO clean this up
+            // req 2) needs item
             String item = line.substring(0, index2).trim();
             int total = Integer.parseInt(line.substring(index+1).trim());
             return new RecordOfSale(item, total);

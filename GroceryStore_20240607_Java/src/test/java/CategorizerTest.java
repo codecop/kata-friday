@@ -39,4 +39,25 @@ public class CategorizerTest {
         var result = categorizer.categoryOf(item);
         assertEquals(expectedCategory, result);
     }
+
+    @ParameterizedTest
+    @CsvSource(textBlock = """
+            12-pack of eggs; animalic
+            milk (1L); dairy
+            coca cola (33cl); sodas
+            chicken clubs (frozen); meat
+            apples (red, 1Kg bag); fruit
+            butter (500 g); dairy
+            cheese (1Kg); dairy
+            bacon ("tasty" brand, 3 pack); meat
+            orange juice (1L); drinks
+            cheese (gouda, 1Kg); diary
+            bottled water (1.5L); drinks
+            twixies (1 whole box, 3 rows, 5 per row); candy
+            sirloin (100g); meat
+            """, delimiter = ';')
+    void complexProductNames(String item, String expectedCategory) {
+        var result = categorizer.categoryOf(item);
+        assertEquals(expectedCategory, result);
+    }
 }
