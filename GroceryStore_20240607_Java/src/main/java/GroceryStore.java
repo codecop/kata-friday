@@ -1,15 +1,18 @@
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.List;
+import java.util.Map;
 import java.util.function.BiFunction;
 import java.util.stream.Collectors;
 
 class GroceryStore {
 
     private final RosParser rosParser;
+    private final Categorizer categorizer;
 
     GroceryStore() {
         rosParser = new RosParser();
+        categorizer = new Categorizer();
     }
 
 
@@ -44,18 +47,36 @@ class GroceryStore {
     }
 
     private String formatWithCategory(Path rosFile, Records records) {
-        Categorizer categorizer = new Categorizer();
-        int grandTotal = records.grandTotal();
-        Path fileName = rosFile.getFileName();
         String reportTemplate = "%s, %d\n";
 
-        String categoryTotals = records.totalsPerCategory(categorizer).entrySet().stream()
-                .map(entry -> reportTemplate.formatted(entry.getKey(), entry.getValue()))
+        return formatFileName(rosFile)
+               + formatCategories(reportTemplate, records)
+               + formatGrandTotal(reportTemplate, records);
+    }
+
+    private String formatFileName(Path rosFile) {
+        String template = "%s:\n";
+        Path fileName = rosFile.getFileName();
+        return template.formatted(fileName);
+    }
+
+    private String formatCategories(String reportTemplate, Records records) {
+        Map<String, Integer> categories = records.totalsPerCategory(categorizer);
+        return categories.entrySet().stream()
+                .map(categoryTotal -> formatCategoryTotal(reportTemplate, categoryTotal))
                 .collect(Collectors.joining());
-        return fileName + ":\n"
-               + categoryTotals
-               + reportTemplate.formatted("totals", grandTotal)
-        ;
+    }
+
+    private String formatCategoryTotal(String reportTemplate, Map.Entry<String, Integer> categoryTotal) {
+        String category = categoryTotal.getKey();
+        Integer total = categoryTotal.getValue();
+        return reportTemplate.formatted(category, total);
+    }
+
+    private String formatGrandTotal(String reportTemplate, Records records) {
+        String description = "totals";
+        int grandTotal = records.grandTotal();
+        return reportTemplate.formatted(description, grandTotal);
     }
 
     private String formatBadRecord(Path rosFile, BadRecordOfSale ex) {
