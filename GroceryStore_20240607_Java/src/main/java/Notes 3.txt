@@ -14,7 +14,7 @@ Pomodoros
 * Checkin
 * Extract formatting functions
 * Introduce Either
-
+* Finish separation parsing/formatting
 
 ...
 

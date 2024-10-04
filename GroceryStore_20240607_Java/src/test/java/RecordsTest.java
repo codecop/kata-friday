@@ -9,7 +9,7 @@ public class RecordsTest {
 
     @Test
     void grandTotalOfMultipleRecords() {
-        Records records = new Records(Arrays.asList(new RecordOfSale(2), new RecordOfSale(3)));
+        Records records = new Records(Arrays.asList(new RecordOfSale("bread", 2), new RecordOfSale("bread", 3)));
 
         int grandTotal = records.grandTotal();
 
