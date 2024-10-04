@@ -4,15 +4,22 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
 public class RosParser {
+
+     public List<RosParseResult> parseFiles(Path rosFileDir) throws IOException {
+        try (Stream<Path> rosFiles = Files.list(rosFileDir)) { // IO in this class
+            return rosFiles.map(this::parseRecords).toList();
+        }
+    }
 
     // req 1) but created while splitting for req 2)
 
     public RosParseResult parseRecords(Path rosFile) {
         try {
 
-            String rosLines = Files.readString(rosFile); // only IO in this class
+            String rosLines = Files.readString(rosFile); // IO in this class
             Records records = parseRecords(rosLines);
             return RosParseResult.of(rosFile, records);
 
