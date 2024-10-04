@@ -8,7 +8,7 @@ import java.util.stream.Stream;
 
 public class RosParser {
 
-     public List<RosParseResult> parseFiles(Path rosFileDir) throws IOException {
+    public List<RosParseResult> parseFiles(Path rosFileDir) throws IOException {
         try (Stream<Path> rosFiles = Files.list(rosFileDir)) { // IO in this class
             return rosFiles.map(this::parseRecords).toList();
         }
@@ -47,11 +47,15 @@ public class RosParser {
         try {
 
             // req 1) 1. we are a bit more generic by removing all white space
-            int index = line.lastIndexOf(',');
-            int index2 = line.lastIndexOf(',', index-1); // TODO clean this up
+            char separator = ',';
+            int thirdColumn = line.lastIndexOf(separator);
+            int secondColumn = line.lastIndexOf(separator, thirdColumn - 1);
+            int firstColumn = 0;
+
             // req 2) needs item
-            String item = line.substring(0, index2).trim();
-            int total = Integer.parseInt(line.substring(index+1).trim());
+            String item = line.substring(firstColumn, secondColumn).trim();
+            // String what = line.substring(secondColumn + 1, thirdColumn).trim();
+            int total = Integer.parseInt(line.substring(thirdColumn + 1).trim());
             return new RecordOfSale(item, total);
 
         } catch (Exception ex) {

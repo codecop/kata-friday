@@ -28,23 +28,30 @@ public class Categorizer {
         categoryByProduct.put("sirloin", "meat");
     }
 
-    public String categoryOf(String productName) {
-        String key = normalize(productName);
-        String exactMatch = categoryByProduct.get(key);
+    public String categoryOf(String item) {
+        String product = removeDetails(item);
+
+        String exactMatch = categoryByProduct.get(product);
         if (exactMatch != null) {
             return exactMatch;
         }
-        for (String k : key.split(" ")) {
-            String x = categoryByProduct.get(k);
-            if (x != null) {
-                return x;
-            }
-        }
-        // TODO exception?
-        return null;
+
+        return partialMatchOf(product);
     }
 
-    private String normalize(String productName) {
-        return productName.replaceAll("\\s*\\(.*\\)", "");
+    private String removeDetails(String item) {
+        return item.replaceAll("\\s*\\(.*\\)", "");
+    }
+
+    private String partialMatchOf(String product) {
+        String[] words = product.split(" ");
+        for (String word : words) {
+            String category = categoryByProduct.get(word);
+            if (category != null) {
+                return category;
+            }
+        }
+
+        return null;
     }
 }
