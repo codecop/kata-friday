@@ -30,6 +30,25 @@ class GroceryStoreTest {
                 report
         );
     }
+    @Test
+    void reportIncludingCategoryOfMultipleFiles(@TempDir Path tmpDir) throws IOException {
+        createTempRosFile(tmpDir, "rosFile1.txt", "milk (1L), 4, 8\n");
+        createTempRosFile(tmpDir, "rosFile2.txt", "coca cola (33cl), 10, 10\n");
+
+        var report = store.reportWithCategory(tmpDir);
+
+        assertEquals(
+                """
+                        rosFile1.txt:
+                        dairy, 8
+                        totals, 8
+                        rosFile2.txt:
+                        sodas, 10
+                        totals, 10
+                        """,
+                report
+        );
+    }
 
     @Test
     void integrationTest() throws IOException {
