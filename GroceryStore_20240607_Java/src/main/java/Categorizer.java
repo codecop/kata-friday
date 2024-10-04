@@ -24,9 +24,27 @@ public class Categorizer {
         categoryByProduct.put("twixies", "candy");
         categoryByProduct.put("tomatoes", "greens");
         categoryByProduct.put("bananas", "fruit");
+        // added for sample file
+        categoryByProduct.put("sirloin", "meat");
     }
 
-    String categoryOf(String productName) {
-        return categoryByProduct.get(productName);
+    public String categoryOf(String productName) {
+        String key = normalize(productName);
+        String exactMatch = categoryByProduct.get(key);
+        if (exactMatch != null) {
+            return exactMatch;
+        }
+        for (String k : key.split(" ")) {
+            String x = categoryByProduct.get(k);
+            if (x != null) {
+                return x;
+            }
+        }
+        // TODO exception?
+        return null;
+    }
+
+    private String normalize(String productName) {
+        return productName.replaceAll("\\s*\\(.*\\)", "");
     }
 }

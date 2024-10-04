@@ -51,7 +51,7 @@ public class CategorizerTest {
             cheese (1Kg); dairy
             bacon ("tasty" brand, 3 pack); meat
             orange juice (1L); drinks
-            cheese (gouda, 1Kg); diary
+            cheese (gouda, 1Kg); dairy
             bottled water (1.5L); drinks
             twixies (1 whole box, 3 rows, 5 per row); candy
             sirloin (100g); meat
