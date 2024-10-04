@@ -1,6 +1,6 @@
 Checkin
-* G: 
-* Peter: 
+* Peter: Monitor Setup ist komisch
+* G: freut sich auf Termin, macht gerade viel, Team Österreich!
 
 -
 
@@ -9,6 +9,10 @@ Modus
 * Pomodoro 25 & 5 Pause (wichtig, nicht auslassen)
 
 -
+
+Pomodoros
+* Checkin
+*
 
 ...
 
