@@ -1,6 +1,6 @@
 Checkin
 * Peter: Monitor Setup ist komisch
-* G: freut sich auf Termin, macht gerade viel, Team Ã–sterreich!
+* G: freut sich auf Termin, macht gerade viel, Team Österreich!
 
 -
 
@@ -20,7 +20,7 @@ Pomodoros
 
 ...
 
-zu Kata/Ziel "inkrementel Design Ã¼berpruefen"
+zu Kata/Ziel "inkrementel Design überpruefen"
 * wenn Schritte klein sind, kann man es leicht umbauen
 * 3 Stunden vorbereitet, 1 Stunde dann hinzugefuegt
 * Jetzt wird spannend, ob wir wieder alles aendern muessen.
