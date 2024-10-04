@@ -14,13 +14,13 @@ public class RosParser {
 
             String rosLines = Files.readString(rosFile); // only IO in this class
             Records records = parseRecords(rosLines);
-            return RosParseResult.of(records);
+            return RosParseResult.of(rosFile, records);
 
         } catch (IOException ex) { // only IO in this class
             throw new UncheckedIOException(ex);
 
         } catch (BadRecordOfSale ex) {
-            return RosParseResult.of(ex);
+            return RosParseResult.of(rosFile, ex);
         }
     }
 

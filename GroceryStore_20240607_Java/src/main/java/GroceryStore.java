@@ -19,19 +19,14 @@ class GroceryStore {
     public String report(Path rosFileDir) throws IOException {
         try (Stream<Path> rosFiles = Files.list(rosFileDir)) {
             return rosFiles. //
-                    map(this::reportForFile). //
+                    map(rosParser::parseRecords). //
+                    map(this::format). //
                     collect(Collectors.joining());
         }
     }
 
-    private String reportForFile(Path rosFile) {
-        RosParseResult rosParseResult = rosParser.parseRecords(rosFile);
-        return format(rosFile, rosParseResult);
-    }
-
-    private String format(Path rosFile, RosParseResult rosParseResult) {
-        return rosParseResult.fold((records) -> format(rosFile, records), //
-                (ex) -> formatBadRecord(rosFile, ex));
+    private String format(RosParseResult rosParseResult) {
+        return rosParseResult.fold(this::format, this::formatBadRecord);
     }
 
     private String format(Path rosFile, Records records) {
