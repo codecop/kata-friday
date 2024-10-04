@@ -30,6 +30,8 @@ class GroceryStoreTest {
                 report
         );
     }
+
+    // TODO req 2: change all tests to use new method
     @Test
     void reportIncludingCategoryOfMultipleFiles(@TempDir Path tmpDir) throws IOException {
         createTempRosFile(tmpDir, "rosFile1.txt", "milk (1L), 4, 8\n");

@@ -1,10 +1,10 @@
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static java.util.Collections.emptyList;
+
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.Map;
-
-import static java.util.Collections.emptyList;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class RecordsTest {
 

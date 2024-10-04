@@ -16,15 +16,25 @@ Pomodoros
 * Introduce Either
 * Finish separation parsing/formatting
 * Add categorization to sum per category with complex products
-*
+* Add requirement 2 report.
 
 ...
 
-zu Kata
-* tbd
+zu Kata/Ziel "inkrementel Design überpruefen"
+* wenn Schritte klein sind, kann man es leicht umbauen
+* 3 Stunden vorbereitet, 1 Stunde dann hinzugefuegt
+* Jetzt wird spannend, ob wir wieder alles aendern muessen.
+  Hoffnung ist dass Design flexibler wird.
+* Goerge erwartet dass 3. 4. 5. Schritt weniger Changes brauchen.
+* Wir haben nichts auf Vorrat. Haben nich primitive Map, doppelte format Methoden etc.
+
+zu Progress
+* Rotation gut
+* Pausen gut
+* 3h statt 2h gut weil wir Overhead haben wie Checkin, Task Switch usw.
 
 -
 
 Checkout
-* G: 
-* Peter: 
+* G: sehr gut, wieder reminded explaining variable
+* Peter: sehr schnell in code ohne Test

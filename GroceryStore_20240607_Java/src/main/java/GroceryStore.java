@@ -38,6 +38,8 @@ class GroceryStore {
         return rosParseResult.fold(format, this::formatBadRecord);
     }
 
+    // TODO extract two different formatters to their own files (Strategy)
+
     private String format(Path rosFile, Records records) {
         int grandTotal = records.grandTotal();
         Path fileName = rosFile.getFileName();
@@ -50,8 +52,8 @@ class GroceryStore {
         String reportTemplate = "%s, %d\n";
 
         return formatFileName(rosFile)
-               + formatCategories(reportTemplate, records)
-               + formatGrandTotal(reportTemplate, records);
+                + formatCategories(reportTemplate, records)
+                + formatGrandTotal(reportTemplate, records);
     }
 
     private String formatFileName(Path rosFile) {
