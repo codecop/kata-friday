@@ -63,9 +63,9 @@ class RosParserTest {
     @Test
     void showOffendingLineOnBadInput() {
         var exception = assertThrows(BadRecordOfSale.class, () -> rosParser.parseRecords("milk (1L), 4, ?\n"));
-        assertEquals("java.lang.NumberFormatException: For input string: \"?\", " +
-                     "in line 1: \"milk (1L), 4, ?\"",
-                exception.getMessage());
+        assertEquals(1, exception.lineNumber);
+        assertEquals("milk (1L), 4, ?", exception.line);
+        assertEquals("java.lang.NumberFormatException: For input string: \"?\"", exception.getMessage());
     }
 
     private Path createTempRosFile(Path tmpDir, String fileName, String fileBody) throws IOException {

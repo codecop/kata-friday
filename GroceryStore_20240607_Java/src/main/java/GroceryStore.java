@@ -25,15 +25,30 @@ class GroceryStore {
     }
 
     private String reportForFile(Path rosFile) {
+        Records records;
         try {
 
-            int grandTotal = rosParser.parseRecords(rosFile).grandTotal();
-            String reportTemplate = "%s, %d\n";
-            return reportTemplate.formatted(rosFile.getFileName(), grandTotal);
+            records = rosParser.parseRecords(rosFile);
 
         } catch (BadRecordOfSale ex) {
-            String reportTemplate = "%s, %s\n";
-            return reportTemplate.formatted(rosFile.getFileName(), ex.getMessage());
+            return formatBadRecord(rosFile, ex);
         }
+
+        return format(rosFile, records);
+    }
+
+    private String format(Path rosFile, Records records) {
+        int grandTotal = records.grandTotal();
+        Path fileName = rosFile.getFileName();
+
+        String reportTemplate = "%s, %d\n";
+        return reportTemplate.formatted(fileName, grandTotal);
+    }
+
+    private String formatBadRecord(Path rosFile, BadRecordOfSale ex) {
+        Path fileName = rosFile.getFileName();
+
+        String reportTemplate = "%s, %s, in line %d: \"%s\"\n";
+        return reportTemplate.formatted(fileName, ex.getCause(), ex.lineNumber, ex.line);
     }
 }
