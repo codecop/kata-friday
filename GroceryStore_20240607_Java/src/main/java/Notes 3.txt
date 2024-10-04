@@ -12,7 +12,9 @@ Modus
 
 Pomodoros
 * Checkin
-*
+* Extract formatting functions
+* Introduce Either
+
 
 ...
 

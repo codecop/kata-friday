@@ -1,3 +1,5 @@
+import java.io.IOException;
+import java.io.UncheckedIOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -7,13 +9,19 @@ public class RosParser {
 
     // req 1) but created while splitting for req 2)
 
-    public Records parseRecords(Path rosFile) {
-        return Uncheck.ioException(() -> {
+    public RosParseResult parseRecords(Path rosFile) {
+        try {
 
             String rosLines = Files.readString(rosFile); // only IO in this class
-            return parseRecords(rosLines);
+            Records records = parseRecords(rosLines);
+            return RosParseResult.of(records);
 
-        });
+        } catch (IOException ex) { // only IO in this class
+            throw new UncheckedIOException(ex);
+
+        } catch (BadRecordOfSale ex) {
+            return RosParseResult.of(ex);
+        }
     }
 
     public Records parseRecords(String rosLines) {

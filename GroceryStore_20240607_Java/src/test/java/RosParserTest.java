@@ -55,10 +55,12 @@ class RosParserTest {
     void parseSingleFile(@TempDir Path tmpDir) throws IOException {
         Path rosFile = createTempRosFile(tmpDir, "parseSingleFile.txt", "bread, 1, 2\n12-pack of eggs, 1, 3\n");
 
-        var records = rosParser.parseRecords(rosFile);
+        var records = rosParser.parseRecords(rosFile).getRecords();
 
         assertEquals(2, records.entries().size());
     }
+
+    // TODO missing test for badRecord on outside using the Either
 
     @Test
     void showOffendingLineOnBadInput() {
