@@ -48,7 +48,13 @@ class RosParserTest {
     void parseMultipleLines() {
         var records = rosParser.parseRecords("bread, 1, 2\n12-pack of eggs, 1, 3\n");
         assertEquals(2, records.entries().size());
-        assertEquals(2, records.entries().get(0).total());
+
+        RecordOfSale bread = records.entries().get(0);
+        assertEquals("bread", bread.item());
+        assertEquals(2, bread.total());
+
+        RecordOfSale eggs = records.entries().get(1);
+        assertEquals("12-pack of eggs", eggs.item());
     }
 
     @Test

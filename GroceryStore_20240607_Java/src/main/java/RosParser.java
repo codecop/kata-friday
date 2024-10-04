@@ -47,9 +47,11 @@ public class RosParser {
         try {
 
             // req 1) 1. we are a bit more generic by removing all white space
-            String[] columns = line.split("\\s*,\\s*");
-            int total = Integer.parseInt(columns[columns.length - 1]);
-            return new RecordOfSale("bread", total);
+            int index = line.lastIndexOf(',');
+            int index2 = line.lastIndexOf(',', index-1);
+            String item = line.substring(0, index2).trim();
+            int total = Integer.parseInt(line.substring(index+1).trim());
+            return new RecordOfSale(item, total);
 
         } catch (Exception ex) {
             throw new BadRecordOfSale(lineNumber + 1, line, ex);
