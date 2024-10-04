@@ -10,7 +10,7 @@ public class RosParser {
     public Records parseRecords(Path rosFile) {
         return Uncheck.ioException(() -> {
 
-            String rosLines = Files.readString(rosFile);
+            String rosLines = Files.readString(rosFile); // only IO in this class
             return parseRecords(rosLines);
 
         });
@@ -41,4 +41,3 @@ public class RosParser {
         }
     }
 }
-

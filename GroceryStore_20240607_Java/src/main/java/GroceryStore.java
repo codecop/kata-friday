@@ -1,6 +1,7 @@
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -24,17 +25,44 @@ class GroceryStore {
         }
     }
 
-    private String reportForFile(Path rosFile) {
-        Records records;
-        try {
+    private static final class Either {
+        private final Records records;
+        private final BadRecordOfSale badRecord;
 
-            records = rosParser.parseRecords(rosFile);
-
-        } catch (BadRecordOfSale ex) {
-            return formatBadRecord(rosFile, ex);
+        private Either(Records records, BadRecordOfSale badRecord) {
+            this.records = records;
+            this.badRecord = badRecord;
         }
 
-        return format(rosFile, records);
+        public static Either of(Records records) {
+            return new Either(records, null);
+        }
+
+        public static Either of(BadRecordOfSale badRecord) {
+            return new Either(null, badRecord);
+        }
+
+        public String fold(Function<Records, String> ifValid, Function<BadRecordOfSale, String> ifInvalid) {
+            if (records != null) {
+                return ifValid.apply(records);
+            }
+            return ifInvalid.apply(badRecord);
+        }
+    }
+
+    private String reportForFile(Path rosFile) {
+        Either either;
+        try {
+            Records records = rosParser.parseRecords(rosFile);
+            either = Either.of(records);
+        } catch (BadRecordOfSale ex) {
+            either = Either.of(ex);
+        }
+        return format(rosFile, either);
+    }
+
+    private String format(Path rosFile, Either either) {
+        return either.fold((records) -> format(rosFile, records), (ex) -> formatBadRecord(rosFile, ex));
     }
 
     private String format(Path rosFile, Records records) {
