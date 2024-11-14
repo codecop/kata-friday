@@ -62,4 +62,7 @@ public class RecordsTest {
 
         assertEquals(0.5, similarity, 0.01);
     }
+
+    // add test for empty records!
+
 }

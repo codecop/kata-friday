@@ -29,7 +29,6 @@ public record Records(List<RecordOfSale> entries) {
     // req 3)
 
     public double similarity(Records other) {
-        // TODO test empty records!
         long countPosInBothEntries = entries.stream().filter(other::contains).count();
 
         long countExtraInOtherEntries = other.entries.size() - countPosInBothEntries;

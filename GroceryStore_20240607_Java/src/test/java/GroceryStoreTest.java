@@ -76,7 +76,7 @@ class GroceryStoreTest {
                 report
         );
     }
-    
+
     // req 3)
 
 
@@ -99,4 +99,7 @@ class GroceryStoreTest {
 
         assertEquals(0, similarity);
     }
+
+    // would add a complex similarity of multiple items each from POS files.
+
 }
