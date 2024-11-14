@@ -14,3 +14,7 @@ https://github.com/Gianfrancoalongi/incremental_katas/tree/master/Grocery_store
    dairy: 40
    meat: 30
    total: 100
+
+3) calculate the similarity of two ROS files
+   pass two files to the program, and it should output a number between 0 and 1
+   assumption: record item names are unique, but not ordered
