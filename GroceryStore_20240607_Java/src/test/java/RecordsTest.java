@@ -4,6 +4,7 @@ import static java.util.Collections.emptyList;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 public class RecordsTest {
@@ -43,7 +44,12 @@ public class RecordsTest {
     // req 3)
 
     @Test
-    void similarRecord() {
-        // TODO
+    void twoRecordsAreSimilarOneExtra() {
+        Records records1 = new Records(List.of(new RecordOfSale("banana", 3), new RecordOfSale("tomatoes", 2)));
+        Records records2 = new Records(List.of(new RecordOfSale("banana", 3)));
+
+        double similarity = records1.similarity(records2);
+
+        assertEquals(0.5, similarity, 0.01);
     }
 }
