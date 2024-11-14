@@ -44,9 +44,19 @@ public class RecordsTest {
     // req 3)
 
     @Test
-    void twoRecordsAreSimilarOneExtra() {
+    void twoRecordsAreSimilarOneAdditional() {
         Records records1 = new Records(List.of(new RecordOfSale("banana", 3), new RecordOfSale("tomatoes", 2)));
         Records records2 = new Records(List.of(new RecordOfSale("banana", 3)));
+
+        double similarity = records1.similarity(records2);
+
+        assertEquals(0.5, similarity, 0.01);
+    }
+
+    @Test
+    void twoRecordsAreSimilarOneExtra() {
+        Records records1 = new Records(List.of(new RecordOfSale("banana", 3)));
+        Records records2 = new Records(List.of(new RecordOfSale("banana", 3), new RecordOfSale("tomatoes", 2)));
 
         double similarity = records1.similarity(records2);
 

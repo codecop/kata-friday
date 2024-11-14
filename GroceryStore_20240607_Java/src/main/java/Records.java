@@ -1,6 +1,7 @@
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Predicate;
 
 public record Records(List<RecordOfSale> entries) {
 
@@ -31,7 +32,8 @@ public record Records(List<RecordOfSale> entries) {
     public double similarity(Records other) {
         // TODO test empty records!
         long countSimilar = entries.stream().filter(other::contains).count();
-        return 1.0 * countSimilar / entries.size();
+        long countExtra = other.entries().stream().filter(Predicate.not(this::contains)).count();
+        return 1.0 * countSimilar / (entries.size() + countExtra);
     }
 
     private boolean contains(RecordOfSale record) {
