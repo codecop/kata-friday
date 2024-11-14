@@ -13,8 +13,7 @@ Modus
 Pomodoros
 * Finish TO-DOs in old code.
 * Start Req 3, first test
-
-TDD vs. Double Loop
+* Refactor first fake implementation
 
 -
 

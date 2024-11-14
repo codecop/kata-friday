@@ -29,9 +29,9 @@ public record Records(List<RecordOfSale> entries) {
     // req 3)
 
     public double similarity(Records other) {
-        RecordOfSale recordOfSale1 = entries().get(0);
-
-        return other.contains(recordOfSale1) ? 1.0 : 0.0;
+        // TODO test empty records!
+        long countSimilar = entries.stream().filter(other::contains).count();
+        return 1.0 * countSimilar / entries.size();
     }
 
     private boolean contains(RecordOfSale record) {
