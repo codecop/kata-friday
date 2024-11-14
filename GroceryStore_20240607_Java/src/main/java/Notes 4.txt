@@ -1,6 +1,6 @@
 Check-in
 * Peter: Zeit geplant aber weiter geschoben
-* G: Verschieben hat geklappt,
+* G: Verschieben des Termins hat geklappt
 
 -
 
@@ -14,9 +14,10 @@ Pomodoros
 * Finish TO-DOs in old code.
 * Start Req 3, first test
 * Refactor first fake implementation
+* Finish logic with filter and size
+
+Das war ein einfacher Change. Viel weniger Arbeit als vorige Requirements.
+Goerge hatte das vermutet. Weil wir haben ja verwendet: Records, Parsing, item's name.
+Aber es ist zu Ende ;-( Ojeeee. Das haette schon noch 1-2 Steps haben koennen.
 
 -
-
-Checkout
-* G:
-* Peter:
