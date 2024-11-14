@@ -29,9 +29,10 @@ class GroceryStoreTest {
                         """,
                 report
         );
+
+        // this test is for legacy API
     }
 
-    // TODO req 2: change all tests to use new method
     @Test
     void reportIncludingCategoryOfMultipleFiles(@TempDir Path tmpDir) throws IOException {
         createTempRosFile(tmpDir, "rosFile1.txt", "milk (1L), 4, 8\n");
@@ -56,16 +57,28 @@ class GroceryStoreTest {
     void integrationTest() throws IOException {
         Path path = Path.of("src/test/resources/step1");
 
-        var report = store.report(path);
+        var report = store.reportWithCategory(path);
 
-        assertEquals("integration-ros.txt, 116\n", report);
+        assertEquals("""
+                integration-ros.txt:
+                sodas, 10
+                candy, 20
+                fruit, 3
+                wheat and pasta, 2
+                drinks, 8
+                meat, 41
+                greens, 4
+                animalic, 2
+                dairy, 26
+                totals, 116
+                """, report);
     }
 
     @Test
     void showOffendingLineOnBadInput(@TempDir Path tmpDir) throws IOException {
         createTempRosFile(tmpDir, "badRosFile.txt", "milk (1L), 4, ?\n");
 
-        var report = store.report(tmpDir);
+        var report = store.reportWithCategory(tmpDir);
 
         assertEquals("badRosFile.txt, " +
                 "java.lang.NumberFormatException: For input string: \"?\", " +
