@@ -76,4 +76,8 @@ class GroceryStore {
         String reportTemplate = "%s, %s, in line %d: \"%s\"\n";
         return reportTemplate.formatted(fileName, ex.getCause(), ex.lineNumber, ex.line);
     }
+
+    public double similarity(Path rosFile1, Path rosFile2) {
+        return rosParser.parseRecords(rosFile1).getRecords().entries().get(0).item().equals(rosParser.parseRecords(rosFile2).getRecords().entries().get(0).item()) ? 1.0 : 0.0;
+    }
 }

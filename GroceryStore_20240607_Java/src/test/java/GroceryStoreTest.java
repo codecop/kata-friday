@@ -49,9 +49,10 @@ class GroceryStoreTest {
                 "in line 1: \"milk (1L), 4, ?\"\n", report);
     }
 
-    private void createTempRosFile(Path tmpDir, String fileName, String fileBody) throws IOException {
+    private Path createTempRosFile(Path tmpDir, String fileName, String fileBody) throws IOException {
         Path rosFile = tmpDir.resolve(fileName);
         Files.write(rosFile, fileBody.getBytes());
+        return rosFile;
     }
 
     // req 2)
@@ -75,5 +76,27 @@ class GroceryStoreTest {
                 report
         );
     }
+    
+    // req 3)
 
+
+    @Test
+    void twoFilesWithSameItemHaveSimilarity1(@TempDir Path tmpDir) throws IOException {
+        var file1 = createTempRosFile(tmpDir, "rosFile1.txt", "banana, 3, 1");
+        var file2 = createTempRosFile(tmpDir, "rosFile2.txt", "banana, 6, 2");
+
+        var similarity = store.similarity(file1, file2);
+
+        assertEquals(1.0, similarity);
+    }
+
+    @Test
+    void twoFilesWithDifferentItemsHaveSimilarity0(@TempDir Path tmpDir) throws IOException {
+        var file1 = createTempRosFile(tmpDir, "rosFile1.txt", "tomatoes, 3, 1");
+        var file2 = createTempRosFile(tmpDir, "rosFile2.txt", "banana, 3, 1");
+
+        var similarity = store.similarity(file1, file2);
+
+        assertEquals(0, similarity);
+    }
 }

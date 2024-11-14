@@ -39,4 +39,11 @@ public class RecordsTest {
 
         assertEquals(5, totals.get("wheat and pasta"));
     }
+
+    // req 3)
+
+    @Test
+    void similarRecord() {
+        // TODO
+    }
 }
