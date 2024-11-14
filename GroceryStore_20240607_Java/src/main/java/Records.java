@@ -24,4 +24,14 @@ record Records(List<RecordOfSale> entries) {
         }
         return categoryTotals;
     }
+
+
+    // req 3)
+
+    public double similarity(Records other) {
+        RecordOfSale recordOfSale1 = entries().get(0);
+        RecordOfSale recordOfSale2 = other.entries().get(0);
+
+        return recordOfSale1.equalItem(recordOfSale2) ? 1.0 : 0.0;
+    }
 }

@@ -78,6 +78,21 @@ class GroceryStore {
     }
 
     public double similarity(Path rosFile1, Path rosFile2) {
-        return rosParser.parseRecords(rosFile1).getRecords().entries().get(0).item().equals(rosParser.parseRecords(rosFile2).getRecords().entries().get(0).item()) ? 1.0 : 0.0;
+        RosParseResult parseResult1 = rosParser.parseRecords(rosFile1);
+        RosParseResult parseResult2 = rosParser.parseRecords(rosFile2);
+
+        return parseResult1.fold((path1, records1) -> {
+            return parseResult2.fold((path2, records2) -> {
+                return records1.similarity(records2);
+
+            }, (path2, bad) -> {
+                throw bad;
+            });
+
+        }, (path, bad) -> {
+            throw bad;
+        });
+
     }
+
 }
