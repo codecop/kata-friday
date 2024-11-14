@@ -13,45 +13,9 @@ class GroceryStoreTest {
 
     GroceryStore store = new GroceryStore();
 
+    // deleted test: reportOfMultipleFiles
+
     // missing test: reportOfSingleFile
-
-    @Test
-    void reportOfMultipleFiles(@TempDir Path tmpDir) throws IOException {
-        createTempRosFile(tmpDir, "rosFile1.txt", "milk (1L), 4, 8\n");
-        createTempRosFile(tmpDir, "rosFile2.txt", "coca cola (33cl), 10, 10\n");
-
-        var report = store.report(tmpDir);
-
-        assertEquals(
-                """
-                        rosFile1.txt, 8
-                        rosFile2.txt, 10
-                        """,
-                report
-        );
-
-        // this test is for legacy API
-    }
-
-    @Test
-    void reportIncludingCategoryOfMultipleFiles(@TempDir Path tmpDir) throws IOException {
-        createTempRosFile(tmpDir, "rosFile1.txt", "milk (1L), 4, 8\n");
-        createTempRosFile(tmpDir, "rosFile2.txt", "coca cola (33cl), 10, 10\n");
-
-        var report = store.reportWithCategory(tmpDir);
-
-        assertEquals(
-                """
-                        rosFile1.txt:
-                        dairy, 8
-                        totals, 8
-                        rosFile2.txt:
-                        sodas, 10
-                        totals, 10
-                        """,
-                report
-        );
-    }
 
     @Test
     void integrationTest() throws IOException {
@@ -89,4 +53,27 @@ class GroceryStoreTest {
         Path rosFile = tmpDir.resolve(fileName);
         Files.write(rosFile, fileBody.getBytes());
     }
+
+    // req 2)
+
+    @Test
+    void reportIncludingCategoryOfMultipleFiles(@TempDir Path tmpDir) throws IOException {
+        createTempRosFile(tmpDir, "rosFile1.txt", "milk (1L), 4, 8\n");
+        createTempRosFile(tmpDir, "rosFile2.txt", "coca cola (33cl), 10, 10\n");
+
+        var report = store.reportWithCategory(tmpDir);
+
+        assertEquals(
+                """
+                        rosFile1.txt:
+                        dairy, 8
+                        totals, 8
+                        rosFile2.txt:
+                        sodas, 10
+                        totals, 10
+                        """,
+                report
+        );
+    }
+
 }

@@ -17,10 +17,7 @@ class GroceryStore {
 
 
     // req 1)
-    public String report(Path rosFileDir) throws IOException {
-        List<RosParseResult> results = rosParser.parseFiles(rosFileDir);
-        return format(results, this::format);
-    }
+    // deleted public String report(Path rosFileDir) throws IOException
 
     // req 2)
     public String reportWithCategory(Path rosFileDir) throws IOException {
@@ -38,15 +35,7 @@ class GroceryStore {
         return rosParseResult.fold(format, this::formatBadRecord);
     }
 
-    // TODO extract two different formatters to their own files (Strategy)
-
-    private String format(Path rosFile, Records records) {
-        int grandTotal = records.grandTotal();
-        Path fileName = rosFile.getFileName();
-
-        String reportTemplate = "%s, %d\n";
-        return reportTemplate.formatted(fileName, grandTotal);
-    }
+    // deleted private String format(Path rosFile, Records records)
 
     private String formatWithCategory(Path rosFile, Records records) {
         String reportTemplate = "%s, %d\n";
