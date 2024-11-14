@@ -2,7 +2,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-record Records(List<RecordOfSale> entries) {
+public record Records(List<RecordOfSale> entries) {
 
     // created while splitting for req 2)
 
@@ -30,8 +30,11 @@ record Records(List<RecordOfSale> entries) {
 
     public double similarity(Records other) {
         RecordOfSale recordOfSale1 = entries().get(0);
-        RecordOfSale recordOfSale2 = other.entries().get(0);
 
-        return recordOfSale1.equalItem(recordOfSale2) ? 1.0 : 0.0;
+        return other.contains(recordOfSale1) ? 1.0 : 0.0;
+    }
+
+    private boolean contains(RecordOfSale record) {
+        return entries.stream().filter(record::equalItem).count() == 1;
     }
 }
