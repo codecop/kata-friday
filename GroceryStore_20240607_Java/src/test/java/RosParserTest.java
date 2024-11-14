@@ -66,7 +66,7 @@ class RosParserTest {
         assertEquals(2, records.entries().size());
     }
 
-    // TODO missing test for badRecord on outside using the Either
+    // we miss a test for badRecord on outside (= rosParser.parseRecords(rosFile)) using the Result (= Either)
 
     @Test
     void showOffendingLineOnBadInput() {
